@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #16181e;
+  --color-deep-ocean: #004560;
+  --color-ocean: #006993;
+  --color-muted: #535764;
+  --color-footer-title: #09355d;
+  --color-footer-text: #16181e;
+  --color-footer-bg: #087393;
+  --color-faq-accent: #69dd84;
+  --color-faq-box: #f5f9ff;
+  --color-hero-accent: #5aca6e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-roboto);
+  --font-montez: var(--font-montez);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}

@@ -1,0 +1,454 @@
+{
+  "NotFound": {
+    "title": "404",
+    "subtitle": "Page Not Found",
+    "description": "Oops! The page you are looking for doesn't exist, has been removed, or is temporarily unavailable.",
+    "backToHome": "Back to Home"
+  },
+  "Header": {
+    "logoHome": "Logoipsum home",
+    "openCart": "Open cart",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "english": "English",
+    "french": "French",
+    "german": "German",
+    "polish": "Polish"
+  },
+  "Navigation": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "trips": "Trips",
+    "gallery": "Gallery",
+    "blogs": "Blogs",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "faq": "FAQ",
+    "allDestinations": "All Destinations"
+  },
+  "Hero": {
+    "ariaLabel": "Featured Egypt travel experiences",
+    "cta": "Explore Trips",
+    "controls": {
+      "previousSlide": "Previous slide",
+      "nextSlide": "Next slide"
+    },
+    "destinationCards": {
+      "view": "View {destination}"
+    },
+    "destinations": {
+      "redSea": "Red Sea",
+      "luxor": "Luxor",
+      "giza": "Giza"
+    },
+    "slides": {
+      "boat": {
+        "subtitle": "Explore",
+        "title": "Every Journey Has a Story. Start Yours in Egypt.",
+        "description": "From the golden dunes of the Sahara to the vibrant coral reefs of the Red Sea, discover unforgettable adventures crafted for every traveler."
+      },
+      "sunset": {
+        "subtitle": "Explore",
+        "title": "Where Every Sunset Tells an Ancient Tale",
+        "description": "Watch golden sunsets paint the Sahara and the Nile in hues of amber and rose, and let Egypt's timeless beauty leave an impression that lasts a lifetime."
+      },
+      "prim": {
+        "subtitle": "Explore",
+        "title": "Walk Through Thousands of Years of History",
+        "description": "Stand before the majestic Pyramids, uncover ancient mysteries, cruise along the Nile, and experience the timeless wonders that have inspired travelers for centuries."
+      }
+    }
+  },
+  "Categories": {
+    "subtitle": "Handpicked Adventures",
+    "title": "Tour Categories",
+    "loading": "Loading destinations...",
+    "error": "Failed to load destinations",
+    "goTo": "Go to {destination}",
+    "exploreTrips": "Explore Trips"
+  },
+  "Tours": {
+    "subtitle": "Explore Tours",
+    "title": "Best-Selling Tours",
+    "viewMore": "View More",
+    "loadingFilters": "Loading filters...",
+    "loadingTours": "Loading tours...",
+    "noTours": "No tours available at the moment.",
+    "bookNow": "Book Now",
+    "addToCart": "Add to Cart"
+  },
+  "PopularDestinations": {
+    "subtitle": "Explore Egypt's Hidden Gems",
+    "title": "Popular destinations",
+    "viewMore": "View More",
+    "loading": "Loading popular destinations...",
+    "exploreTrips": "Explore Trips"
+  },
+  "HowItWorks": {
+    "subtitle": "Book Your Adventure in Minutes",
+    "title": "How It Works",
+    "steps": {
+      "step1": {
+        "title": "Choose an Experience",
+        "description": "Browse adventures that match your travel style."
+      },
+      "step2": {
+        "title": "Reserve Securely",
+        "description": "Book safely using trusted payment methods."
+      },
+      "step3": {
+        "title": "Receive Instant Confirmation",
+        "description": "Your itinerary arrives instantly in your inbox."
+      },
+      "step4": {
+        "title": "Enjoy the Journey",
+        "description": "Pack your bags we'll take care of the rest."
+      }
+    }
+  },
+  "Gallery": {
+    "subtitle": "Moments Worth Remembering",
+    "title": "Our Gallery",
+    "loading": "Loading gallery..."
+  },
+  "Blogs": {
+    "subtitle": "Discover travel guides",
+    "title": "Our Blogs",
+    "viewMore": "More Articles",
+    "readMore": "Read More",
+    "error": "Failed to load blogs. Please try again later.",
+    "empty": "It seems like this section is empty for now."
+  },
+  "Explore": {
+    "title": "Where Your Adventure Begins",
+    "description": "Choose from Egypt's most exciting travel experiences.",
+    "cta": "Explore Tour Now"
+  },
+  "FAQ": {
+    "subtitle": "Your Perfect Journey, Crafted with Care",
+    "title": "Frequently Asked Questions",
+    "viewAll": "View All FAQs →"
+  },
+  "Footer": {
+    "companyDescription": "Every journey is an opportunity to explore, relax, and create unforgettable memories crafted with care, comfort, and local expertise. Create Memories together.",
+    "quickAction": "Quick Action",
+    "contactUs": "Contact Us",
+    "followUs": "Follow Us",
+    "poweredBy": "Powered By",
+    "allRightsReserved": "All Rights Reserved"
+  },
+  "DestinationsPage": {
+    "hero": {
+      "subtitle": "Explore Egypt",
+      "title": "Discover Destinations That Inspire Every Journey",
+      "imageAlt": "Hurghada destination word art"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "destinations": "Destinations"
+    },
+    "card": {
+      "trips": "{count} Trips",
+      "tripsSingular": "{count} Trip",
+      "destinationAlt": "{name} destination"
+    }
+  },
+  "TripsPage": {
+    "hero": {
+      "subtitle": "Explore Egypt",
+      "title": "Find Your Next Adventure"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "explore": "Explore"
+    },
+    "toolbar": {
+      "tripsFound": "{count} Trips Found",
+      "tripFound": "{count} Trip Found",
+      "filter": "Filter",
+      "searchPlaceholder": "Search"
+    },
+    "sidebar": {
+      "filterTitle": "Filter",
+      "clearAll": "Clear all filter",
+      "destination": "Destination",
+      "anyDestination": "Any Destination",
+      "priceRange": "Price Range",
+      "min": "Min",
+      "max": "Max",
+      "to": "To",
+      "tripsTypes": "Trips Types",
+      "allTrips": "All Trips"
+    },
+    "grid": {
+      "error": "Failed to load trips. Please try again later.",
+      "noTripsTitle": "No trips found",
+      "noTripsDescription": "Try adjusting your filters to see more results."
+    },
+    "mobileFilters": {
+      "title": "Filters",
+      "applyButton": "Apply Filters"
+    },
+    "showMore": {
+      "loading": "Loading...",
+      "button": "Show More"
+    }
+  },
+  "GalleryPage": {
+    "hero": {
+      "subtitle": "Travel Moments",
+      "title": "Explore Egypt Through Our Lens",
+      "imageAlt": "Camera with travel photos"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "gallery": "Gallery"
+    },
+    "states": {
+      "loading": "Loading gallery...",
+      "error": "Failed to load gallery images.",
+      "empty": "No images available yet."
+    },
+    "seeMore": "See More"
+  },
+  "BlogsPage": {
+    "hero": {
+      "subtitle": "Explore Articles",
+      "title": "Discover Stories, Guides & Travel Tips",
+      "imageAlt": "Discover Stories, Guides & Travel Tips"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "blogs": "Blogs"
+    },
+    "search": {
+      "placeholder": "Search"
+    },
+    "tags": {
+      "label": "Popular tags:",
+      "all": "All",
+      "sea": "Sea",
+      "safari": "Safari",
+      "history": "History"
+    },
+    "grid": {
+      "error": "Failed to load blogs. Please try again later.",
+      "empty": "No articles found matching your search.",
+      "seeMore": "See More"
+    }
+  },
+  "AboutPage": {
+    "hero": {
+      "subtitle": "Our Story",
+      "title": "Discover Egypt with People Who Know It Best",
+      "imageAlt": "Airplane window view above the clouds"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "about": "About Us"
+    },
+    "intro": {
+      "title": "Your Journey Begins With Us",
+      "description": "We create unforgettable travel experiences that bring you closer to the heart of Egypt. From crystal-clear Red Sea adventures and thrilling desert safaris to iconic historical landmarks and scenic Nile cruises, every journey is carefully designed to inspire, excite, and leave you with memories that last a lifetime."
+    },
+    "company": {
+      "title": "About Our Company",
+      "imageAlt": "Egypt travel collage",
+      "description": {
+        "part1": "We believe that travel is more than just visiting places it's about stories, moments, and memories that last a lifetime.",
+        "part2": "Our team is made up of local experts and travel enthusiasts who know every hidden gem, every perfect timing, and every detail that turns a trip into an experience."
+      }
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To provide authentic, safe, and inspiring travel experiences that allow every visitor to explore Egypt with confidence, comfort, and unforgettable memories."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To become Egypt's most trusted travel platform by connecting travelers with extraordinary destinations, exceptional service, and meaningful cultural experiences."
+    },
+    "offers": {
+      "title": "What We Offer?",
+      "items": {
+        "seaTrips": {
+          "title": "Sea Trips",
+          "description": "Snorkeling, islands, crystal-clear waters, and relaxation."
+        },
+        "desertSafari": {
+          "title": "Desert Safari",
+          "description": "Adventure, culture, and unforgettable desert views"
+        },
+        "historicalTours": {
+          "title": "Historical Tours",
+          "description": "Explore Egypt's ancient wonders with expert guides"
+        }
+      }
+    }
+  },
+  "ContactPage": {
+    "hero": {
+      "subtitle": "Get in Touch",
+      "title": "Let's Start Your Next Adventure",
+      "description": "Whether you're planning your dream vacation, looking for the perfect tour, or simply have a question, our team is here to help. Reach out to us, and let's create unforgettable memories together.",
+      "imageAlt": "Get in touch"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "contact": "Contact Us"
+    },
+    "form": {
+      "title": "Have questions? Feel free to write us",
+      "description": "Have a question or need more information about our products? Fill out the form below and we'll get back to you as soon as possible.",
+      "fields": {
+        "name": {
+          "label": "Your name",
+          "placeholder": "Enter Name"
+        },
+        "whatsapp": {
+          "label": "WhatsApp Number",
+          "placeholder": "Enter your WhatsApp Number"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Write your message"
+        }
+      },
+      "submit": "Send Message"
+    },
+    "info": {
+      "location": {
+        "label": "Location",
+        "value": "Hurghada, Red Sea, Egypt"
+      },
+      "phone": {
+        "label": "Call Us"
+      },
+      "email": {
+        "label": "Email"
+      }
+    },
+    "map": {
+      "title": "Hurghada, Egypt location map"
+    },
+    "social": {
+      "title": "Follow Us",
+      "links": {
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "tiktok": "TikTok",
+        "x": "X"
+      }
+    }
+  },
+  "CartPage": {
+    "header": {
+      "title": "Booking Cart",
+      "description": "Review your selected tours before payment"
+    },
+    "loading": {
+      "label": "Loading cart"
+    },
+    "item": {
+      "remove": "Remove",
+      "removeAria": "Remove {name} from cart",
+      "travelers": "{count, plural, one {# Traveler} other {# Travelers}}",
+      "perPerson": "per person"
+    },
+    "summary": {
+      "title": "Booking summary",
+      "empty": "Your cart is empty.",
+      "package": "Package",
+      "adult": "Adult",
+      "child": "Child",
+      "total": "Total",
+      "removeAria": "Remove {name} from booking summary",
+      "checkout": "Proceed to check out →"
+    },
+    "empty": {
+      "title": "Your cart is currently empty",
+      "description": "Looks like you haven't added any trips yet. Discover our latest offers and start planning your next adventure!",
+      "button": "Explore Trips"
+    }
+  },
+  "CheckoutPage": {
+    "empty": {
+      "title": "Your cart is empty",
+      "description": "Please go back and select a trip to book.",
+      "cta": "Explore trips"
+    },
+    "form": {
+      "billing": {
+        "title": "Billing Details",
+        "fields": {
+          "firstName": {
+            "label": "First Name *",
+            "placeholder": "First Name"
+          },
+          "lastName": {
+            "label": "Last Name *",
+            "placeholder": "Last Name"
+          },
+          "nationality": {
+            "label": "Nationality *",
+            "placeholder": "Select Nationality (e.g. EG, US, GB)"
+          },
+          "email": {
+            "label": "Email address *",
+            "placeholder": "Email Address"
+          },
+          "phone": {
+            "label": "Phone Number *",
+            "placeholder": "Phone Number"
+          },
+          "hotelName": {
+            "label": "Hotel Name (Optional)",
+            "placeholder": "Hotel Name"
+          },
+          "roomNo": {
+            "label": "Room Number (Optional)",
+            "placeholder": "Room Number"
+          }
+        }
+      },
+      "coupon": {
+        "title": "Coupon",
+        "placeholder": "Enter coupon Number",
+        "apply": "Apply",
+        "applying": "Applying...",
+        "success": "Coupon applied! You saved {amount}",
+        "invalid": "Invalid coupon code"
+      },
+      "payment": {
+        "title": "Payment Method",
+        "bookNowPayLater": "Book Now Pay later"
+      },
+      "submit": {
+        "confirm": "Confirm Booking",
+        "confirming": "Confirming...",
+        "error": "Failed to confirm booking. Please try again."
+      },
+      "nationalityFallback": "Not specified"
+    },
+    "summary": {
+      "empty": "Your cart is empty.",
+      "title": "Tour Details",
+      "travelerCount": "No. of Travellers:",
+      "package": "Package",
+      "travelers": "Traveller(s):",
+      "adult": "Adult",
+      "child": "Child",
+      "subtotal": "Subtotal:",
+      "discount": "Discount:",
+      "total": "Total:"
+    }
+  },
+  "CheckoutSuccessPage": {
+    "imageAlt": "Booking successful",
+    "title": "Booking Created Successfully!",
+    "description": "Thank you for choosing us. We have received your booking details and will get in touch shortly.",
+    "backHome": "Back to Home"
+  }
+}

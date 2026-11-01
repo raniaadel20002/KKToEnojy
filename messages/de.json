@@ -1,0 +1,454 @@
+{
+  "NotFound": {
+    "title": "404",
+    "subtitle": "Seite nicht gefunden",
+    "description": "Hoppla! Die von Ihnen gesuchte Seite existiert nicht, wurde entfernt oder ist vorübergehend nicht verfügbar.",
+    "backToHome": "Zurück zur Startseite"
+  },
+  "Header": {
+    "logoHome": "Logoipsum Startseite",
+    "openCart": "Warenkorb öffnen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen"
+  },
+  "LocaleSwitcher": {
+    "label": "Sprache ändern",
+    "english": "Englisch",
+    "french": "Französisch",
+    "german": "Deutsch",
+    "polish": "Polnisch"
+  },
+  "Navigation": {
+    "home": "Startseite",
+    "destinations": "Reiseziele",
+    "trips": "Reisen",
+    "gallery": "Galerie",
+    "blogs": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "faq": "FAQ",
+    "allDestinations": "Alle Reiseziele"
+  },
+  "Hero": {
+    "ariaLabel": "Ausgewählte Reiseerlebnisse in Ägypten",
+    "cta": "Reisen entdecken",
+    "controls": {
+      "previousSlide": "Vorherige Folie",
+      "nextSlide": "Nächste Folie"
+    },
+    "destinationCards": {
+      "view": "{destination} ansehen"
+    },
+    "destinations": {
+      "redSea": "Rotes Meer",
+      "luxor": "Luxor",
+      "giza": "Gizeh"
+    },
+    "slides": {
+      "boat": {
+        "subtitle": "Entdecken",
+        "title": "Jede Reise hat eine Geschichte. Beginne deine in Ägypten.",
+        "description": "Von den goldenen Dünen der Sahara bis zu den farbenprächtigen Korallenriffen des Roten Meeres erwarten dich unvergessliche Abenteuer für jeden Reisestil."
+      },
+      "sunset": {
+        "subtitle": "Entdecken",
+        "title": "Wo jeder Sonnenuntergang eine alte Geschichte erzählt",
+        "description": "Erlebe, wie goldene Sonnenuntergänge Sahara und Nil in Bernstein- und Rosétönen leuchten lassen, und nimm Ägyptens zeitlose Schönheit mit nach Hause."
+      },
+      "prim": {
+        "subtitle": "Entdecken",
+        "title": "Wandere durch Jahrtausende Geschichte",
+        "description": "Stehe vor den majestätischen Pyramiden, entdecke uralte Geheimnisse, gleite über den Nil und erlebe Wunder, die Reisende seit Jahrhunderten inspirieren."
+      }
+    }
+  },
+  "Categories": {
+    "subtitle": "Handverlesene Abenteuer",
+    "title": "Tour-Kategorien",
+    "loading": "Reiseziele werden geladen...",
+    "error": "Reiseziele konnten nicht geladen werden",
+    "goTo": "Zu {destination} gehen",
+    "exploreTrips": "Reisen erkunden"
+  },
+  "Tours": {
+    "subtitle": "Touren entdecken",
+    "title": "Meistverkaufte Touren",
+    "viewMore": "Mehr anzeigen",
+    "loadingFilters": "Filter werden geladen...",
+    "loadingTours": "Touren werden geladen...",
+    "noTours": "Momentan sind keine Touren verfügbar.",
+    "bookNow": "Jetzt buchen",
+    "addToCart": "In den Warenkorb"
+  },
+  "PopularDestinations": {
+    "subtitle": "Entdecke Ägyptens verborgene Schätze",
+    "title": "Beliebte Reiseziele",
+    "viewMore": "Mehr anzeigen",
+    "loading": "Beliebte Reiseziele werden geladen...",
+    "exploreTrips": "Reisen erkunden"
+  },
+  "HowItWorks": {
+    "subtitle": "Buche dein Abenteuer in Minuten",
+    "title": "So funktioniert's",
+    "steps": {
+      "step1": {
+        "title": "Wähle ein Erlebnis",
+        "description": "Entdecke Abenteuer, die zu deinem Reisestil passen."
+      },
+      "step2": {
+        "title": "Sicher reservieren",
+        "description": "Buche sicher mit vertrauenswürdigen Zahlungsmethoden."
+      },
+      "step3": {
+        "title": "Sofortige Bestätigung erhalten",
+        "description": "Deine Reiseroute erreicht dich sofort per E-Mail."
+      },
+      "step4": {
+        "title": "Genieße die Reise",
+        "description": "Pack deine Koffer – wir kümmern uns um den Rest."
+      }
+    }
+  },
+  "Gallery": {
+    "subtitle": "Momente, die es wert sind, erinnert zu werden",
+    "title": "Unsere Galerie",
+    "loading": "Galerie wird geladen..."
+  },
+  "Blogs": {
+    "subtitle": "Entdecke Reiseführer",
+    "title": "Unsere Blogs",
+    "viewMore": "Weitere Artikel",
+    "readMore": "Mehr lesen",
+    "error": "Blogs konnten nicht geladen werden. Bitte versuche es später erneut.",
+    "empty": "Es scheint, als wäre dieser Bereich vorerst leer."
+  },
+  "Explore": {
+    "title": "Wo dein Abenteuer beginnt",
+    "description": "Wähle aus Ägyptens aufregendsten Reiseerlebnissen.",
+    "cta": "Touren jetzt entdecken"
+  },
+  "FAQ": {
+    "subtitle": "Deine perfekte Reise, mit Sorgfalt gestaltet",
+    "title": "Häufig gestellte Fragen",
+    "viewAll": "Alle FAQs ansehen →"
+  },
+  "Footer": {
+    "companyDescription": "Jede Reise ist eine Gelegenheit zu erkunden, zu entspannen und unvergessliche Erinnerungen zu schaffen – mit Sorgfalt, Komfort und lokaler Expertise. Create Memories together.",
+    "quickAction": "Schnellzugriff",
+    "contactUs": "Kontaktiere uns",
+    "followUs": "Folge uns",
+    "poweredBy": "Unterstützt von",
+    "allRightsReserved": "Alle Rechte vorbehalten"
+  },
+  "DestinationsPage": {
+    "hero": {
+      "subtitle": "Entdecke Ägypten",
+      "title": "Entdecke Reiseziele, die jede Reise inspirieren",
+      "imageAlt": "Hurghada Reiseziel Wortkunst"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "destinations": "Reiseziele"
+    },
+    "card": {
+      "trips": "{count} Reisen",
+      "tripsSingular": "{count} Reise",
+      "destinationAlt": "Reiseziel {name}"
+    }
+  },
+  "TripsPage": {
+    "hero": {
+      "subtitle": "Entdecke Ägypten",
+      "title": "Finde dein nächstes Abenteuer"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "explore": "Erkunden"
+    },
+    "toolbar": {
+      "tripsFound": "{count} Reisen gefunden",
+      "tripFound": "{count} Reise gefunden",
+      "filter": "Filter",
+      "searchPlaceholder": "Suchen"
+    },
+    "sidebar": {
+      "filterTitle": "Filter",
+      "clearAll": "Alle Filter löschen",
+      "destination": "Reiseziel",
+      "anyDestination": "Beliebiges Reiseziel",
+      "priceRange": "Preisspanne",
+      "min": "Min",
+      "max": "Max",
+      "to": "Bis",
+      "tripsTypes": "Reisearten",
+      "allTrips": "Alle Reisen"
+    },
+    "grid": {
+      "error": "Reisen konnten nicht geladen werden. Bitte versuche es später erneut.",
+      "noTripsTitle": "Keine Reisen gefunden",
+      "noTripsDescription": "Versuche deine Filter anzupassen, um mehr Ergebnisse zu sehen."
+    },
+    "mobileFilters": {
+      "title": "Filter",
+      "applyButton": "Filter anwenden"
+    },
+    "showMore": {
+      "loading": "Lädt...",
+      "button": "Mehr anzeigen"
+    }
+  },
+  "GalleryPage": {
+    "hero": {
+      "subtitle": "Reisemomente",
+      "title": "Entdecke Ägypten durch unsere Linse",
+      "imageAlt": "Kamera mit Reisefotos"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "gallery": "Galerie"
+    },
+    "states": {
+      "loading": "Galerie wird geladen...",
+      "error": "Galeriebilder konnten nicht geladen werden.",
+      "empty": "Noch keine Bilder verfügbar."
+    },
+    "seeMore": "Mehr anzeigen"
+  },
+  "BlogsPage": {
+    "hero": {
+      "subtitle": "Entdecke Artikel",
+      "title": "Entdecke Geschichten, Reiseführer & Reisetipps",
+      "imageAlt": "Entdecke Geschichten, Reiseführer & Reisetipps"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "blogs": "Blog"
+    },
+    "search": {
+      "placeholder": "Suchen"
+    },
+    "tags": {
+      "label": "Beliebte Tags:",
+      "all": "Alle",
+      "sea": "Meer",
+      "safari": "Safari",
+      "history": "Geschichte"
+    },
+    "grid": {
+      "error": "Blogs konnten nicht geladen werden. Bitte versuche es später erneut.",
+      "empty": "Keine Artikel gefunden, die deiner Suche entsprechen.",
+      "seeMore": "Mehr anzeigen"
+    }
+  },
+  "AboutPage": {
+    "hero": {
+      "subtitle": "Unsere Geschichte",
+      "title": "Entdecke Ägypten mit Menschen, die es am besten kennen",
+      "imageAlt": "Blick aus einem Flugzeugfenster über den Wolken"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "about": "Über uns"
+    },
+    "intro": {
+      "title": "Deine Reise beginnt mit uns",
+      "description": "Wir schaffen unvergessliche Reiseerlebnisse, die dich dem Herzen Ägyptens näherbringen. Von kristallklaren Abenteuern am Roten Meer und spannenden Wüstensafaris bis hin zu berühmten historischen Wahrzeichen und malerischen Nilkreuzfahrten wird jede Reise sorgfältig gestaltet, um dich zu inspirieren, zu begeistern und Erinnerungen fürs Leben zu schaffen."
+    },
+    "company": {
+      "title": "Über unser Unternehmen",
+      "imageAlt": "Ägypten-Reisecollage",
+      "description": {
+        "part1": "Wir glauben, dass Reisen mehr ist als nur Orte zu besuchen: Es geht um Geschichten, Momente und Erinnerungen, die ein Leben lang bleiben.",
+        "part2": "Unser Team besteht aus lokalen Experten und Reisebegeisterten, die jedes versteckte Highlight, den perfekten Zeitpunkt und jedes Detail kennen, das aus einer Reise ein echtes Erlebnis macht."
+      }
+    },
+    "mission": {
+      "title": "Unsere Mission",
+      "description": "Wir bieten authentische, sichere und inspirierende Reiseerlebnisse, damit jeder Besucher Ägypten mit Vertrauen, Komfort und unvergesslichen Erinnerungen entdecken kann."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "description": "Wir möchten Ägyptens vertrauenswürdigste Reiseplattform werden, indem wir Reisende mit außergewöhnlichen Reisezielen, hervorragendem Service und bedeutungsvollen kulturellen Erlebnissen verbinden."
+    },
+    "offers": {
+      "title": "Was bieten wir an?",
+      "items": {
+        "seaTrips": {
+          "title": "Meeresausflüge",
+          "description": "Schnorcheln, Inseln, kristallklares Wasser und Erholung."
+        },
+        "desertSafari": {
+          "title": "Wüstensafari",
+          "description": "Abenteuer, Kultur und unvergessliche Wüstenblicke"
+        },
+        "historicalTours": {
+          "title": "Historische Touren",
+          "description": "Entdecke Ägyptens antike Wunder mit erfahrenen Guides"
+        }
+      }
+    }
+  },
+  "ContactPage": {
+    "hero": {
+      "subtitle": "Kontakt aufnehmen",
+      "title": "Lass uns dein nächstes Abenteuer planen",
+      "description": "Ob du deinen Traumurlaub planst, nach der perfekten Tour suchst oder einfach eine Frage hast: Unser Team ist für dich da. Schreib uns, und lass uns gemeinsam unvergessliche Erinnerungen schaffen.",
+      "imageAlt": "Kontakt aufnehmen"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "contact": "Kontakt"
+    },
+    "form": {
+      "title": "Hast du Fragen? Schreib uns gerne",
+      "description": "Hast du eine Frage oder brauchst du weitere Informationen zu unseren Angeboten? Fülle das Formular aus, und wir melden uns so schnell wie möglich bei dir.",
+      "fields": {
+        "name": {
+          "label": "Dein Name",
+          "placeholder": "Namen eingeben"
+        },
+        "whatsapp": {
+          "label": "WhatsApp-Nummer",
+          "placeholder": "Geben Sie Ihre WhatsApp-Nummer ein"
+        },
+        "message": {
+          "label": "Nachricht",
+          "placeholder": "Schreibe deine Nachricht"
+        }
+      },
+      "submit": "Nachricht senden"
+    },
+    "info": {
+      "location": {
+        "label": "Standort",
+        "value": "Hurghada, Rotes Meer, Ägypten"
+      },
+      "phone": {
+        "label": "Ruf uns an"
+      },
+      "email": {
+        "label": "E-Mail"
+      }
+    },
+    "map": {
+      "title": "Karte des Standorts Hurghada, Ägypten"
+    },
+    "social": {
+      "title": "Folge uns",
+      "links": {
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "tiktok": "TikTok",
+        "x": "X"
+      }
+    }
+  },
+  "CartPage": {
+    "header": {
+      "title": "Buchungswarenkorb",
+      "description": "Überprüfe deine ausgewählten Touren vor der Zahlung"
+    },
+    "loading": {
+      "label": "Warenkorb wird geladen"
+    },
+    "item": {
+      "remove": "Entfernen",
+      "removeAria": "{name} aus dem Warenkorb entfernen",
+      "travelers": "{count, plural, one {# Reisender} other {# Reisende}}",
+      "perPerson": "pro Person"
+    },
+    "summary": {
+      "title": "Buchungsübersicht",
+      "empty": "Dein Warenkorb ist leer.",
+      "package": "Paket",
+      "adult": "Erwachsener",
+      "child": "Kind",
+      "total": "Gesamt",
+      "removeAria": "{name} aus der Buchungsübersicht entfernen",
+      "checkout": "Weiter zur Kasse →"
+    },
+    "empty": {
+      "title": "Ihr Warenkorb ist derzeit leer",
+      "description": "Sieht so aus, als hätten Sie noch keine Reisen hinzugefügt. Entdecken Sie unsere neuesten Angebote und beginnen Sie mit der Planung Ihres nächsten Abenteuers!",
+      "button": "Reisen entdecken"
+    }
+  },
+  "CheckoutPage": {
+    "empty": {
+      "title": "Dein Warenkorb ist leer",
+      "description": "Bitte gehe zurück und wähle eine Reise aus, die du buchen möchtest.",
+      "cta": "Reisen entdecken"
+    },
+    "form": {
+      "billing": {
+        "title": "Rechnungsdetails",
+        "fields": {
+          "firstName": {
+            "label": "Vorname *",
+            "placeholder": "Vorname"
+          },
+          "lastName": {
+            "label": "Nachname *",
+            "placeholder": "Nachname"
+          },
+          "nationality": {
+            "label": "Nationalität *",
+            "placeholder": "Nationalität auswählen (z. B. EG, US, GB)"
+          },
+          "email": {
+            "label": "E-Mail-Adresse *",
+            "placeholder": "E-Mail-Adresse"
+          },
+          "phone": {
+            "label": "Telefonnummer *",
+            "placeholder": "Telefonnummer"
+          },
+          "hotelName": {
+            "label": "Hotelname (Optional)",
+            "placeholder": "Hotelname"
+          },
+          "roomNo": {
+            "label": "Zimmernummer (Optional)",
+            "placeholder": "Zimmernummer"
+          }
+        }
+      },
+      "coupon": {
+        "title": "Gutschein",
+        "placeholder": "Gutscheinnummer eingeben",
+        "apply": "Anwenden",
+        "applying": "Wird angewendet...",
+        "success": "Gutschein angewendet! Du sparst {amount}",
+        "invalid": "Ungültiger Gutscheincode"
+      },
+      "payment": {
+        "title": "Zahlungsmethode",
+        "bookNowPayLater": "Jetzt buchen, später bezahlen"
+      },
+      "submit": {
+        "confirm": "Buchung bestätigen",
+        "confirming": "Wird bestätigt...",
+        "error": "Die Buchung konnte nicht bestätigt werden. Bitte versuche es erneut."
+      },
+      "nationalityFallback": "Nicht angegeben"
+    },
+    "summary": {
+      "empty": "Dein Warenkorb ist leer.",
+      "title": "Reisedetails",
+      "travelerCount": "Anzahl der Reisenden:",
+      "package": "Paket",
+      "travelers": "Reisende:",
+      "adult": "Erwachsener",
+      "child": "Kind",
+      "subtotal": "Zwischensumme:",
+      "discount": "Rabatt:",
+      "total": "Gesamt:"
+    }
+  },
+  "CheckoutSuccessPage": {
+    "imageAlt": "Buchung erfolgreich",
+    "title": "Buchung erfolgreich erstellt!",
+    "description": "Vielen Dank, dass du dich für uns entschieden hast. Wir haben deine Buchungsdetails erhalten und melden uns in Kürze bei dir.",
+    "backHome": "Zurück zur Startseite"
+  }
+}
