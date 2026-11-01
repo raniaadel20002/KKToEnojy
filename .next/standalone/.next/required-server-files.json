@@ -109,7 +109,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\VIP\\Desktop\\work\\sunnyside-tours",
+    "outputFileTracingRoot": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -171,7 +171,7 @@
       "proxyPrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
-      "cpus": 3,
+      "cpus": 7,
       "memoryBasedWorkersCount": false,
       "imgOptConcurrency": null,
       "imgOptTimeoutInSeconds": 7,
@@ -312,11 +312,11 @@
       "resolveAlias": {
         "next-intl/config": "./src/i18n/request.ts"
       },
-      "root": "C:\\Users\\VIP\\Desktop\\work\\sunnyside-tours"
+      "root": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "C:\\Users\\VIP\\Desktop\\work\\sunnyside-tours",
+  "appDir": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy",
   "relativeAppDir": "",
   "files": [
     ".next\\package.json",
