@@ -1,57 +1,114 @@
 
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 import type { TripType } from "@/src/features/categories/types/trip-type";
 
 interface CategoryCardProps {
   tripType: TripType;
   index: number;
+  isDesktop?: boolean;
 }
+
+const DESKTOP_ROTATIONS = [-13, 8, -3, -14];
+const DESKTOP_PIN_ROTATIONS = [-47, 0, -45.99, -47];
+
+const MOBILE_ROTATIONS = [7, -4.31, -4, 6];
+const MOBILE_PIN_ROTATIONS = [7, -4.31, -4, 6];
 
 export function CategoryCard({
   tripType,
   index,
+  isDesktop = false,
 }: CategoryCardProps) {
   const locale = useLocale();
-  const t = useTranslations("Categories");
+  const [isHovered, setIsHovered] = useState(false);
+
+  const defaultRotation = isDesktop
+    ? DESKTOP_ROTATIONS[index % 4]
+    : MOBILE_ROTATIONS[index % 4];
+
+  const pinRotation = isDesktop
+    ? DESKTOP_PIN_ROTATIONS[index % 4]
+    : MOBILE_PIN_ROTATIONS[index % 4];
+
+  // Compensate for the card's rotation so the pin keeps
+  // its specified absolute angle.
+  const adjustedPinRotation = isHovered
+    ? pinRotation
+    : pinRotation - defaultRotation;
+
   return (
-    <Link href={`/${locale}/trips?typeId=${tripType.id}`} className="block" draggable={false}>
+    <Link
+      href={`/${locale}/trips?typeId=${tripType.id}`}
+      className="block outline-hidden select-none"
+      draggable={false}
+    >
       <motion.div
-        whileHover={{
-          scale: 1.04,
-          transition: { duration: 0.25 },
+        className="group relative gap-4cursor-pointer"
+        initial={{ rotate: defaultRotation, scale: 1 }}
+        animate={{
+          rotate: isHovered ? 0 : defaultRotation,
+          scale: isHovered ? 1.05 : 1,
+          zIndex: isHovered ? 30 : 10,
         }}
-        className="group relative h-[320px] w-full shrink-0 cursor-pointer select-none overflow-hidden rounded-[24px] md:h-[380px]"
+        transition={{
+          type: "spring",
+          stiffness: 300,
+          damping: 22,
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <Image
-          src={tripType.imageUrl}
-          alt={tripType.name}
-          fill
-          draggable={false}
-          sizes="(max-width: 768px) 280px, 25vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none"
-        />
-
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/30" />
-
-        {/* Hover CTA */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="rounded-full bg-white/25 px-5 py-2 text-sm font-semibold text-white backdrop-blur-sm ring-1 ring-white/50">
-            {t("exploreTrips")}
-          </span>
+        {/* Pushpin */}
+        <div className="pointer-events-none absolute -top-3.5 sm:-top-4.5 left-1/2 z-20 -translate-x-1/2 ">
+          <motion.div
+            className="relative h-[28px] w-[24px] sm:h-[36px] sm:w-[32px]"
+            animate={{ rotate: adjustedPinRotation }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 22,
+            }}
+          >
+            <Image
+              src="/Categories/Pushpin.svg"
+              alt=""
+              fill
+              className="object-contain"
+            />
+          </motion.div>
         </div>
 
-        {/* Label pill at bottom center */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-max max-w-[90%] rounded-full bg-white px-5 py-2 shadow-md transition-all duration-300 group-hover:shadow-lg">
-          <span className="block truncate text-center text-sm font-semibold text-[var(--color-deep-ocean)] md:text-base">
-            {tripType.name}
-          </span>
+        {/* Polaroid Card */}
+        <div className="relative w-full overflow-hidden rounded-[10px] border border-[#888888] bg-white p-2.5 pb-3 shadow-xl transition-shadow duration-300 group-hover:shadow-2xl sm:p-3.5 sm:pb-4">
+          <div className="relative aspect-square w-full overflow-hidden rounded-[4px] bg-slate-100">
+            {tripType.imageUrl ? (
+              <Image
+                src={tripType.imageUrl}
+                alt={tripType.name}
+                fill
+                draggable={false}
+                sizes="(max-width: 640px) 140px, (max-width: 1024px) 200px, 280px"
+                className="pointer-events-none object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-slate-200 text-slate-400">
+                <span>{tripType.name}</span>
+              </div>
+            )}
+          </div>
+
+          <div className="pt-2 text-center sm:pt-3">
+            <h3 className="truncate px-1 font-[family-name:var(--font-dm-sans)] text-[14px] font-bold text-[#343B55] sm:text-[18px] lg:text-[20px]">
+              {tripType.name}
+            </h3>
+          </div>
         </div>
       </motion.div>
     </Link>

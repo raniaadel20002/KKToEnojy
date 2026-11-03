@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, type Variants } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
@@ -14,23 +14,23 @@ const sectionVariants: Variants = {
     opacity: 1,
     transition: {
       duration: 0.6,
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 function FaqSkeleton() {
   return (
-    <div className="flex flex-col gap-[22px]">
+    <div className="flex flex-col gap-[18px]">
       {Array.from({ length: 4 }).map((_, i) => (
         <div
           key={i}
-          className="h-[70px] animate-pulse rounded-[14px] bg-[var(--color-faq-box)]"
+          className="h-[70px] animate-pulse rounded-[14px] bg-[#FAF7F2]/20"
         />
       ))}
     </div>
@@ -58,41 +58,43 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-0 lg:py-[82px]"
+      className="bg-[#343B55] px-5 py-16 sm:px-8 sm:py-20 lg:px-0 lg:py-[82px]"
     >
       <motion.div
         variants={sectionVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="mx-auto w-full max-w-[1280px]"
+        className="mx-auto w-full max-w-[900px]"
       >
-        <div className="mx-auto mb-8 max-w-[680px] text-center">
-          <motion.p
-            variants={itemVariants}
-            className="mx-auto max-w-[300px] break-words font-montez text-[30px] font-normal leading-[150%] text-[var(--color-faq-accent)] sm:max-w-none sm:text-[36px] sm:leading-[160%]"
-          >
-            {t("subtitle")}
-          </motion.p>
+        {/* Header */}
+        <div className="mb-10 text-center">
           <motion.h2
             variants={itemVariants}
-            className="mx-auto max-w-[340px] break-words text-[32px] font-semibold leading-[130%] text-[var(--color-ocean)] sm:max-w-none sm:text-[40px] sm:leading-[160%]"
+            className="font-[family-name:var(--font-playfair)] text-[40px] font-bold leading-[1.2] text-white sm:text-[52px]"
           >
             {t("title")}
           </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="font-[family-name:var(--font-dm-sans)] mt-3 text-[16px] leading-[1.6] text-white/70 sm:text-[18px]"
+          >
+            {t("subtitle")}
+          </motion.p>
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: 117 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="mx-auto mt-1 h-2 bg-[var(--color-faq-accent)]"
+            transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
+            className="mx-auto mt-4 h-[6px] rounded-[20px] bg-[#198399]"
           />
         </div>
 
+        {/* Accordion */}
         {isLoading ? (
           <FaqSkeleton />
         ) : (
-          <div className="flex flex-col gap-[22px]">
+          <div className="flex flex-col gap-[18px]">
             {questions?.map((item) => {
               const isOpen = openItems.has(item.id);
 
@@ -100,20 +102,22 @@ export function FaqSection() {
                 <motion.article
                   variants={itemVariants}
                   key={item.id}
-                  className="overflow-hidden rounded-[14px] bg-[var(--color-faq-box)]"
+                  className="overflow-hidden rounded-[14px] border border-[#888888] bg-[#FAF7F2]"
                 >
                   <button
                     type="button"
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${item.id}`}
                     onClick={() => toggleItem(item.id)}
-                    className="flex min-h-[70px] w-full items-center justify-between gap-4 px-4 text-left text-[22px] font-medium leading-[160%] text-[var(--color-deep-ocean)] sm:px-6 sm:text-2xl"
+                    className="flex min-h-[70px] w-full items-center justify-between gap-4 px-5 text-left sm:px-7"
                   >
-                    <span>{item.text}</span>
+                    <span className="font-[family-name:var(--font-dm-sans)] text-[17px] font-semibold leading-[1.5] text-[#198399] sm:text-[19px]">
+                      {item.text}
+                    </span>
                     <ChevronDown
-                      size={24}
-                      strokeWidth={2.3}
-                      className={`shrink-0 text-black transition-transform duration-200 ${
+                      size={22}
+                      strokeWidth={2.5}
+                      className={`shrink-0 text-[#198399] transition-transform duration-200 ${
                         isOpen ? "rotate-180" : ""
                       }`}
                     />
@@ -128,7 +132,7 @@ export function FaqSection() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.24, ease: "easeOut" }}
                       >
-                        <p className="break-words px-4 pb-5 text-[18px] font-normal leading-[160%] text-[var(--color-muted)] sm:px-6 sm:text-xl">
+                        <p className="font-[family-name:var(--font-dm-sans)] break-words px-5 pb-5 text-[16px] font-normal leading-[1.7] text-[#5B6B73] sm:px-7 sm:text-[17px]">
                           {item.answer}
                         </p>
                       </motion.div>
@@ -144,9 +148,10 @@ export function FaqSection() {
         <motion.div variants={itemVariants} className="mt-10 flex justify-center">
           <Link
             href={`/${locale}/faq`}
-            className="rounded-full border-2 border-[var(--color-ocean)] px-10 py-3 text-lg font-semibold text-[var(--color-ocean)] transition-colors hover:bg-[var(--color-ocean)] hover:text-white"
+            className="font-[family-name:var(--font-dm-sans)] inline-flex items-center gap-2 rounded-full bg-[#198399] px-8 py-3 text-[16px] font-semibold text-white transition-opacity hover:opacity-90"
           >
             {t("viewAll")}
+            <ArrowRight size={18} strokeWidth={2.5} />
           </Link>
         </motion.div>
       </motion.div>

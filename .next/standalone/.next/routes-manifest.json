@@ -230,6 +230,18 @@
       "namedRegex": "^/admin/reviews(?:/)?$"
     },
     {
+      "page": "/admin/reviews-project",
+      "regex": "^/admin/reviews\\-project(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/reviews\\-project(?:/)?$"
+    },
+    {
+      "page": "/admin/ReviewsProject",
+      "regex": "^/admin/ReviewsProject(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/ReviewsProject(?:/)?$"
+    },
+    {
       "page": "/admin/trip-types",
       "regex": "^/admin/trip\\-types(?:/)?$",
       "routeKeys": {},
@@ -252,6 +264,12 @@
       "regex": "^/favicon\\.ico(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/icon.png",
+      "regex": "^/icon\\.png(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/icon\\.png(?:/)?$"
     }
   ],
   "dataRoutes": [],

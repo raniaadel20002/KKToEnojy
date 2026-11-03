@@ -1,58 +1,76 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useGalleryImagesQuery } from "@/src/features/gallery/api/get-gallery-images";
 import { GalleryLightbox } from "@/src/features/gallery/components/gallery-lightbox";
-import type { GalleryImage } from "@/src/features/gallery/types/gallery";
-
-// Number of images per column group (before duplication)
-const COL_SIZE = 6;
-// Scroll duration in seconds — identical for both columns guarantees same speed
-const SCROLL_DURATION = 60;
 
 // Animation Variants
-const sectionVariants = {
+const sectionVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
       staggerChildren: 0.2,
     },
   },
 };
 
-const titleItemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-const mobileGridVariants = {
-  hidden: { opacity: 0 },
+const cameraVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.96 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut", delay: 0.2 },
   },
-};
-
-const mobileItemVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
 };
 
 export function HomeGallerySection() {
   const { data: images, isLoading, error } = useGalleryImagesQuery();
   const t = useTranslations("Gallery");
+
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+
+  // Take up to 6 images to match the 6 dots in design
+  const displayImages = images && images.length > 0 ? images.slice(0, 6) : [];
+
+  const handlePrev = useCallback(() => {
+    if (displayImages.length === 0) return;
+    setCurrentIndex((prev) => (prev === 0 ? displayImages.length - 1 : prev - 1));
+  }, [displayImages.length]);
+
+  const handleNext = useCallback(() => {
+    if (displayImages.length === 0) return;
+    setCurrentIndex((prev) => (prev === displayImages.length - 1 ? 0 : prev + 1));
+  }, [displayImages.length]);
+
+  // Subtle auto-advance every 5 seconds (pauses on hover)
+  useEffect(() => {
+    if (displayImages.length <= 1 || isPaused) return;
+    const timer = setInterval(() => {
+      handleNext();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [displayImages.length, isPaused, handleNext]);
 
   if (isLoading) {
     return (
-      <div className="flex min-h-[400px] items-center justify-center py-20 text-gray-500">
+      <div className="flex min-h-[400px] items-center justify-center bg-[#343B55] py-20 text-white/70">
         {t("loading")}
       </div>
     );
@@ -62,227 +80,176 @@ export function HomeGallerySection() {
     return null;
   }
 
-  // --- Mobile logic: use first 6 images ---
-  const mobileTopImages = images.slice(0, 2);
-  const mobileBottomImages = images.slice(2, 6);
-
-  // --- Desktop logic ---
-  // Middle column uses first 2 images
-  const desktopMiddleImages = images.slice(0, 2);
-  const rest = images.length > 2 ? images.slice(2) : images;
-
-  // Build left and right base arrays of exactly COL_SIZE items by cycling
-  const buildColumn = (source: GalleryImage[], size: number): GalleryImage[] => {
-    const result: GalleryImage[] = [];
-    for (let i = 0; i < size; i++) {
-      result.push(source[i % source.length]);
-    }
-    return result;
-  };
-
-  const half = Math.ceil(rest.length / 2);
-  const rawLeft = rest.slice(0, half).length > 0 ? rest.slice(0, half) : images;
-  const rawRight = rest.slice(half).length > 0 ? rest.slice(half) : images;
-
-  const leftBase = buildColumn(rawLeft, COL_SIZE);
-  const rightBase = buildColumn(rawRight, COL_SIZE);
-
-  const openLightbox = (img: GalleryImage) => {
-    const idx = images.findIndex((i) => i.id === img.id);
-    if (idx !== -1) setLightboxIndex(idx);
-  };
-
-  const closeLightbox = () => setLightboxIndex(null);
-
-  const nextImage = () => {
-    if (lightboxIndex !== null && lightboxIndex < images.length - 1) {
-      setLightboxIndex(lightboxIndex + 1);
-    }
-  };
-
-  const prevImage = () => {
-    if (lightboxIndex !== null && lightboxIndex > 0) {
-      setLightboxIndex(lightboxIndex - 1);
-    }
-  };
-
-  const TitleBlock = () => (
-    <div className="flex flex-col items-center justify-center py-6 text-center">
-      <motion.p
-        variants={titleItemVariants}
-        className="font-[family-name:var(--font-montez)] text-[24px] text-[#69DD84] md:text-[32px]"
-      >
-        {t("subtitle")}
-      </motion.p>
-      <motion.h2
-        variants={titleItemVariants}
-        className="mt-2 text-3xl font-bold text-[var(--color-deep-ocean)] md:text-4xl"
-      >
-        {t("title")}
-      </motion.h2>
-      <motion.div
-        initial={{ width: 0 }}
-        whileInView={{ width: 120 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-        className="mx-auto mt-3 h-1 bg-[#69DD84]"
-      />
-    </div>
-  );
-
-  // Renders a scrolling column. Each image uses aspect-[4/5].
-  // We duplicate the array for seamless infinite loop.
-  const ScrollColumn = ({
-    items,
-    direction,
-  }: {
-    items: GalleryImage[];
-    direction: "up" | "down";
-  }) => {
-    const animate = direction === "up" ? { y: ["0%", "-50%"] } : { y: ["-50%", "0%"] };
-
-    return (
-      <div className="relative h-full w-full overflow-hidden">
-        <motion.div
-          className="flex flex-col"
-          animate={animate}
-          transition={{ repeat: Infinity, ease: "linear", duration: SCROLL_DURATION }}
-        >
-          {/* First set */}
-          <div className="flex flex-col gap-4">
-            {items.map((img, idx) => (
-              <div
-                key={`col-a-${img.id}-${idx}`}
-                className="relative aspect-[4/5] w-full cursor-pointer overflow-hidden"
-                onClick={() => openLightbox(img)}
-              >
-                <Image
-                  src={img.imageUrl}
-                  alt=""
-                  fill
-                  className="object-cover transition-transform hover:scale-105"
-                  sizes="33vw"
-                />
-              </div>
-            ))}
-          </div>
-          {/* Duplicate set for seamless loop */}
-          <div className="flex flex-col gap-4 pt-4">
-            {items.map((img, idx) => (
-              <div
-                key={`col-b-${img.id}-${idx}`}
-                className="relative aspect-[4/5] w-full cursor-pointer overflow-hidden"
-                onClick={() => openLightbox(img)}
-              >
-                <Image
-                  src={img.imageUrl}
-                  alt=""
-                  fill
-                  className="object-cover transition-transform hover:scale-105"
-                  sizes="33vw"
-                />
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    );
-  };
+  const currentImage = displayImages[currentIndex] || images[0];
 
   return (
-    <motion.section
-      variants={sectionVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-100px" }}
-      className="w-full bg-white"
-    >
-      <div className="mx-auto w-full max-w-[1440px] px-4 md:px-8 lg:px-10">
-        {/* --- MOBILE & TABLET LAYOUT --- */}
-        <div className="block md:hidden">
-          <motion.div variants={mobileGridVariants} className="grid grid-cols-2 gap-3">
-            {mobileTopImages.map((img, i) => (
-              <motion.div
-                variants={mobileItemVariants}
-                key={`mob-top-${img.id}-${i}`}
-                className="relative aspect-square cursor-pointer overflow-hidden rounded-lg"
-                onClick={() => openLightbox(img)}
-              >
-                <Image
-                  src={img.imageUrl}
-                  alt=""
-                  fill
-                  className="object-cover transition-transform hover:scale-105"
-                  sizes="50vw"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <TitleBlock />
-
-          <motion.div variants={mobileGridVariants} className="grid grid-cols-2 gap-3">
-            {mobileBottomImages.map((img, i) => (
-              <motion.div
-                variants={mobileItemVariants}
-                key={`mob-bot-${img.id}-${i}`}
-                className="relative aspect-square cursor-pointer overflow-hidden rounded-lg"
-                onClick={() => openLightbox(img)}
-              >
-                <Image
-                  src={img.imageUrl}
-                  alt=""
-                  fill
-                  className="object-cover transition-transform hover:scale-105"
-                  sizes="50vw"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+    <section className="relative w-full overflow-hidden bg-[#343B55] py-16 md:py-20 lg:py-24">
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
+        className="mx-auto w-full max-w-[1320px] px-4 md:px-8 lg:px-10"
+      >
+        {/* Header Block */}
+        <div className="mb-10 flex flex-col items-center text-center md:mb-14">
+          <motion.h2
+            variants={itemVariants}
+            className="font-[family-name:var(--font-playfair)] text-3xl font-bold leading-tight text-white md:text-4xl lg:text-[44px]"
+          >
+            {t("title")}
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="mt-2 font-[family-name:var(--font-dm-sans)] text-sm font-normal text-white/80 md:text-base"
+          >
+            {t("subtitle")}
+          </motion.p>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 117 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="mt-3.5 h-2 w-[117px] rounded-[20px] bg-[#198399]"
+          />
         </div>
 
-        {/* --- DESKTOP LAYOUT --- */}
-        <div className="hidden overflow-hidden md:grid md:grid-cols-3" style={{ height: "860px" }}>
-          {/* Left Column — scrolls up */}
-          <ScrollColumn items={leftBase} direction="up" />
+        {/* Camera Display Graphic */}
+        <motion.div
+          variants={cameraVariants}
+          className="relative mx-auto w-full max-w-[760px] aspect-[869/650] select-none"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* LCD Screen Container */}
+          {/* LCD Screen Container */}
+          <div
+            className="absolute z-0 overflow-hidden bg-black rounded-[4px] sm:rounded-[6px]"
+            style={{
+              left: "16.0%",
+              top: "44.62%",
+              width: "46.61%",
+              height: "41.85%",
+              touchAction: "pan-y",
+            }}
+            onPointerDown={(e) => {
+              e.currentTarget.setPointerCapture(e.pointerId);
+              dragStartX.current = e.clientX;
+              setIsPaused(true);
+            }}
+            onPointerMove={(e) => {
+              if (!e.currentTarget.hasPointerCapture(e.pointerId)) return;
 
-          {/* Middle Column — static */}
-          <div className="flex flex-col overflow-hidden px-6 py-10">
-            <TitleBlock />
-            <div className="flex flex-1 flex-col gap-4 overflow-hidden">
-              {desktopMiddleImages.map((img, idx) => (
-                <div
-                  key={`desk-mid-${img.id}-${idx}`}
-                  className="relative w-full flex-1 cursor-pointer overflow-hidden"
-                  onClick={() => openLightbox(img)}
-                >
-                  <Image
-                    src={img.imageUrl}
-                    alt=""
-                    fill
-                    className="object-cover transition-transform hover:scale-105"
-                    sizes="33vw"
-                  />
-                </div>
-              ))}
-            </div>
+              const diff = e.clientX - dragStartX.current;
+
+              if (Math.abs(diff) >= 60) {
+                if (diff < 0) handleNext();
+                else handlePrev();
+
+                dragStartX.current = e.clientX;
+              }
+            }}
+            onPointerUp={() => setIsPaused(false)}
+            onPointerCancel={() => setIsPaused(false)}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setLightboxIndex(currentIndex)}
+                className="relative h-full w-full cursor-grab active:cursor-grabbing"
+              >
+                <Image
+                  src={currentImage.imageUrl}
+                  alt="Traveler gallery memory"
+                  fill
+                  priority
+                  draggable={false}
+                  className="object-cover"
+                  sizes="(max-width: 768px) 50vw, 400px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* Right Column — scrolls down */}
-          <ScrollColumn items={rightBase} direction="down" />
-        </div>
-      </div>
+          {/* DSLR Camera Body Frame (layered on top with transparent screen cutout) */}
+          <div className="relative z-10 h-full w-full pointer-events-none">
+            <Image
+              src="/camera.png"
+              alt="Camera display"
+              fill
+              priority
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, 820px"
+            />
+          </div>
+        </motion.div>
 
-      {/* Lightbox */}
+        {/* Carousel Navigation Controls (Left arrow, dots, Right arrow) */}
+        <motion.div
+          variants={itemVariants}
+          className="mt-8 flex items-center justify-center gap-6 sm:gap-8 md:mt-10"
+        >
+          {/* Previous Button */}
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label={t("prev")}
+            className="flex size-11 items-center justify-center rounded-full border border-white/60 text-white transition-all hover:scale-105 hover:bg-white hover:text-[#343B55] active:scale-95 cursor-pointer md:size-12"
+          >
+            <ArrowLeft size={20} />
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="flex items-center gap-2.5">
+            {displayImages.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setCurrentIndex(i)}
+                aria-label={`Go to photo ${i + 1}`}
+                className={`rounded-full transition-all duration-300 cursor-pointer ${i === currentIndex
+                  ? "h-2.5 w-2.5 bg-white scale-110"
+                  : "h-2 w-2 bg-white/40 hover:bg-white/70"
+                  }`}
+              />
+            ))}
+          </div>
+
+          {/* Next Button */}
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label={t("next")}
+            className="flex size-11 items-center justify-center rounded-full border border-white/60 text-white transition-all hover:scale-105 hover:bg-white hover:text-[#343B55] active:scale-95 cursor-pointer md:size-12"
+          >
+            <ArrowRight size={20} />
+          </button>
+        </motion.div>
+      </motion.div>
+
+      {/* Fullscreen Lightbox when clicked */}
       {lightboxIndex !== null && (
         <GalleryLightbox
-          image={images[lightboxIndex]}
-          images={images}
-          onClose={closeLightbox}
-          onNext={nextImage}
-          onPrev={prevImage}
+          image={displayImages[lightboxIndex]}
+          images={displayImages}
+          onClose={() => setLightboxIndex(null)}
+          onNext={() =>
+            setLightboxIndex((prev) =>
+              prev !== null && prev < displayImages.length - 1 ? prev + 1 : 0
+            )
+          }
+          onPrev={() =>
+            setLightboxIndex((prev) =>
+              prev !== null && prev > 0 ? prev - 1 : displayImages.length - 1
+            )
+          }
         />
       )}
-    </motion.section>
+    </section>
   );
 }

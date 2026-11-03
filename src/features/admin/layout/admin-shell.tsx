@@ -75,6 +75,11 @@ const navItems = [
     icon: MessageSquareText,
   },
   {
+    href: "/admin/ReviewsProject",
+    label: "ReviewsProject",
+    icon: MessageSquareText,
+  },
+  {
     href: "/admin/blogs",
     label: "Blogs",
     icon: Newspaper,
@@ -209,8 +214,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-black/5 bg-white px-4 sm:px-6 lg:hidden">
           <Link href="/admin/dashboard" aria-label="Admin dashboard">
             <Image
-              src="/Logo.png"
-              alt="Hurghada Tourism"
+              src="/icon.png"
+              alt="KKToEnojy Admin"
               width={130}
               height={29}
               unoptimized
@@ -268,12 +273,12 @@ function AdminSidebar({
       <div>
         <Link href="/admin/dashboard" aria-label="Admin dashboard">
           <Image
-            src="/Logo.png"
-            alt="Hurghada Tourism"
+            src="/icon.png"
+            alt="KKToEnojy Admin"
             width={154}
             height={34}
             unoptimized
-            className="h-auto w-[154px]"
+            className="h-auto w-[124px]"
           />
         </Link>
         <p className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ocean)]">Admin panel</p>

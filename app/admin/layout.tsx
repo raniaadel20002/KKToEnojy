@@ -1,7 +1,7 @@
 import { AdminShell } from "@/src/features/admin/layout/admin-shell";
 
 export const metadata = {
-  title: "Admin | Hurghada Tourism",
+  title: "Admin | KKToEnojyism",
 };
 
 export default function AdminLayout({

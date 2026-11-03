@@ -1,14 +1,16 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useMemo } from "react";
 import { motion, type Variants } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 
-import { useTripTypesQuery } from "@/src/features/tours/api/get-trip-types";
 import { useTripsQuery } from "@/src/features/tours/api/get-trips";
 import { TourCard } from "@/src/features/tours/components/tour-card";
-import { TripTypeFilter } from "@/src/features/tours/components/trip-type-filter";
+import { CenteredSuccessToast } from "@/src/features/tours/components/centered-success-toast";
+import type { Trip } from "@/src/features/tours/types/trip";
+import type { AppLocale } from "@/src/i18n/locales";
 
 // Animation Variants
 const sectionVariants: Variants = {
@@ -19,7 +21,7 @@ const sectionVariants: Variants = {
     transition: {
       duration: 0.6,
       ease: "easeOut",
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
     },
   },
 };
@@ -34,196 +36,184 @@ const cardContainerVariants: Variants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3, // Wait for header to finish
+      staggerChildren: 0.1,
+      delayChildren: 0.15,
     },
   },
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.9, x: 50 },
-  show: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 25 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 export function ToursSection() {
-  const [selectedTypeId, setSelectedTypeId] = useState<number | null>(4);
-  const locale = useLocale();
+  const locale = useLocale() as AppLocale;
   const t = useTranslations("Tours");
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [dragDistance, setDragDistance] = useState(0);
 
-  const { data: tripTypes, isLoading: isLoadingTypes } = useTripTypesQuery();
-  
-  const orderedTripTypes = useMemo(() => {
-    if (!tripTypes) return null;
-    const snorkelling = tripTypes.find(t => t.id === 4);
-    const others = tripTypes.filter(t => t.id !== 4);
-    return snorkelling ? [snorkelling, ...others] : tripTypes;
-  }, [tripTypes]);
-
-  const { data: trips, isLoading: isLoadingTrips } = useTripsQuery({
-    typeId: selectedTypeId || undefined,
-    pageSize: 6,
+  // Fetch full pool of trips to select a diverse mix across different types
+  const { data: trips, isLoading } = useTripsQuery({
+    pageSize: 45,
   });
 
-  const isLoading = isLoadingTypes || isLoadingTrips;
+  // Select a diverse mix across different trip categories
+  const displayedTrips = useMemo(() => {
+    if (!trips || trips.length === 0) return [];
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!scrollRef.current) return;
-    setIsDragging(true);
-    setDragDistance(0);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
-  };
+    const preferredCategories = [
+      "snorkelling",
+      "culture excursions",
+      "safari excursions",
+      "diving",
+      "water sports",
+      "activities",
+      "horse riding",
+      "spa & massage",
+      "transfer",
+    ];
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Scroll speed multiplier
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-    setDragDistance((prev) => prev + Math.abs(x - startX));
-  };
+    const selected: Trip[] = [];
+    const usedTypes = new Set<string>();
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleClickCapture = (e: React.MouseEvent) => {
-    // If user dragged more than 10 pixels, consider it a drag and prevent click
-    if (dragDistance > 10) {
-      e.stopPropagation();
-      e.preventDefault();
+    // Pass 1: Select 1 trip from each preferred category in order
+    for (const cat of preferredCategories) {
+      if (selected.length >= 4) break;
+      const match = trips.find((t) => {
+        const typeNorm = (t.tripTypeName || "").trim().toLowerCase();
+        return typeNorm.includes(cat) && !usedTypes.has(typeNorm);
+      });
+      if (match) {
+        selected.push(match);
+        usedTypes.add((match.tripTypeName || "").trim().toLowerCase());
+      }
     }
-  };
+
+    // Pass 2: Fill remaining slots with any unused trip types
+    if (selected.length < 4) {
+      for (const trip of trips) {
+        if (selected.length >= 4) break;
+        const typeNorm = (trip.tripTypeName || "").trim().toLowerCase();
+        if (!usedTypes.has(typeNorm)) {
+          selected.push(trip);
+          usedTypes.add(typeNorm);
+        }
+      }
+    }
+
+    // Pass 3: Fallback to remaining trips if still under 4
+    if (selected.length < 4) {
+      for (const trip of trips) {
+        if (selected.length >= 4) break;
+        if (!selected.some((s) => s.id === trip.id)) {
+          selected.push(trip);
+        }
+      }
+    }
+
+    return selected;
+  }, [trips]);
 
   return (
-    <section className="relative overflow-hidden bg-[#003A5A] py-16 md:py-20 lg:py-24">
-      {/* Background SVG blob (heart shape) - static as requested */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
-        <svg
-          width="1358"
-          height="1167"
-          viewBox="0 0 1439 690"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute bottom-0 opacity-40"
-        >
-          <path
-            d="M162.155 43.9913C307.731 -50.2367 494.621 171.149 683.05 174.182C922.868 178.041 1046.21 -106.593 1262.5 43.9913C1585.96 269.187 1414.38 730.376 1173.22 952.346C963.595 1145.28 694.515 1217.36 400.6 1046.59C152.973 902.714 6.0872 690.978 0.306083 428.467C-3.53066 254.248 27.4926 131.155 162.155 43.9913Z"
-            fill="#FFFFFF1A"
-          />
-        </svg>
-      </div>
-
-      {/* Content */}
+    <section className="relative overflow-hidden bg-[#FAF7F2] py-16 md:py-24">
+      {/* Content Container */}
       <motion.div
         variants={sectionVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="relative z-10 mx-auto w-full px-5 md:px-8 lg:max-w-[1400px] lg:px-10"
+        className="relative z-10 mx-auto w-full px-4 sm:px-6 md:px-8 lg:max-w-[1340px]"
       >
-        {/* Header */}
-        <div className="mb-10 flex flex-col items-center text-center md:mb-12">
-          <motion.p
-            variants={itemVariants}
-            className="font-[family-name:var(--font-montez)] text-[28px] leading-[160%] text-[#69DD84] md:text-[36px]"
-          >
-            {t("subtitle")}
-          </motion.p>
+        {/* Section Header */}
+        <div className="mb-10 flex flex-col items-center text-center md:mb-14">
           <motion.h2
             variants={itemVariants}
-            className="mt-1 font-sans text-[32px] font-semibold leading-[160%] text-white md:text-[40px]"
+            className="font-[family-name:var(--font-playfair)] text-3xl font-bold leading-tight text-[#343B55] md:text-4xl lg:text-[44px]"
           >
             {t("title")}
           </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="mt-2 font-[family-name:var(--font-dm-sans)] text-sm font-normal text-[#5B6B73] md:text-base"
+          >
+            {t("subtitle")}
+          </motion.p>
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: 117 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="mt-2 h-2 bg-[#69DD84]"
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            className="mt-3.5 h-2 w-[117px] rounded-[20px] bg-[#765438]"
           />
         </div>
 
-        {/* Filters */}
-        <motion.div
-          variants={itemVariants}
-          className="mb-8 flex justify-center"
-        >
-          {isLoadingTypes ? (
-            <div className="text-white">{t("loadingFilters")}</div>
-          ) : orderedTripTypes && orderedTripTypes.length > 0 ? (
-            <TripTypeFilter
-              tripTypes={orderedTripTypes}
-              selectedTypeId={selectedTypeId}
-              onSelectType={setSelectedTypeId}
-            />
-          ) : null}
-        </motion.div>
-
-        {/* Loading state */}
+        {/* Loading state skeleton */}
         {isLoading && (
-          <div className="py-20 text-center text-white">
-            <p>{t("loadingTours")}</p>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="h-[490px] w-full animate-pulse rounded-[20px] border border-[#EDE7DC] bg-white p-5"
+              >
+                <div className="h-[210px] w-full rounded-t-[20px] bg-[#EDE7DC]/70" />
+                <div className="mt-5 h-4 w-1/3 rounded bg-[#EDE7DC]/70" />
+                <div className="mt-2.5 h-5 w-3/4 rounded bg-[#EDE7DC]/70" />
+                <div className="mt-2 h-4 w-1/2 rounded bg-[#EDE7DC]/70" />
+                <div className="mt-8 flex justify-between">
+                  <div className="h-4 w-1/3 rounded bg-[#EDE7DC]/70" />
+                  <div className="h-4 w-1/4 rounded bg-[#EDE7DC]/70" />
+                </div>
+                <div className="mt-5 flex flex-col gap-2.5">
+                  <div className="h-11 rounded-[30px] bg-[#EDE7DC]/70" />
+                  <div className="h-11 rounded-[30px] bg-[#EDE7DC]/70" />
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
-        {/* Tours horizontal slider - drag/scroll on all devices */}
-        {!isLoading && trips && trips.length > 0 && (
-          <div className="flex flex-col gap-10">
+        {/* Trips Cards Grid */}
+        {!isLoading && displayedTrips && displayedTrips.length > 0 && (
+          <div>
             <motion.div
-              key={selectedTypeId || "all"}
               variants={cardContainerVariants}
               initial="hidden"
               animate="show"
-              ref={scrollRef}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseLeave}
-              onClickCapture={handleClickCapture}
-              className={`flex gap-4 overflow-x-auto select-none pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-6 ${
-                isDragging ? "cursor-grabbing" : "cursor-grab"
-              }`}
+              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
             >
-              {trips.slice(0, 6).map((trip) => (
+              {displayedTrips.map((trip) => (
                 <motion.div
                   key={trip.id}
                   variants={cardVariants}
-                  className="w-[280px] shrink-0 md:w-[320px] lg:w-[340px]"
+                  className="h-full"
                 >
                   <TourCard trip={trip} />
                 </motion.div>
               ))}
             </motion.div>
-            
-            <div className="flex justify-center w-full px-4">
+
+            {/* Centered View More Button (Desktop & Mobile) */}
+            <div className="mt-10 md:mt-12 flex justify-center w-full">
               <Link
                 href={`/${locale}/trips`}
-                className="w-full max-w-[280px] md:max-w-[320px] text-center rounded-full border border-white py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 rounded-[30px] border-[1.5px] border-[#343B55] bg-transparent px-8 py-2.5 text-sm font-semibold text-[#343B55] transition-colors hover:bg-[#343B55] hover:text-white cursor-pointer"
               >
-                {t("viewMore")}
+                <span>{t("viewMore")}</span>
+                <ArrowRight size={16} />
               </Link>
             </div>
           </div>
         )}
 
         {/* Empty state */}
-        {!isLoading && (!trips || trips.length === 0) && (
-          <div className="py-20 text-center text-white">
-            <p>{t("noTours")}</p>
+        {!isLoading && (!displayedTrips || displayedTrips.length === 0) && (
+          <div className="py-20 text-center text-[#5B6B73]">
+            <p className="text-base">{t("noTours")}</p>
           </div>
         )}
       </motion.div>
+
+      {/* Centered Toast Feedback */}
+      <CenteredSuccessToast />
     </section>
   );
 }

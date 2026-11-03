@@ -4,9 +4,9 @@ import { HeroSection } from "@/src/features/hero/components/hero-section";
 import { HowItWorksSection } from "@/src/features/how-it-works/components/how-it-works-section";
 import { ToursSection } from "@/src/features/tours/components/tours-section";
 import { BlogsSection } from "@/src/features/blogs/components/blogs-section";
-import { ExploreSection } from "@/src/features/explore/components/explore-section";
 import { HomeGallerySection } from "@/src/features/gallery/components/home-gallery-section";
 import { PopularDestinationsSection } from "@/src/features/destinations/components/popular-destinations-section";
+import { ReviewsProjectSection } from "@/src/features/reviews-project/components/reviews-project-section";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -25,12 +25,12 @@ export default function Home() {
       <HeroSection />
       <CategoriesSection />
       <ToursSection />
-      <PopularDestinationsSection />
       <HowItWorksSection />
+      <PopularDestinationsSection />
       <HomeGallerySection />
       <BlogsSection />
-      <ExploreSection />
       <FaqSection />
+      <ReviewsProjectSection />
     </>
   );
 }

@@ -15,6 +15,7 @@
   "/[locale]/(site)/trips/page": "app/[locale]/(site)/trips/page.js",
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/admin/ReviewsProject/page": "app/admin/ReviewsProject/page.js",
   "/admin/admins/page": "app/admin/admins/page.js",
   "/admin/blogs/page": "app/admin/blogs/page.js",
   "/admin/bookings/page": "app/admin/bookings/page.js",
@@ -26,10 +27,12 @@
   "/admin/login/page": "app/admin/login/page.js",
   "/admin/promo-codes/page": "app/admin/promo-codes/page.js",
   "/admin/reset-password/page": "app/admin/reset-password/page.js",
+  "/admin/reviews-project/page": "app/admin/reviews-project/page.js",
   "/admin/reviews/page": "app/admin/reviews/page.js",
   "/admin/trip-types/page": "app/admin/trip-types/page.js",
   "/admin/trips/page": "app/admin/trips/page.js",
   "/admin/users/page": "app/admin/users/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/icon.png/route": "app/icon.png/route.js",
   "/page": "app/page.js"
 }

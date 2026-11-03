@@ -31,7 +31,7 @@
   },
   "Hero": {
     "ariaLabel": "Featured Egypt travel experiences",
-    "cta": "Explore Trips",
+    "cta": "Explore Our Experiences",
     "controls": {
       "previousSlide": "Previous slide",
       "nextSlide": "Next slide"
@@ -60,35 +60,63 @@
         "title": "Walk Through Thousands of Years of History",
         "description": "Stand before the majestic Pyramids, uncover ancient mysteries, cruise along the Nile, and experience the timeless wonders that have inspired travelers for centuries."
       }
+    },
+    "eyebrow": "YOUR NEXT ADVENTURE AWAITS",
+    "title": "Discover the Egypt",
+    "description1": "Crystal clear waters, breathtaking landscapes, and unforgettable experiences.",
+    "description2": "Explore Egypt and beyond with us.",
+    "features": {
+      "amazingDestinations": {
+        "title": "Amazing",
+        "subtitle": "Destinations"
+      },
+      "safeReliable": {
+        "title": "Safe & Reliable",
+        "subtitle": "Services"
+      },
+      "localExperts": {
+        "title": "Local Experts",
+        "subtitle": "& Guides"
+      },
+      "unforgettable": {
+        "title": "Unforgettable",
+        "subtitle": "Experiences"
+      }
     }
   },
   "Categories": {
-    "subtitle": "Handpicked Adventures",
-    "title": "Tour Categories",
+    "subtitle": "Explore our travel experiences and services for every journey.",
+    "title": "Categories",
     "loading": "Loading destinations...",
     "error": "Failed to load destinations",
     "goTo": "Go to {destination}",
-    "exploreTrips": "Explore Trips"
+    "exploreTrips": "Explore Trips",
+    "viewAll": "View All Categories"
   },
   "Tours": {
-    "subtitle": "Explore Tours",
-    "title": "Best-Selling Tours",
+    "subtitle": "Find your next favorite destination among our top picks.",
+    "title": "Best-Selling Trips",
+    "allTours": "All Tours",
     "viewMore": "View More",
     "loadingFilters": "Loading filters...",
     "loadingTours": "Loading tours...",
     "noTours": "No tours available at the moment.",
     "bookNow": "Book Now",
-    "addToCart": "Add to Cart"
+    "addToCart": "Add to Cart",
+    "addedToCart": "Trip Added to Cart!",
+    "addedSuccess": "has been added to your cart.",
+    "viewCart": "View Cart",
+    "continueBrowsing": "Continue Browsing"
   },
   "PopularDestinations": {
-    "subtitle": "Explore Egypt's Hidden Gems",
-    "title": "Popular destinations",
+    "subtitle": "A collection of remarkable places, each with its own charm and story.",
+    "title": "Popular Destinations",
     "viewMore": "View More",
     "loading": "Loading popular destinations...",
     "exploreTrips": "Explore Trips"
   },
   "HowItWorks": {
-    "subtitle": "Book Your Adventure in Minutes",
+    "subtitle": "Your journey made simple, from the first step to the final destination",
     "title": "How It Works",
     "steps": {
       "step1": {
@@ -100,25 +128,28 @@
         "description": "Book safely using trusted payment methods."
       },
       "step3": {
-        "title": "Receive Instant Confirmation",
+        "title": "Receive Confirmation",
         "description": "Your itinerary arrives instantly in your inbox."
       },
       "step4": {
         "title": "Enjoy the Journey",
-        "description": "Pack your bags we'll take care of the rest."
+        "description": "Pack your bags, we'll take care of the rest."
       }
     }
   },
   "Gallery": {
-    "subtitle": "Moments Worth Remembering",
+    "subtitle": "Moments captured by our travelers across Egypt.",
     "title": "Our Gallery",
-    "loading": "Loading gallery..."
+    "loading": "Loading gallery...",
+    "prev": "Previous photo",
+    "next": "Next photo"
   },
   "Blogs": {
-    "subtitle": "Discover travel guides",
+    "subtitle": "Stories, tips, and inspiration from Egypt's most iconic destinations.",
     "title": "Our Blogs",
-    "viewMore": "More Articles",
+    "viewMore": "View All Articles",
     "readMore": "Read More",
+    "minRead": "min read",
     "error": "Failed to load blogs. Please try again later.",
     "empty": "It seems like this section is empty for now."
   },
@@ -128,15 +159,17 @@
     "cta": "Explore Tour Now"
   },
   "FAQ": {
-    "subtitle": "Your Perfect Journey, Crafted with Care",
-    "title": "Frequently Asked Questions",
-    "viewAll": "View All FAQs →"
+    "subtitle": "Everything You Need to Know Before Your Journey.",
+    "title": "FAQ",
+    "viewAll": "View All Articles"
   },
   "Footer": {
-    "companyDescription": "Every journey is an opportunity to explore, relax, and create unforgettable memories crafted with care, comfort, and local expertise. Create Memories together.",
-    "quickAction": "Quick Action",
+    "companyDescription": "Explore the beauty of Egypt through personalized tours and travel services crafted to fit your lifestyle, schedule, and budget.",
+    "quickLinks": "Quick Links",
+    "quickAction": "Quick Links",
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
+    "address": "El Kawther, Hurghada, Egypt",
     "poweredBy": "Powered By",
     "allRightsReserved": "All Rights Reserved"
   },
@@ -450,5 +483,24 @@
     "title": "Booking Created Successfully!",
     "description": "Thank you for choosing us. We have received your booking details and will get in touch shortly.",
     "backHome": "Back to Home"
+  },
+  "ReviewsProject": {
+    "title": "What Our Travellers Say",
+    "subtitle": "Real experiences from travelers who explored Egypt with us",
+    "travellerBadge": "TRAVELLER",
+    "seeMore": "See more",
+    "formTitle": "How was your experience?",
+    "formSubtitle": "Share your thoughts with future travellers.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "rating": "Rating",
+    "comment": "Comment",
+    "commentPlaceholder": "Tell us about your experience...",
+    "submitComment": "Submit comment",
+    "submitting": "Submitting...",
+    "successMessage": "Thank you! Your review has been submitted successfully.",
+    "errorMessage": "Failed to submit review. Please try again.",
+    "noReviews": "No reviews yet. Be the first to share your experience!"
   }
 }

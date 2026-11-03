@@ -15,7 +15,7 @@ C:\Users\VIP\Desktop\work\tourism-website-sec\photos\FAQ.png
 later when you add more section you will add them before the FAQ as this is the last section of that page 
 the website will be in the light mode only
 here are thing you gonna use 
-icon color for the cart and the lanague #004560
+icon color for the cart and the lanague #343B55
 color for the text in the header and is selected #006993 
 not selected text in the header #535764
 text for titiles in teh footer #09355D
@@ -52,7 +52,7 @@ font-size: 24px;
 leading-trim: NONE;
 line-height: 160%;
 letter-spacing: 0%;
-#004560
+#343B55
 and for the ansower 
 font-family: Roboto;
 font-weight: 400;

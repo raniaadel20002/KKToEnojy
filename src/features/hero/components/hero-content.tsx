@@ -1,89 +1,87 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
-interface HeroContentProps {
-  slide: {
-    subtitle: string;
-    title: string;
-    description: string;
-  };
-  ctaLabel: string;
-  previousSlideLabel: string;
-  nextSlideLabel: string;
-  onPrev?: () => void;
-  onNext?: () => void;
-}
-
-export function HeroContent({
-  slide,
-  ctaLabel,
-  previousSlideLabel,
-  nextSlideLabel,
-  onPrev,
-  onNext,
-}: HeroContentProps) {
+export function HeroContent() {
+  const t = useTranslations("Hero");
   const locale = useLocale();
 
+  let eyebrow = "YOUR NEXT ADVENTURE AWAITS";
+  let title = "Discover the Egypt";
+  let description1 =
+    "Crystal clear waters, breathtaking landscapes, and unforgettable experiences.";
+  let description2 = "Explore Egypt and beyond with us.";
+  let cta = "Explore Our Experiences";
+
+  try {
+    eyebrow = t("eyebrow");
+    title = t("title");
+    description1 = t("description1");
+    description2 = t("description2");
+    cta = t("cta");
+  } catch {
+    // fallback to default strings
+  }
+
   return (
-    <div className="flex flex-col">
-      {/* "Explore" — Montez, green */}
-      <p className="font-[family-name:var(--font-montez)] text-[var(--color-hero-accent)] leading-[160%]
-        text-[28px] md:text-[40px] lg:text-[56px]">
-        {slide.subtitle}
-      </p>
-
-      {/* Title — Roboto SemiBold, white, large */}
-      <h1 className="font-sans font-semibold text-white leading-[120%] mt-1
-        text-[36px] md:text-[52px] lg:text-[64px]
-        max-w-[520px]">
-        {slide.title}
-      </h1>
-
-      {/* Description */}
-      <p className="font-sans font-normal text-white leading-[160%] mt-4
-        text-[14px] md:text-[16px] lg:text-[20px]
-        max-w-[380px]">
-        {slide.description}
-      </p>
-
-      {/* CTA button */}
-      <Link
-        href={`/${locale}/trips`}
-        className="mt-6 md:mt-8 flex items-center justify-center rounded-[37px] bg-white font-sans font-semibold text-[var(--color-ocean)]
-          h-[48px] w-[180px] text-[15px]
-          md:h-[52px] md:w-[210px] md:text-[16px]
-          lg:h-[56px] lg:w-[249px] lg:text-[17px]
-          shadow-md transition-opacity hover:opacity-90
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+    <div className="flex flex-col items-center text-center max-w-3xl mx-auto px-4">
+      {/* Subtitle / Eyebrow */}
+      <motion.p
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
+        className="font-[family-name:var(--font-dm-sans)] font-semibold text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#765438] mb-2 sm:mb-4"
       >
-        {ctaLabel}
-      </Link>
+        {eyebrow}
+      </motion.p>
 
-      {/* Prev / Next arrows — below the CTA, desktop only */}
-      {(onPrev || onNext) && (
-        <div className="mt-4 hidden md:flex items-center gap-3">
-          <button
-            type="button"
-            aria-label={previousSlideLabel}
-            onClick={onPrev}
-            className="flex h-[42px] w-[42px] items-center justify-center rounded-full border border-white/50 bg-transparent text-white transition-colors hover:border-white/80 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-          >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <path d="M11 14L6 9L11 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            aria-label={nextSlideLabel}
-            onClick={onNext}
-            className="flex h-[42px] w-[42px] items-center justify-center rounded-full border border-white/50 bg-transparent text-white transition-colors hover:border-white/80 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-          >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <path d="M7 4L12 9L7 14" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
-      )}
+      {/* Main Heading */}
+      <motion.h1
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+        className="font-[family-name:var(--font-playfair)] font-semibold text-[32px] sm:text-[44px] md:text-5xl lg:text-[64px] text-[#343B55] tracking-tight leading-[1.12] mb-2 sm:mb-4"
+      >
+        {title}
+      </motion.h1>
+
+      {/* Description lines */}
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+        className="font-[family-name:var(--font-dm-sans)] text-[#5B6B73] text-[13px] sm:text-[15px] md:text-[16px] leading-[1.5] sm:leading-[1.6] max-w-[320px] sm:max-w-xl mb-5 sm:mb-8"
+      >
+        <p>{description1}</p>
+        <p>{description2}</p>
+      </motion.div>
+
+      {/* CTA Button */}
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+        className="w-full sm:w-auto flex justify-center"
+      >
+        <Link
+          href={`/${locale}/trips`}
+          className="group w-full max-w-[320px] sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full bg-[#765438] px-7 sm:px-8 py-3 sm:py-3.5 text-[14px] sm:text-[16px] font-medium text-white shadow-sm hover:bg-[#5f432b] hover:shadow-md transition-all active:scale-[0.98]"
+        >
+          <span>{cta}</span>
+          <span className="relative flex h-5 w-5 items-center justify-center transition-transform group-hover:translate-x-1">
+            <Image
+              src="/Hero/hero-cta-arrow.svg"
+              alt=""
+              width={20}
+              height={20}
+              className="h-auto w-auto"
+            />
+          </span>
+        </Link>
+      </motion.div>
     </div>
   );
 }

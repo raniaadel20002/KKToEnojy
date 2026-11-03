@@ -22,13 +22,13 @@ export function AuthCard({
           sizes="50vw"
           className="object-cover opacity-75"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,69,96,0.88),rgba(0,105,147,0.48))]" />
+        <div className="absolute inset-0 bg-[#343B55]" />
         <div className="relative z-10 flex h-full flex-col justify-between p-12 text-white">
           <div className="flex items-center justify-center">
             <div className="flex h-40 w-40 items-center justify-center rounded-full bg-white p-4 shadow-xl">
               <Image
-                src="/Logo.png"
-                alt="SunnySide Tours Admin"
+                src="/icon.png"
+                alt="KKToEnojy Admin"
                 width={120}
                 height={26}
                 unoptimized

@@ -31,7 +31,7 @@
   },
   "Hero": {
     "ariaLabel": "Ausgewählte Reiseerlebnisse in Ägypten",
-    "cta": "Reisen entdecken",
+    "cta": "Unsere Erlebnisse entdecken",
     "controls": {
       "previousSlide": "Vorherige Folie",
       "nextSlide": "Nächste Folie"
@@ -60,35 +60,63 @@
         "title": "Wandere durch Jahrtausende Geschichte",
         "description": "Stehe vor den majestätischen Pyramiden, entdecke uralte Geheimnisse, gleite über den Nil und erlebe Wunder, die Reisende seit Jahrhunderten inspirieren."
       }
+    },
+    "eyebrow": "DEIN NÄCHSTES ABENTEUER WARTET",
+    "title": "Entdecke Ägypten",
+    "description1": "Kristallklares Wasser, atemberaubende Landschaften und unvergessliche Erlebnisse.",
+    "description2": "Entdecke Ägypten und darüber hinaus mit uns.",
+    "features": {
+      "amazingDestinations": {
+        "title": "Erstaunliche",
+        "subtitle": "Reiseziele"
+      },
+      "safeReliable": {
+        "title": "Sicher & Zuverlässig",
+        "subtitle": "Dienstleistungen"
+      },
+      "localExperts": {
+        "title": "Lokale Experten",
+        "subtitle": "& Reiseführer"
+      },
+      "unforgettable": {
+        "title": "Unvergessliche",
+        "subtitle": "Erlebnisse"
+      }
     }
   },
   "Categories": {
-    "subtitle": "Handverlesene Abenteuer",
-    "title": "Tour-Kategorien",
+    "subtitle": "Entdecke unsere Reiseerlebnisse und Dienstleistungen für jede Reise.",
+    "title": "Kategorien",
     "loading": "Reiseziele werden geladen...",
     "error": "Reiseziele konnten nicht geladen werden",
     "goTo": "Zu {destination} gehen",
-    "exploreTrips": "Reisen erkunden"
+    "exploreTrips": "Reisen erkunden",
+    "viewAll": "Alle Kategorien anzeigen"
   },
   "Tours": {
-    "subtitle": "Touren entdecken",
-    "title": "Meistverkaufte Touren",
+    "subtitle": "Finden Sie Ihr nächstes Lieblingsreiseziel unter unseren Top-Angeboten.",
+    "title": "Bestseller-Touren",
+    "allTours": "Alle Touren",
     "viewMore": "Mehr anzeigen",
     "loadingFilters": "Filter werden geladen...",
     "loadingTours": "Touren werden geladen...",
     "noTours": "Momentan sind keine Touren verfügbar.",
     "bookNow": "Jetzt buchen",
-    "addToCart": "In den Warenkorb"
+    "addToCart": "In den Warenkorb",
+    "addedToCart": "Reise in den Warenkorb gelegt!",
+    "addedSuccess": "wurde Ihrem Warenkorb hinzugefügt.",
+    "viewCart": "Warenkorb ansehen",
+    "continueBrowsing": "Weiter stöbern"
   },
   "PopularDestinations": {
-    "subtitle": "Entdecke Ägyptens verborgene Schätze",
+    "subtitle": "Eine Sammlung bemerkenswerter Orte, jeder mit seinem eigenen Charme und seiner Geschichte.",
     "title": "Beliebte Reiseziele",
     "viewMore": "Mehr anzeigen",
     "loading": "Beliebte Reiseziele werden geladen...",
     "exploreTrips": "Reisen erkunden"
   },
   "HowItWorks": {
-    "subtitle": "Buche dein Abenteuer in Minuten",
+    "subtitle": "Ihre Reise ganz einfach, vom ersten Schritt bis zum Zielort",
     "title": "So funktioniert's",
     "steps": {
       "step1": {
@@ -100,7 +128,7 @@
         "description": "Buche sicher mit vertrauenswürdigen Zahlungsmethoden."
       },
       "step3": {
-        "title": "Sofortige Bestätigung erhalten",
+        "title": "Bestätigung erhalten",
         "description": "Deine Reiseroute erreicht dich sofort per E-Mail."
       },
       "step4": {
@@ -110,15 +138,18 @@
     }
   },
   "Gallery": {
-    "subtitle": "Momente, die es wert sind, erinnert zu werden",
+    "subtitle": "Von unseren Reisenden in ganz Ägypten festgehaltene Momente.",
     "title": "Unsere Galerie",
-    "loading": "Galerie wird geladen..."
+    "loading": "Galerie wird geladen...",
+    "prev": "Vorheriges Foto",
+    "next": "Nächstes Foto"
   },
   "Blogs": {
-    "subtitle": "Entdecke Reiseführer",
+    "subtitle": "Geschichten, Tipps und Inspirationen aus den berühmtesten Reisezielen Ägyptens.",
     "title": "Unsere Blogs",
-    "viewMore": "Weitere Artikel",
+    "viewMore": "Alle Artikel ansehen",
     "readMore": "Mehr lesen",
+    "minRead": "Min. Lesezeit",
     "error": "Blogs konnten nicht geladen werden. Bitte versuche es später erneut.",
     "empty": "Es scheint, als wäre dieser Bereich vorerst leer."
   },
@@ -128,15 +159,17 @@
     "cta": "Touren jetzt entdecken"
   },
   "FAQ": {
-    "subtitle": "Deine perfekte Reise, mit Sorgfalt gestaltet",
-    "title": "Häufig gestellte Fragen",
-    "viewAll": "Alle FAQs ansehen →"
+    "subtitle": "Alles, was Sie vor Ihrer Reise wissen müssen.",
+    "title": "FAQ",
+    "viewAll": "Alle Artikel ansehen"
   },
   "Footer": {
-    "companyDescription": "Jede Reise ist eine Gelegenheit zu erkunden, zu entspannen und unvergessliche Erinnerungen zu schaffen – mit Sorgfalt, Komfort und lokaler Expertise. Create Memories together.",
+    "companyDescription": "Entdecken Sie die Schönheit Ägyptens durch personalisierte Touren und Reisedienstleistungen, die auf Ihren Lebensstil, Zeitplan und Ihr Budget zugeschnitten sind.",
+    "quickLinks": "Schnellzugriff",
     "quickAction": "Schnellzugriff",
     "contactUs": "Kontaktiere uns",
     "followUs": "Folge uns",
+    "address": "El Kawther, Hurghada, Ägypten",
     "poweredBy": "Unterstützt von",
     "allRightsReserved": "Alle Rechte vorbehalten"
   },
@@ -450,5 +483,24 @@
     "title": "Buchung erfolgreich erstellt!",
     "description": "Vielen Dank, dass du dich für uns entschieden hast. Wir haben deine Buchungsdetails erhalten und melden uns in Kürze bei dir.",
     "backHome": "Zurück zur Startseite"
+  },
+  "ReviewsProject": {
+    "title": "Was unsere Reisenden sagen",
+    "subtitle": "Echte Erfahrungen von Reisenden, die Ägypten mit uns erkundet haben",
+    "travellerBadge": "REISENDER",
+    "seeMore": "Mehr anzeigen",
+    "formTitle": "Wie war Ihre Erfahrung?",
+    "formSubtitle": "Teilen Sie Ihre Gedanken mit zukünftigen Reisenden.",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "rating": "Bewertung",
+    "comment": "Kommentar",
+    "commentPlaceholder": "Erzählen Sie uns von Ihrer Erfahrung...",
+    "submitComment": "Kommentar absenden",
+    "submitting": "Wird gesendet...",
+    "successMessage": "Vielen Dank! Ihre Bewertung wurde erfolgreich übermittelt.",
+    "errorMessage": "Bewertung konnte nicht übermittelt werden. Bitte versuchen Sie es erneut.",
+    "noReviews": "Noch keine Bewertungen. Seien Sie der Erste, der seine Erfahrungen teilt!"
   }
 }

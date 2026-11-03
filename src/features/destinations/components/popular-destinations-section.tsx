@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { usePopularDestinationsQuery } from "@/src/features/destinations/api/get-popular-destinations";
+import { ArrowRight } from "lucide-react";
 
 // Animation Variants
 const sectionVariants: Variants = {
@@ -50,6 +51,8 @@ export function PopularDestinationsSection() {
   const locale = useLocale();
   const t = useTranslations("PopularDestinations");
 
+  const displayedDestinations = destinations?.slice(0, 3) ?? [];
+
   if (isLoading) {
     return (
       <div className="flex min-h-[400px] items-center justify-center bg-[#F8FDFF] py-20 text-gray-500">
@@ -58,12 +61,12 @@ export function PopularDestinationsSection() {
     );
   }
 
-  if (error || !destinations || destinations.length === 0) {
+  if (error || displayedDestinations.length === 0) {
     return null;
   }
 
   return (
-    <section className="w-full bg-[#F8FDFF] py-16 md:py-20 lg:py-24">
+    <section className="w-full bg-[#FAF7F2] py-16 md:py-20 lg:py-24">
       <motion.div
         variants={sectionVariants}
         initial="hidden"
@@ -74,35 +77,26 @@ export function PopularDestinationsSection() {
         {/* Header Block */}
         <div className="mb-8 md:mb-12">
           <div className="flex flex-col items-center text-center">
-            <motion.p
-              variants={itemVariants}
-              className="font-[family-name:var(--font-montez)] text-[28px] text-[#69DD84] md:text-[36px]"
-            >
-              {t("subtitle")}
-            </motion.p>
             <motion.h2
               variants={itemVariants}
-              className="mt-1 text-3xl font-bold text-[var(--color-deep-ocean)] md:text-4xl"
+              className="font-[family-name:var(--font-playfair)] text-3xl font-bold leading-tight text-[#343B55] md:text-4xl lg:text-[44px]"
             >
               {t("title")}
             </motion.h2>
+            <motion.p
+              variants={itemVariants}
+              className="mt-2 font-[family-name:var(--font-dm-sans)] text-sm font-normal text-[#5B6B73] md:text-base"
+            >
+              {t("subtitle")}
+            </motion.p>
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: 120 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="mt-3 h-1 bg-[#69DD84]"
+              className="mt-3.5 h-2 w-[117px] rounded-[20px] bg-[#765438]"
             />
           </div>
-          
-          <motion.div variants={itemVariants} className="mt-6 flex justify-end md:mt-0 md:-translate-y-8">
-            <Link
-              href={`/${locale}/Destinations`}
-              className="inline-block rounded-full border border-[var(--color-deep-ocean)] bg-transparent px-6 py-2 text-sm font-semibold text-[var(--color-deep-ocean)] transition-colors hover:bg-[var(--color-deep-ocean)] hover:text-white md:px-8 md:py-2.5 md:text-base"
-            >
-              {t("viewMore")}
-            </Link>
-          </motion.div>
         </div>
 
         {/* Grid / Horizontal Scroll */}
@@ -113,12 +107,12 @@ export function PopularDestinationsSection() {
           viewport={{ once: true, margin: "-50px" }}
           className="flex snap-x snap-mandatory overflow-x-auto pb-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-3 md:gap-6 md:pb-0"
         >
-          {destinations.map((dest, idx) => (
+          {displayedDestinations.map((dest, idx) => (
             <motion.div
               key={dest.id}
               variants={cardVariants}
-              className={`group relative min-w-[280px] flex-none snap-center overflow-hidden rounded-2xl md:w-auto ${
-                idx !== destinations.length - 1 ? "mr-4 md:mr-0" : ""
+              className={`group relative min-w-[280px] flex-none snap-center overflow-hidden rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] md:w-auto ${
+                idx !== displayedDestinations.length - 1 ? "mr-4 md:mr-0" : ""
               }`}
             >
               <Link
@@ -145,14 +139,29 @@ export function PopularDestinationsSection() {
 
                   {/* Destination Name */}
                   <div className="absolute inset-x-0 bottom-6 text-center md:bottom-8">
-                    <h3 className="text-2xl font-bold text-white transition-all duration-300 group-hover:-translate-y-2 md:text-3xl">
+                    <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white transition-all duration-300 group-hover:-translate-y-2 md:text-3xl">
                       {dest.name.trim()}
                     </h3>
+                    <span className="mx-auto mt-2 block h-1.5 w-10 rounded-[20px] bg-[#765438] transition-all duration-300 group-hover:-translate-y-2 sm:w-12" />
                   </div>
                 </div>
               </Link>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* View More Button Centered at Bottom */}
+        <motion.div
+          variants={itemVariants}
+          className="mt-10 md:mt-12 flex justify-center w-full"
+        >
+          <Link
+            href={`/${locale}/Destinations`}
+            className="inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] border-[#343B55] bg-transparent px-8 py-2.5 text-sm font-semibold text-[#343B55] transition-colors hover:bg-[#343B55] hover:text-white cursor-pointer"
+          >
+            <span>{t("viewMore")}</span>
+            <ArrowRight size={16} />
+          </Link>
         </motion.div>
 
       </motion.div>

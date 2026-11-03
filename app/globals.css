@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@400;500;600;700&family=Montez&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #16181e;
-  --color-deep-ocean: #004560;
-  --color-ocean: #006993;
+  --color-deep-ocean: #343B55;
+  --color-ocean: #343B55;
   --color-muted: #535764;
   --color-footer-title: #09355d;
   --color-footer-text: #16181e;
@@ -12,6 +13,11 @@
   --color-faq-accent: #69dd84;
   --color-faq-box: #f5f9ff;
   --color-hero-accent: #5aca6e;
+
+  --font-roboto: "Roboto", Arial, Helvetica, sans-serif;
+  --font-montez: "Montez", cursive;
+  --font-playfair: "Playfair Display", Georgia, serif;
+  --font-dm-sans: "DM Sans", Arial, sans-serif;
 }
 
 @theme inline {
@@ -19,6 +25,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-roboto);
   --font-montez: var(--font-montez);
+  --font-playfair: var(--font-playfair);
+  --font-dm-sans: var(--font-dm-sans);
 }
 
 * {
@@ -27,14 +35,14 @@
 
 html {
   background: var(--background);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
+  font-family: var(--font-dm-sans), var(--font-roboto), Arial, Helvetica, sans-serif;
+  overflow-x: clip;
 }
 
 button,

@@ -10,24 +10,24 @@ export const stepsData: Step[] = [
     id: 1,
     titleKey: "steps.step1.title",
     descriptionKey: "steps.step1.description",
-    iconImage: "/HowItWorks/Experience.png",
+    iconImage: "/HowItWorks/Experience.svg",
   },
   {
     id: 2,
     titleKey: "steps.step2.title",
     descriptionKey: "steps.step2.description",
-    iconImage: "/HowItWorks/Securely.png",
+    iconImage: "/HowItWorks/Securely.svg",
   },
   {
     id: 3,
     titleKey: "steps.step3.title",
     descriptionKey: "steps.step3.description",
-    iconImage: "/HowItWorks/Confirmation.png",
+    iconImage: "/HowItWorks/Confirmation.svg",
   },
   {
     id: 4,
     titleKey: "steps.step4.title",
     descriptionKey: "steps.step4.description",
-    iconImage: "/HowItWorks/Journey.png",
+    iconImage: "/HowItWorks/Journey.svg",
   },
 ];

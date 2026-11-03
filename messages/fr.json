@@ -31,7 +31,7 @@
   },
   "Hero": {
     "ariaLabel": "Expériences de voyage en Égypte à la une",
-    "cta": "Explorer les voyages",
+    "cta": "Explorer nos expériences",
     "controls": {
       "previousSlide": "Diapositive précédente",
       "nextSlide": "Diapositive suivante"
@@ -60,35 +60,63 @@
         "title": "Traversez des milliers d années d histoire",
         "description": "Tenez-vous devant les majestueuses Pyramides, découvrez des mystères anciens, naviguez sur le Nil et vivez les merveilles intemporelles qui ont inspiré les voyageurs depuis des siècles."
       }
+    },
+    "eyebrow": "VOTRE PROCHAINE AVENTURE VOUS ATTEND",
+    "title": "Découvrez l'Égypte",
+    "description1": "Eaux cristallines, paysages à couper le souffle et expériences inoubliables.",
+    "description2": "Explorez l'Égypte et au-delà avec nous.",
+    "features": {
+      "amazingDestinations": {
+        "title": "Destinations",
+        "subtitle": "Incroyables"
+      },
+      "safeReliable": {
+        "title": "Services Sûrs",
+        "subtitle": "& Fiables"
+      },
+      "localExperts": {
+        "title": "Experts Locaux",
+        "subtitle": "& Guides"
+      },
+      "unforgettable": {
+        "title": "Expériences",
+        "subtitle": "Inoubliables"
+      }
     }
   },
   "Categories": {
-    "subtitle": "Aventures soigneusement sélectionnées",
-    "title": "Catégories de circuits",
+    "subtitle": "Explorez nos expériences de voyage et nos services pour chaque voyage.",
+    "title": "Catégories",
     "loading": "Chargement des destinations...",
     "error": "Échec du chargement des destinations",
     "goTo": "Aller à {destination}",
-    "exploreTrips": "Explorer les voyages"
+    "exploreTrips": "Explorer les voyages",
+    "viewAll": "Voir toutes les catégories"
   },
   "Tours": {
-    "subtitle": "Explorer les circuits",
+    "subtitle": "Trouvez votre prochaine destination préférée parmi nos meilleurs choix.",
     "title": "Circuits les plus vendus",
+    "allTours": "Tous les circuits",
     "viewMore": "Voir plus",
     "loadingFilters": "Chargement des filtres...",
     "loadingTours": "Chargement des circuits...",
     "noTours": "Aucun circuit disponible pour le moment.",
     "bookNow": "Réserver maintenant",
-    "addToCart": "Ajouter au panier"
+    "addToCart": "Ajouter au panier",
+    "addedToCart": "Voyage ajouté au panier !",
+    "addedSuccess": "a été ajouté à votre panier.",
+    "viewCart": "Voir le panier",
+    "continueBrowsing": "Continuer à explorer"
   },
   "PopularDestinations": {
-    "subtitle": "Découvrez les joyaux cachés de l Égypte",
+    "subtitle": "Une collection de lieux remarquables, chacun avec son propre charme et son histoire.",
     "title": "Destinations populaires",
     "viewMore": "Voir plus",
     "loading": "Chargement des destinations populaires...",
     "exploreTrips": "Explorer les voyages"
   },
   "HowItWorks": {
-    "subtitle": "Réservez votre aventure en quelques minutes",
+    "subtitle": "Votre voyage simplifié, du premier pas jusqu'à la destination finale",
     "title": "Comment ça marche",
     "steps": {
       "step1": {
@@ -100,7 +128,7 @@
         "description": "Réservez en toute sécurité avec des méthodes de paiement fiables."
       },
       "step3": {
-        "title": "Recevez une confirmation instantanée",
+        "title": "Recevez une confirmation",
         "description": "Votre itinéraire arrive instantanément dans votre boîte mail."
       },
       "step4": {
@@ -110,15 +138,18 @@
     }
   },
   "Gallery": {
-    "subtitle": "Des moments qui valent la peine d être mémorisés",
+    "subtitle": "Moments capturés par nos voyageurs à travers l'Égypte.",
     "title": "Notre galerie",
-    "loading": "Chargement de la galerie..."
+    "loading": "Chargement de la galerie...",
+    "prev": "Photo précédente",
+    "next": "Photo suivante"
   },
   "Blogs": {
-    "subtitle": "Découvrez des guides de voyage",
+    "subtitle": "Histoires, conseils et inspiration des destinations les plus emblématiques d'Égypte.",
     "title": "Nos blogs",
-    "viewMore": "Plus d articles",
+    "viewMore": "Voir tous les articles",
     "readMore": "Lire la suite",
+    "minRead": "min de lecture",
     "error": "Échec du chargement des blogs. Veuillez réessayer plus tard.",
     "empty": "Il semble que cette section soit vide pour le moment."
   },
@@ -128,15 +159,17 @@
     "cta": "Explorer les circuits maintenant"
   },
   "FAQ": {
-    "subtitle": "Votre voyage parfait, conçu avec soin",
-    "title": "Questions fréquemment posées",
-    "viewAll": "Voir toutes les FAQ →"
+    "subtitle": "Tout ce que vous devez savoir avant votre voyage.",
+    "title": "FAQ",
+    "viewAll": "Voir tous les articles"
   },
   "Footer": {
-    "companyDescription": "Chaque voyage est une opportunité d explorer, de se détendre et de créer des souvenirs inoubliables conçus avec soin, confort et expertise locale. Créons des souvenirs ensemble.",
-    "quickAction": "Action rapide",
+    "companyDescription": "Explorez la beauté de l'Égypte grâce à des visites personnalisées et des services de voyage conçus pour s'adapter à votre style de vie, votre emploi du temps et votre budget.",
+    "quickLinks": "Liens rapides",
+    "quickAction": "Liens rapides",
     "contactUs": "Contactez-nous",
     "followUs": "Suivez-nous",
+    "address": "El Kawther, Hurghada, Égypte",
     "poweredBy": "Propulsé par",
     "allRightsReserved": "Tous droits réservés"
   },
@@ -450,5 +483,24 @@
     "title": "Réservation créée avec succès !",
     "description": "Merci de nous avoir choisis. Nous avons reçu vos informations de réservation et nous vous contacterons prochainement.",
     "backHome": "Retour à l accueil"
+  },
+  "ReviewsProject": {
+    "title": "Ce que disent nos voyageurs",
+    "subtitle": "De vraies expériences de voyageurs ayant exploré l'Égypte avec nous",
+    "travellerBadge": "VOYAGEUR",
+    "seeMore": "Voir plus",
+    "formTitle": "Comment s'est passée votre expérience ?",
+    "formSubtitle": "Partagez vos impressions avec les futurs voyageurs.",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "rating": "Note",
+    "comment": "Commentaire",
+    "commentPlaceholder": "Racontez-nous votre expérience...",
+    "submitComment": "Envoyer le commentaire",
+    "submitting": "Envoi en cours...",
+    "successMessage": "Merci ! Votre avis a été envoyé avec succès.",
+    "errorMessage": "Échec de l'envoi de l'avis. Veuillez réessayer.",
+    "noReviews": "Aucun avis pour le moment. Soyez le premier à partager votre expérience !"
   }
 }

@@ -15,6 +15,7 @@
   "/[locale]/(site)/trips/page": "/[locale]/trips",
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/admin/ReviewsProject/page": "/admin/ReviewsProject",
   "/admin/admins/page": "/admin/admins",
   "/admin/blogs/page": "/admin/blogs",
   "/admin/bookings/page": "/admin/bookings",
@@ -26,10 +27,12 @@
   "/admin/login/page": "/admin/login",
   "/admin/promo-codes/page": "/admin/promo-codes",
   "/admin/reset-password/page": "/admin/reset-password",
+  "/admin/reviews-project/page": "/admin/reviews-project",
   "/admin/reviews/page": "/admin/reviews",
   "/admin/trip-types/page": "/admin/trip-types",
   "/admin/trips/page": "/admin/trips",
   "/admin/users/page": "/admin/users",
   "/favicon.ico/route": "/favicon.ico",
+  "/icon.png/route": "/icon.png",
   "/page": "/"
 }
