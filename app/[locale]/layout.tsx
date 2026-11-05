@@ -11,23 +11,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const isDe = locale === 'de';
 
   const titleText = isDe 
-    ? "SunnySide Tours - Gemeinsam Erinnerungen schaffen | Ägypten Reisen & Tourismus"
-    : "SunnySide Tours - Create Memories Together | Egypt Travel & Tourism";
+    ? "KKToEnojy - Gemeinsam Erinnerungen schaffen | Ägypten Reisen & Tourismus"
+    : "KKToEnojy - Create Memories Together | Egypt Travel & Tourism";
     
   const descriptionText = isDe
-    ? "Schaffen Sie gemeinsam mit SunnySide Tours Erinnerungen. Entdecken Sie die besten Reiseziele, Touren und Erlebnisse Ägyptens. Buchen Sie noch heute Ihr Ägypten-Abenteuer mit fachkundigen Führern."
-    : "Create Memories Together with SunnySide Tours. Explore Egypt's best destinations, tours, and travel experiences. Book your Egyptian adventure today with expert guides and unforgettable journeys.";
+    ? "Schaffen Sie gemeinsam mit KKToEnojy Erinnerungen. Entdecken Sie die besten Reiseziele, Touren und Erlebnisse Ägyptens. Buchen Sie noch heute Ihr Ägypten-Abenteuer mit fachkundigen Führern."
+    : "Create Memories Together with KKToEnojy. Explore Egypt's best destinations, tours, and travel experiences. Book your Egyptian adventure today with expert guides and unforgettable journeys.";
 
   return {
     title: {
       default: titleText,
-      template: "%s | SunnySide Tours",
+      template: "%s | KKToEnojy",
     },
     description: descriptionText,
     keywords: [
       "Egypt tours",
       "Egypt travel",
-      "SunnySide Tours",
+      "KKToEnojy",
       "Egyptian tourism",
       "Red Sea tours",
       "Pyramids tours",
@@ -41,9 +41,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       "Egypt travel guide",
       "Egyptian adventures",
     ],
-    authors: [{ name: "SunnySide Tours" }],
-    creator: "SunnySide Tours",
-    publisher: "SunnySide Tours",
+    authors: [{ name: "KKToEnojy" }],
+    creator: "KKToEnojy",
+    publisher: "KKToEnojy",
     formatDetection: {
       email: false,
       address: false,
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       locale: isDe ? "de_DE" : "en_US",
       alternateLocale: isDe ? ["en_US"] : ["de_DE"],
       url: "https://sunnyside-tours.com",
-      siteName: "SunnySide Tours",
+      siteName: "KKToEnojy",
       title: titleText,
       description: descriptionText,
       images: [
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: "/og-image.jpg",
           width: 1200,
           height: 630,
-          alt: "SunnySide Tours - Egypt Travel Experiences",
+          alt: "KKToEnojy - Egypt Travel Experiences",
         },
       ],
     },
