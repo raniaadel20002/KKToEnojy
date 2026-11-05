@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
       locale: isDe ? "de_DE" : "en_US",
       alternateLocale: isDe ? ["en_US"] : ["de_DE"],
-      url: "https://sunnyside-tours.com",
+      url: "https://KKToEnojy.com",
       siteName: "KKToEnojy",
       title: titleText,
       description: descriptionText,
