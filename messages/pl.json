@@ -104,6 +104,7 @@
     "bookNow": "Zarezerwuj teraz",
     "addToCart": "Dodaj do koszyka",
     "addedToCart": "Wycieczka dodana do koszyka!",
+    "tripSuccessfullyBooked": "Wycieczka pomyślnie zarezerwowana",
     "addedSuccess": "została dodana do Twojego koszyka.",
     "viewCart": "Zobacz koszyk",
     "continueBrowsing": "Kontynuuj przeglądanie"
@@ -113,7 +114,9 @@
     "title": "Popularne destynacje",
     "viewMore": "Zobacz więcej",
     "loading": "Ładowanie popularnych destynacji...",
-    "exploreTrips": "Odkryj wycieczki"
+    "exploreTrips": "Odkryj wycieczki",
+    "trips": "{count} wycieczki",
+    "tripsSingular": "{count} wycieczka"
   },
   "HowItWorks": {
     "subtitle": "Twoja podróż stała się prosta, od pierwszego kroku do celu",
@@ -175,9 +178,9 @@
   },
   "DestinationsPage": {
     "hero": {
-      "subtitle": "Odkryj Egipt",
-      "title": "Odkryj destynacje, które inspirują każdą podróż",
-      "imageAlt": "Grafika słowna destynacji Hurghada"
+      "subtitle": "Odkryj najlepsze miejsca do odwiedzenia w Egipcie, od zachwycającego wybrzeża Morza Czerwonego i pięknych wysp po urokliwe miasta nadmorskie i zapierające dech w piersiach krajobrazy.",
+      "title": "Odkryj najpiękniejsze destynacje w Egipcie",
+      "imageAlt": "Baner destynacji w Egipcie"
     },
     "breadcrumb": {
       "home": "Strona główna",
@@ -191,18 +194,22 @@
   },
   "TripsPage": {
     "hero": {
-      "subtitle": "Odkryj Egipt",
-      "title": "Znajdź swoją następną przygodę"
+      "subtitle": "Odkryj niezapomniane wycieczki, zapierające dech w piersiach destynacje i niezapomniane przeżycia nad Morzem Czerwonym i nie tylko.",
+      "title": "Twoja kolejna podróż zaczyna się tutaj",
+      "imageAlt": "Baner wycieczek po Egipcie"
     },
     "breadcrumb": {
       "home": "Strona główna",
-      "explore": "Eksploruj"
+      "explore": "Wycieczki",
+      "trips": "Wycieczki"
     },
     "toolbar": {
       "tripsFound": "Znaleziono {count} wycieczki",
       "tripFound": "Znaleziono {count} wycieczkę",
       "filter": "Filtruj",
-      "searchPlaceholder": "Szukaj"
+      "searchPlaceholder": "Szukaj",
+      "showingCount": "Wyświetlanie {shown} z {total} wycieczek",
+      "clearAll": "Wyczyść wszystkie filtry"
     },
     "sidebar": {
       "filterTitle": "Filtruj",
@@ -228,11 +235,27 @@
     "showMore": {
       "loading": "Ładowanie...",
       "button": "Pokaż więcej"
+    },
+    "filters": {
+      "tripType": "Typ wycieczki",
+      "allTripTypes": "Wszystkie typy",
+      "destination": "Cel podróży",
+      "anyDestination": "Dowolny cel podróży",
+      "priceRange": "Zakres cen",
+      "setBudget": "Ustal swój budżet",
+      "minPrice": "Cena min",
+      "maxPrice": "Cena max",
+      "apply": "Zastosuj",
+      "search": "Szukaj",
+      "searchPlaceholder": "Szukaj wycieczek...",
+      "showingCount": "Wyświetlanie {shown} z {total} wycieczek",
+      "clearAll": "Wyczyść wszystkie filtry",
+      "filterButton": "Filtruj"
     }
   },
   "GalleryPage": {
     "hero": {
-      "subtitle": "Chwile podróży",
+      "subtitle": "Wizualna kolekcja niezapomnianych miejsc, zapierających dech w piersiach widoków i pięknych chwil z naszych podróży.",
       "title": "Odkryj Egipt przez nasz obiektyw",
       "imageAlt": "Aparat fotograficzny ze zdjęciami z podróży"
     },
@@ -249,23 +272,19 @@
   },
   "BlogsPage": {
     "hero": {
-      "subtitle": "Odkryj artykuły",
-      "title": "Odkryj historie, przewodniki i wskazówki podróżnicze",
-      "imageAlt": "Odkryj historie, przewodniki i wskazówki podróżnicze"
+      "title": "Historie, które inspirują Twoją podróż",
+      "subtitle": "Inspiracje podróżnicze, lokalne ciekawostki i fascynujące historie, które pomogą Ci odkryć więcej i uczynić każdą podróż niezapomnianą.",
+      "imageAlt": "Historie, które inspirują Twoją podróż"
     },
     "breadcrumb": {
       "home": "Strona główna",
       "blogs": "Blogi"
     },
     "search": {
-      "placeholder": "Szukaj"
+      "placeholder": "Szukaj artykułów, kierunków, wskazówek..."
     },
-    "tags": {
-      "label": "Popularne tagi:",
-      "all": "Wszystkie",
-      "sea": "Morze",
-      "safari": "Safari",
-      "history": "Historia"
+    "card": {
+      "minRead": "min czytania"
     },
     "grid": {
       "error": "Nie udało się załadować blogów. Spróbuj ponownie później.",
@@ -273,50 +292,123 @@
       "seeMore": "Zobacz więcej"
     }
   },
+  "BlogDetails": {
+    "breadcrumb": {
+      "home": "Strona główna",
+      "blogs": "Blogi",
+      "details": "Szczegóły wpisu"
+    },
+    "share": {
+      "title": "UDOSTĘPNIJ TĘ HISTORIĘ",
+      "copyLink": "Kopiuj link",
+      "copied": "Skopiowano!",
+      "email": "E-mail",
+      "share": "Udostępnij"
+    },
+    "inThisStory": "W TYM ARTYKULE",
+    "recentPosts": {
+      "title": "Najnowsze wpisy"
+    },
+    "loading": "Ładowanie szczegółów wpisu...",
+    "error": "Nie udało się załadować wpisu.",
+    "backToBlogs": "Wróć do blogów"
+  },
+  "TripDetails": {
+    "breadcrumb": {
+      "home": "Strona główna",
+      "trips": "Wycieczki",
+      "details": "Szczegóły wycieczki"
+    },
+    "about": {
+      "title": "O tej wycieczce"
+    },
+    "keyInfo": {
+      "duration": "Czas trwania",
+      "groupSize": "Wielkość grupy",
+      "groupSizeValue": "2–15 osób",
+      "availability": "Dostępność",
+      "daily": "Codziennie",
+      "tourType": "Typ wycieczki",
+      "historical": "Historyczna"
+    },
+    "booking": {
+      "adult": "Dorosły",
+      "children": "Dzieci (5–11 lat)",
+      "perPerson": "za osobę",
+      "checkAvailability": "Sprawdź dostępność",
+      "contactUs": "Skontaktuj się w sprawie ceny"
+    },
+    "inclusions": {
+      "title": "Co jest w cenie",
+      "included": "W CENIE",
+      "notIncluded": "NIE WLICZONE"
+    },
+    "highlights": {
+      "title": "Atrakcje wycieczki"
+    },
+    "reviews": {
+      "title": "Opinie",
+      "basedOn": "Na podstawie {count} opinii",
+      "noReviews": "Brak opinii.",
+      "addReview": "Dodaj opinię",
+      "subtext": "Twój adres e-mail nie zostanie opublikowany. Wymagane pola są oznaczone *",
+      "yourRating": "Twoja ocena *",
+      "firstName": "Imię *",
+      "lastName": "Nazwisko *",
+      "email": "E-mail *",
+      "phone": "Telefon *",
+      "comment": "Opinia *",
+      "placeholder": "Podziel się wrażeniami z tej wycieczki...",
+      "submit": "Wyślij opinię",
+      "submitting": "Wysyłanie...",
+      "success": "Dziękujemy! Twoja opinia została pomyślnie przesłana.",
+      "error": "Nie udało się przesłać opinii."
+    }
+  },
   "AboutPage": {
     "hero": {
-      "subtitle": "Nasza historia",
-      "title": "Odkryj Egipt z ludźmi, którzy znają go najlepiej",
-      "imageAlt": "Widok z okna samolotu ponad chmurami"
+      "subtitle": "Z pasją tworzymy wyjątkowe doświadczenia podróżnicze w całym Egipcie, zapewniając spersonalizowaną obsługę i autentyczną miłość do przybliżania ludziom odwiedzanych miejsc.",
+      "title": "Historia Twojej podróży",
+      "imageAlt": "Drewniane klocki o nas"
     },
     "breadcrumb": {
       "home": "Strona główna",
       "about": "O nas"
     },
     "intro": {
-      "title": "Twoja podróż zaczyna się z nami",
-      "description": "Tworzymy niezapomniane doświadczenia podróżnicze, które przybliżają Cię do serca Egiptu. Od krystalicznych przygód nad Morzem Czerwonym i ekscytujących safari po pustyni, przez kultowe zabytki historyczne po malownicze rejsy Nilem — każda podróż jest starannie zaprojektowana, aby inspirować, ekscytować i pozostawiać wspomnienia na całe życie."
+      "title": "Każda podróż zaczyna się tutaj",
+      "description": "Łączymy to, co najlepsze w egipskich doświadczeniach turystycznych — od zachwycających plaż i tętniącego życiem podwodnego świata Morza Czerwonego, po ekscytujące safari pustynne i niezapomniane wycieczki kulturalne. Niezależnie od tego, czy szukasz prywatnych wycieczek, rejsów łodzią, transferów lotniskowych czy wygodnych usług turystycznych, jesteśmy tutaj, aby uczynić odkrywanie Egiptu łatwiejszym, przyjemniejszym i naprawdę niezapomnianym."
     },
     "company": {
       "title": "O naszej firmie",
-      "imageAlt": "Kolaż z podróży po Egipcie",
-      "description": {
-        "part1": "Wierzymy, że podróżowanie to coś więcej niż tylko odwiedzanie miejsc — to historia, chwile i wspomnienia, które trwają całe życie.",
-        "part2": "Nasz zespół składa się z lokalnych ekspertów i entuzjastów podróży, którzy znają każdy ukryty skarb, każdy idealny moment i każdy szczegół, który zamienia wycieczkę w doświadczenie."
-      }
+      "imageAlt": "Widok na budynki miejskie",
+      "description": "Specjalizujemy się w tworzeniu niezapomnianych wrażeń z podróży po całym Egipcie, pomagając turystom odkrywać piękno Morza Czerwonego, zwiedzać zabytkowe miejsca i poznawać autentyczną kulturę egipską. Od nadmorskich przygód po wyprawy na pustynię — oferujemy starannie zaplanowane wycieczki i niezawodne usługi turystyczne."
     },
     "mission": {
       "title": "Nasza misja",
-      "description": "Zapewniać autentyczne, bezpieczne i inspirujące doświadczenia podróżnicze, które pozwalają każdemu odwiedzającemu odkrywać Egipt z pewnością siebie, komfortem i niezapomnianymi wspomnieniami."
+      "imageAlt": "Podróżniczka spoglądająca na góry",
+      "description": "Naszą misją jest uczynienie każdej podróży po Egipcie przyjemną i bezproblemową poprzez świadczenie zaufanych usług turystycznych, spersonalizowaną pomoc i niezapomniane wrażenia. Naszym celem jest łączenie każdego podróżnika z miejscami, przygodami i kulturą, które czynią Egipt wyjątkowym."
     },
     "vision": {
       "title": "Nasza wizja",
-      "description": "Zostać najbardziej zaufaną platformą podróżniczą w Egipcie, łącząc podróżników z niezwykłymi destynacjami, wyjątkową obsługą i znaczącymi doświadczeniami kulturowymi."
+      "imageAlt": "Okno samolotu ponad chmurami",
+      "description": "Naszą wizją jest stać się zaufaną marką w egipskiej turystyce, oferując gościom wartościowe sposoby na odkrywanie Morza Czerwonego, poznawanie bogatego dziedzictwa Egiptu i doświadczanie jego niezwykłych krajobrazów dzięki wyjątkowej obsłudze i niezapomnianym podróżom."
     },
     "offers": {
-      "title": "Co oferujemy?",
+      "title": "Co oferujemy",
+      "subtitle": "Doświadczenia zaprojektowane tak, aby pokazać Ci to, co w Egipcie najlepsze.",
       "items": {
         "seaTrips": {
           "title": "Wycieczki morskie",
-          "description": "Snorkeling, wyspy, krystalicznie czyste wody i relaks."
+          "description": "Rejsy po Morzu Czerwonym, snorkeling i piękne wyspy."
         },
         "desertSafari": {
           "title": "Safari na pustyni",
-          "description": "Przygoda, kultura i niezapomniane widoki pustyni"
+          "description": "Przygody na pustyni, jazda na quadach i życie Beduinów."
         },
         "historicalTours": {
           "title": "Wycieczki historyczne",
-          "description": "Odkryj starożytne cuda Egiptu z ekspertami przewodnikami"
+          "description": "Odkrywaj starożytne świątynie, kultowe zabytki i historię Egiptu."
         }
       }
     }
@@ -325,8 +417,8 @@
     "hero": {
       "subtitle": "Skontaktuj się z nami",
       "title": "Zacznijmy Twoją następną przygodę",
-      "description": "Niezależnie od tego, czy planujesz wymarzone wakacje, szukasz idealnej wycieczki, czy po prostu masz pytanie — nasz zespół jest tutaj, aby Ci pomóc. Skontaktuj się z nami i razem stwórzmy niezapomniane wspomnienia.",
-      "imageAlt": "Skontaktuj się z nami"
+      "description": "Masz pytania lub planujesz kolejną podróż? Nasz zespół jest tutaj, aby Ci doradzić, pomóc wybrać idealne doświadczenie i uczynić każdą podróż niezapomnianą.",
+      "imageAlt": "Drewniane klocki kontakt"
     },
     "breadcrumb": {
       "home": "Strona główna",
@@ -339,6 +431,10 @@
         "name": {
           "label": "Twoje imię",
           "placeholder": "Wpisz imię"
+        },
+        "email": {
+          "label": "Adres e-mail",
+          "placeholder": "Wpisz e-mail"
         },
         "whatsapp": {
           "label": "Numer WhatsApp",
@@ -364,7 +460,7 @@
       }
     },
     "map": {
-      "title": "Mapa lokalizacji Hurghada, Egipt"
+      "title": "Znajdź nas na mapie"
     },
     "social": {
       "title": "Obserwuj nas",

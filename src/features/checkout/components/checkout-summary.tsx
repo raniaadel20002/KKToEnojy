@@ -45,7 +45,7 @@ export function CheckoutSummary({
         {items.map((item) => {
           const primaryImage =
             item.trip.images.find((img) => img.isPrimary) ?? item.trip.images[0];
-          
+
           const [year, month, day] = item.date.split("-").map(Number);
           const localDate = new Date(year, month - 1, day);
           const formattedDate = localDate.toLocaleDateString(
@@ -74,9 +74,9 @@ export function CheckoutSummary({
                   </div>
                 )}
                 <div className="flex flex-col gap-1">
-                  <h3 className="font-medium text-[#003A5A] line-clamp-1">{item.trip.name}</h3>
+                  <h3 className="font-medium text-[#343B55] line-clamp-1">{item.trip.name}</h3>
                   <div className="flex items-center gap-2 text-sm text-[#374151]">
-                    <CalendarDays size={16} className="text-[#003A5A]" />
+                    <CalendarDays size={16} className="text-[#343B55]" />
                     <span>{formattedDate}</span>
                   </div>
                 </div>
@@ -96,7 +96,7 @@ export function CheckoutSummary({
       {/* Breakdowns */}
       <div className="flex flex-col gap-4 text-sm text-[#374151]">
         <p>{t("travelers")}</p>
-        
+
         {items.map((item) => (
           <div key={`breakdown-${item.id}`} className="flex flex-col gap-1">
             {item.adultCount > 0 && (
@@ -148,7 +148,7 @@ export function CheckoutSummary({
         )}
 
         <div className="flex items-center justify-between pt-2">
-          <span className="text-lg font-semibold text-[#003A5A]">
+          <span className="text-lg font-semibold text-[#343B55]">
             {t("total")}
           </span>
           <span className="text-lg font-bold text-[#10B981]">

@@ -17,7 +17,7 @@ export function TripsToolbar({
   onOpenMobileFilters,
 }: TripsToolbarProps) {
   const t = useTranslations("TripsPage.toolbar");
-  
+
   return (
     <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       {/* Found count and Mobile Filter Button */}
@@ -45,7 +45,7 @@ export function TripsToolbar({
             placeholder={t("searchPlaceholder")}
             value={searchItem}
             onChange={(e) => setSearchItem(e.target.value)}
-            className="w-full rounded-full border border-[#D1D5DB] bg-white py-2 pl-9 pr-4 text-sm text-[#374151] outline-none focus:border-[#003A5A] focus:ring-1 focus:ring-[#003A5A]"
+            className="w-full rounded-full border border-[#D1D5DB] bg-white py-2 pl-9 pr-4 text-sm text-[#374151] outline-none focus:border-[#343B55] focus:ring-1 focus:ring-[#343B55]"
           />
         </div>
       </div>

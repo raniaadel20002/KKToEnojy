@@ -25,10 +25,10 @@ export function CartItemCard({ item, onRemove }: CartItemCardProps) {
   const t = useTranslations("CartPage.item");
   const primaryImage =
     item.trip.images.find((img) => img.isPrimary) ?? item.trip.images[0];
-  
+
   const totalTravellers = item.adultCount + item.childCount;
-  
-  // Format date nicely
+
+  // Format date: e.g. "20 June 2026"
   const [year, month, day] = item.date.split("-").map(Number);
   const localDate = new Date(year, month - 1, day);
   const formattedDate = localDate.toLocaleDateString(dateLocaleByLocale[locale], {
@@ -39,69 +39,72 @@ export function CartItemCard({ item, onRemove }: CartItemCardProps) {
 
   const adultSubtotal = item.adultCount * item.trip.adultPrice;
   const childSubtotal = item.childCount * item.trip.childPrice;
-  const total = adultSubtotal + childSubtotal;
+  const healthInsuranceCost = item.extraServices?.healthInsurance ? 30 : 0;
+  const medicalInsuranceCost = item.extraServices?.medicalInsurance ? 50 : 0;
+  const total = adultSubtotal + childSubtotal + healthInsuranceCost + medicalInsuranceCost;
+
+  // Category or duration tag
+  const categoryName =
+    item.trip.tripTypeName || item.trip.durationTypeName || "Tour";
 
   return (
-    <div className="flex flex-col gap-4 rounded-3xl border border-gray-100 bg-white p-4 shadow-[0px_4px_20px_rgba(0,0,0,0.02)] sm:flex-row sm:gap-6 sm:p-5">
-      {/* Image */}
+    <div className="relative flex flex-col sm:flex-row items-start gap-5 rounded-[24px] bg-white p-5 sm:p-6 shadow-sm border border-[#EDE7DC]/50 transition-shadow hover:shadow-md">
+      {/* Thumbnail */}
       {primaryImage && (
-        <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-2xl sm:h-40 sm:w-48 lg:w-56">
+        <div className="relative h-48 w-full sm:h-36 sm:w-44 shrink-0 overflow-hidden rounded-[18px]">
           <Image
             src={primaryImage.imageUrl}
             alt={item.trip.name}
             fill
             className="object-cover"
-            sizes="(max-width: 640px) 100vw, 224px"
+            sizes="(max-width: 640px) 100vw, 176px"
           />
         </div>
       )}
 
-      {/* Content */}
-      <div className="flex flex-1 flex-col justify-between gap-4">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-bold text-[#111827]">{item.trip.name}</h3>
-            {/* Tag/Type (Optional if we don't have it in Trip model directly, just using durationTypeName if it acts as a tag, or omitting) */}
-            <span className="inline-flex w-fit items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-600">
-              {item.trip.durationTypeName}
+      {/* Main Details */}
+      <div className="flex flex-1 flex-col justify-between w-full">
+        {/* Title & Category Badge */}
+        <div className="pr-12">
+          <h3 className="font-serif text-lg sm:text-xl font-bold text-[#343B55] leading-snug">
+            {item.trip.name}
+          </h3>
+          <div className="mt-1.5">
+            <span className="inline-flex items-center rounded-full bg-[#E6F4F7] px-3 py-0.5 text-xs font-medium text-[#198399]">
+              {categoryName}
             </span>
           </div>
-
-          <button
-            type="button"
-            onClick={() => onRemove(item.id)}
-            aria-label={t("removeAria", { name: item.trip.name })}
-            className="flex shrink-0 items-center gap-1.5 rounded-full border border-red-200 px-3 py-1.5 text-xs font-medium text-red-500 transition-colors hover:bg-red-50"
-          >
-            <Trash2 size={14} />
-            <span className="hidden sm:inline">{t("remove")}</span>
-          </button>
         </div>
 
-        {/* Info Icons */}
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[#6B7280]">
+        {/* Metadata row: Location, Date, Travelers */}
+        <div className="mt-3.5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm text-[#5B6B73]">
           {item.trip.destination && (
             <div className="flex items-center gap-1.5">
-              <MapPin size={16} />
+              <MapPin size={15} className="text-[#198399]" />
               <span>{item.trip.destination}</span>
             </div>
           )}
           <div className="flex items-center gap-1.5">
-            <CalendarDays size={16} />
+            <CalendarDays size={15} className="text-[#198399]" />
             <span>{formattedDate}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Users size={16} />
-            <span>{t("travelers", { count: totalTravellers })}</span>
+            <Users size={15} className="text-[#198399]" />
+            <span>
+              {item.adultCount} {item.adultCount === 1 ? "Adult" : "Adults"}
+              {item.childCount > 0 && `, ${item.childCount} ${item.childCount === 1 ? "Child" : "Children"}`}
+            </span>
           </div>
         </div>
 
         {/* Pricing */}
-        <div className="mt-2 flex flex-col justify-end sm:items-end">
-          <span className="text-sm text-[#6B7280]">
-            {item.trip.adultPrice === 0 ? "Contact us for price" : `${formatPrice(item.trip.adultPrice, item.trip.currencyName)} ${t("perPerson")}`}
+        <div className="mt-4 flex flex-col justify-end">
+          <span className="text-xs text-[#7A8B94]">
+            {item.trip.adultPrice === 0
+              ? "Contact us for price"
+              : `${formatPrice(item.trip.adultPrice, item.trip.currencyName)} ${t("perPerson")}`}
           </span>
-          <span className="text-2xl font-bold text-[#003A5A]">
+          <span className="font-serif text-2xl font-bold text-[#343B55]">
             {(item.trip.adultPrice === 0 && item.adultCount > 0) || (item.trip.childPrice === 0 && item.childCount > 0)
               ? total > 0
                 ? `${formatPrice(total, item.trip.currencyName)} + Contact us for price`
@@ -110,6 +113,16 @@ export function CartItemCard({ item, onRemove }: CartItemCardProps) {
           </span>
         </div>
       </div>
+
+      {/* Delete / Trash Button (Circular Red Outline matching cart.png) */}
+      <button
+        type="button"
+        onClick={() => onRemove(item.id)}
+        aria-label={t("removeAria", { name: item.trip.name })}
+        className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-[#F07267]/60 bg-white text-[#F07267] shadow-sm transition-all hover:bg-[#FFF5F5] hover:border-[#F07267] active:scale-95 cursor-pointer"
+      >
+        <Trash2 size={17} strokeWidth={2.2} />
+      </button>
     </div>
   );
 }

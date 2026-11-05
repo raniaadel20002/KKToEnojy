@@ -16,17 +16,21 @@ export function GallerySection() {
       <Breadcrumb />
 
       {isLoading && (
-        <section className="bg-white py-20">
-          <div className="mx-auto w-full px-5 text-center md:px-8 lg:max-w-[1400px] lg:px-10">
-            <p className="text-[#6B7280]">{t("loading")}</p>
+        <section className="bg-[#FAF7F2] py-20">
+          <div className="mx-auto w-full max-w-[1320px] px-4 text-center sm:px-8 lg:px-10">
+            <p className="font-[family-name:var(--font-dm-sans)] text-[#5B6B73]">
+              {t("loading")}
+            </p>
           </div>
         </section>
       )}
 
       {isError && (
-        <section className="bg-white py-20">
-          <div className="mx-auto w-full px-5 text-center md:px-8 lg:max-w-[1400px] lg:px-10">
-            <p className="text-red-600">{t("error")}</p>
+        <section className="bg-[#FAF7F2] py-20">
+          <div className="mx-auto w-full max-w-[1320px] px-4 text-center sm:px-8 lg:px-10">
+            <p className="font-[family-name:var(--font-dm-sans)] text-red-600">
+              {t("error")}
+            </p>
           </div>
         </section>
       )}
@@ -34,9 +38,11 @@ export function GallerySection() {
       {images && images.length > 0 && <GalleryGrid images={images} />}
 
       {images && images.length === 0 && (
-        <section className="bg-white py-20">
-          <div className="mx-auto w-full px-5 text-center md:px-8 lg:max-w-[1400px] lg:px-10">
-            <p className="text-[#6B7280]">{t("empty")}</p>
+        <section className="bg-[#FAF7F2] py-20">
+          <div className="mx-auto w-full max-w-[1320px] px-4 text-center sm:px-8 lg:px-10">
+            <p className="font-[family-name:var(--font-dm-sans)] text-[#5B6B73]">
+              {t("empty")}
+            </p>
           </div>
         </section>
       )}

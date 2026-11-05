@@ -1,7 +1,6 @@
 "use client";
 
-import { ChevronDown, MapPin, Tags } from "lucide-react";
-import { motion } from "framer-motion";
+import { ChevronDown, MapPin, Tag } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { useDestinationsQuery } from "@/src/features/categories/api/get-destinations";
@@ -13,6 +12,7 @@ interface TripsSidebarProps {
     minPrice?: number;
     maxPrice?: number;
     typeId?: number;
+    searchItem?: string;
   };
   setFilters: React.Dispatch<
     React.SetStateAction<{
@@ -31,34 +31,61 @@ export function TripsSidebar({
   setFilters,
   onClearFilters,
 }: TripsSidebarProps) {
-  // Fetch all destinations (not just featured)
   const { data: destinations } = useDestinationsQuery(false);
   const { data: tripTypes } = useTripTypesQuery();
-  const t = useTranslations("TripsPage.sidebar");
+  const t = useTranslations("TripsPage");
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="flex w-full flex-col gap-6 rounded-2xl bg-[#F9FAFB] p-6 lg:w-[280px] lg:shrink-0"
-    >
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-[#003A5A]">{t("filterTitle")}</h2>
+    <div className="flex w-full flex-col gap-6 font-[family-name:var(--font-dm-sans)]">
+      {/* Header */}
+      <div className="flex items-center justify-between pb-2 border-b border-[#EDE7DC]">
+        <h3 className="text-base font-semibold text-[#343B55]">
+          {t("filters.filterButton")}
+        </h3>
         <button
           onClick={onClearFilters}
-          className="text-sm text-[#3B82F6] underline decoration-transparent transition-colors hover:decoration-[#3B82F6]"
+          className="text-xs font-semibold text-[#198399] transition-colors hover:underline cursor-pointer"
         >
-          {t("clearAll")}
+          {t("filters.clearAll")}
         </button>
       </div>
 
+      {/* Trip Type */}
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2 text-sm font-semibold text-[#343B55]">
+          <Tag size={16} className="text-[#198399]" />
+          <span>{t("filters.tripType")}</span>
+        </div>
+        <div className="relative">
+          <select
+            value={filters.typeId || ""}
+            onChange={(e) =>
+              setFilters((prev) => ({
+                ...prev,
+                typeId: e.target.value ? Number(e.target.value) : undefined,
+              }))
+            }
+            className="w-full appearance-none rounded-[12px] border border-[#E6E0D6] bg-white py-3 pl-4 pr-10 text-sm font-medium text-[#343B55] outline-none transition-colors focus:border-[#198399] cursor-pointer"
+          >
+            <option value="">{t("filters.allTripTypes")}</option>
+            {tripTypes?.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            size={18}
+            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#343B55]"
+          />
+        </div>
+      </div>
+
       {/* Destination */}
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-2 text-sm font-medium text-[#374151]">
-          <MapPin size={16} className="text-[#6B7280]" />
-          <span>{t("destination")}</span>
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2 text-sm font-semibold text-[#343B55]">
+          <MapPin size={16} className="text-[#198399]" />
+          <span>{t("filters.destination")}</span>
         </div>
         <div className="relative">
           <select
@@ -71,9 +98,9 @@ export function TripsSidebar({
                   : undefined,
               }))
             }
-            className="w-full appearance-none rounded-lg border border-[#D1D5DB] bg-white py-2.5 pl-4 pr-10 text-sm text-[#374151] outline-none focus:border-[#003A5A] focus:ring-1 focus:ring-[#003A5A]"
+            className="w-full appearance-none rounded-[12px] border border-[#E6E0D6] bg-white py-3 pl-4 pr-10 text-sm font-medium text-[#343B55] outline-none transition-colors focus:border-[#198399] cursor-pointer"
           >
-            <option value="">{t("anyDestination")}</option>
+            <option value="">{t("filters.anyDestination")}</option>
             {destinations?.map((dest) => (
               <option key={dest.id} value={dest.id}>
                 {dest.name}
@@ -81,98 +108,63 @@ export function TripsSidebar({
             ))}
           </select>
           <ChevronDown
-            size={16}
-            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#6B7280]"
+            size={18}
+            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#343B55]"
           />
         </div>
       </div>
 
       {/* Price Range */}
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-2 text-sm font-medium text-[#374151]">
-          <Tags size={16} className="text-[#6B7280]" />
-          <span>{t("priceRange")}</span>
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2 text-sm font-semibold text-[#343B55]">
+          <span className="text-[#198399] font-bold text-base leading-none">$</span>
+          <span>{t("filters.priceRange")}</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="relative w-full">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#6B7280]">
-              €
-            </span>
-            <input
-              type="number"
-              placeholder={t("min")}
-              value={filters.minPrice || ""}
-              onChange={(e) =>
-                setFilters((prev) => ({
-                  ...prev,
-                  minPrice: e.target.value ? Number(e.target.value) : undefined,
-                }))
-              }
-              className="w-full rounded-lg border border-[#D1D5DB] bg-white py-2.5 pl-7 pr-3 text-sm text-[#374151] outline-none focus:border-[#003A5A] focus:ring-1 focus:ring-[#003A5A]"
-            />
-          </div>
-          <span className="text-sm text-[#6B7280]">{t("to")}</span>
-          <div className="relative w-full">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#6B7280]">
-              €
-            </span>
-            <input
-              type="number"
-              placeholder={t("max")}
-              value={filters.maxPrice || ""}
-              onChange={(e) =>
-                setFilters((prev) => ({
-                  ...prev,
-                  maxPrice: e.target.value ? Number(e.target.value) : undefined,
-                }))
-              }
-              className="w-full rounded-lg border border-[#D1D5DB] bg-white py-2.5 pl-7 pr-3 text-sm text-[#374151] outline-none focus:border-[#003A5A] focus:ring-1 focus:ring-[#003A5A]"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Trips Types */}
-      <div className="flex flex-col gap-3">
-        <h3 className="text-sm font-medium text-[#374151]">{t("tripsTypes")}</h3>
-        <div className="flex flex-col gap-3">
-          <label className="flex cursor-pointer items-center justify-between group">
-            <div className="flex items-center gap-2.5">
-              <input
-                type="radio"
-                checked={!filters.typeId}
-                onChange={() =>
-                  setFilters((prev) => ({ ...prev, typeId: undefined }))
-                }
-                className="h-4 w-4 border-gray-300 text-[#003A5A] focus:ring-[#003A5A]"
-              />
-              <span className="text-sm text-[#4B5563] group-hover:text-[#111827]">
-                {t("allTrips")}
-              </span>
-            </div>
-          </label>
-          {tripTypes?.map((type) => (
-            <label
-              key={type.id}
-              className="flex cursor-pointer items-center justify-between group"
-            >
-              <div className="flex items-center gap-2.5">
-                <input
-                  type="radio"
-                  checked={filters.typeId === type.id}
-                  onChange={() =>
-                    setFilters((prev) => ({ ...prev, typeId: type.id }))
-                  }
-                  className="h-4 w-4 border-gray-300 text-[#003A5A] focus:ring-[#003A5A]"
-                />
-                <span className="text-sm text-[#4B5563] group-hover:text-[#111827]">
-                  {type.name}
-                </span>
-              </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="block text-xs font-medium text-[#5B6B73] mb-1">
+              {t("filters.minPrice")}
             </label>
-          ))}
+            <div className="flex h-11 items-center rounded-[12px] bg-[#FAF7F2] px-3 border border-[#E6E0D6] focus-within:border-[#198399]">
+              <span className="text-sm font-medium text-[#5B6B73] mr-1">$</span>
+              <input
+                type="number"
+                min="0"
+                placeholder="0"
+                value={filters.minPrice ?? ""}
+                onChange={(e) =>
+                  setFilters((prev) => ({
+                    ...prev,
+                    minPrice: e.target.value ? Number(e.target.value) : undefined,
+                  }))
+                }
+                className="w-full bg-transparent text-sm font-medium text-[#343B55] outline-none"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-[#5B6B73] mb-1">
+              {t("filters.maxPrice")}
+            </label>
+            <div className="flex h-11 items-center rounded-[12px] bg-[#FAF7F2] px-3 border border-[#E6E0D6] focus-within:border-[#198399]">
+              <span className="text-sm font-medium text-[#5B6B73] mr-1">$</span>
+              <input
+                type="number"
+                min="0"
+                placeholder="500"
+                value={filters.maxPrice ?? ""}
+                onChange={(e) =>
+                  setFilters((prev) => ({
+                    ...prev,
+                    maxPrice: e.target.value ? Number(e.target.value) : undefined,
+                  }))
+                }
+                className="w-full bg-transparent text-sm font-medium text-[#343B55] outline-none"
+              />
+            </div>
+          </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

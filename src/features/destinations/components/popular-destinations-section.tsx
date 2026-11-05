@@ -111,7 +111,7 @@ export function PopularDestinationsSection() {
             <motion.div
               key={dest.id}
               variants={cardVariants}
-              className={`group relative min-w-[280px] flex-none snap-center overflow-hidden rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] md:w-auto ${
+              className={`group relative min-w-[280px] flex-none snap-center overflow-hidden rounded-[24px] [box-shadow:0px_14px_34px_0px_#0E4A6829] md:w-auto ${
                 idx !== displayedDestinations.length - 1 ? "mr-4 md:mr-0" : ""
               }`}
             >
@@ -127,8 +127,8 @@ export function PopularDestinationsSection() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 80vw, 33vw"
                   />
-                  {/* Dark gradient for text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover:from-black/90 group-hover:via-black/40" />
+                  {/* Gradient overlay for bottom text readability per Figma */}
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0E4A68]/90 via-[#0E4A68]/30 to-transparent transition-opacity duration-300 group-hover:from-[#0E4A68] group-hover:via-[#0E4A68]/40" />
 
                   {/* Hover CTA */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">

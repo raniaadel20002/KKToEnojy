@@ -270,7 +270,7 @@ export function AdminDestinationsPage() {
                       </span>
                     </td>
                     <td className="px-4 py-4 text-sm font-semibold text-[var(--foreground)]">
-                      {destination.tripsCount}
+                      {destination.tripsCount ?? 0}
                     </td>
                     <td className="px-4 py-4">
                       <div className="flex justify-end gap-2">

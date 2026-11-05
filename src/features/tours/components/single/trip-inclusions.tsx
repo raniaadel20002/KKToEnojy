@@ -1,4 +1,7 @@
-import { Check, X } from "lucide-react";
+"use client";
+
+import { CheckCircle2, XCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface TripInclusionsProps {
   includes: string[];
@@ -6,6 +9,8 @@ interface TripInclusionsProps {
 }
 
 export function TripInclusions({ includes, excludes }: TripInclusionsProps) {
+  const t = useTranslations("TripDetails.inclusions");
+
   const parsedIncludes = includes
     .flatMap((item) => item.split("•"))
     .map((item) => item.trim())
@@ -16,46 +21,50 @@ export function TripInclusions({ includes, excludes }: TripInclusionsProps) {
     .map((item) => item.trim())
     .filter(Boolean);
 
+  if (parsedIncludes.length === 0 && parsedExcludes.length === 0) {
+    return null;
+  }
+
   return (
-    <div>
-      <h2 className="mb-6 text-xl font-bold text-[#111827] sm:text-2xl">
-        Included/Exclude
+    <div className="rounded-[20px] bg-white p-6 shadow-[0px_8px_24px_0px_rgba(52,59,85,0.06)] border border-[#343B5510] sm:p-8">
+      <h2 className="mb-6 font-[family-name:var(--font-playfair)] text-xl font-bold text-[#343B55] sm:text-2xl">
+        {t("title")}
       </h2>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-10">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-12">
         {/* Included */}
-        <div className="rounded-xl bg-[#F9FAFB] p-5 sm:p-6 lg:bg-transparent lg:p-0">
-          <div className="mb-4 inline-block rounded-full bg-white px-8 py-2 shadow-sm lg:bg-[#F9FAFB]">
-            <h3 className="text-sm font-semibold text-[#111827]">Included</h3>
+        {parsedIncludes.length > 0 && (
+          <div>
+            <h3 className="mb-4 font-[family-name:var(--font-dm-sans)] text-xs font-bold tracking-wider text-[#198399] uppercase">
+              {t("included")}
+            </h3>
+            <ul className="flex flex-col gap-3 font-[family-name:var(--font-dm-sans)] text-sm text-[#5B6B73]">
+              {parsedIncludes.map((item, i) => (
+                <li key={i} className="flex items-start gap-2.5">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[#198399]" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="flex flex-col gap-3">
-            {parsedIncludes.map((item, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#10B981]">
-                  <Check size={14} className="text-white" strokeWidth={3} />
-                </div>
-                <span className="text-sm text-[#374151]">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        )}
 
-        {/* Excluded */}
-        <div className="rounded-xl bg-[#FEF2F2] p-5 sm:p-6 lg:bg-transparent lg:p-0">
-          <div className="mb-4 inline-block rounded-full bg-white px-8 py-2 shadow-sm lg:bg-[#FEF2F2]">
-            <h3 className="text-sm font-semibold text-[#111827]">Excluded</h3>
+        {/* Not Included */}
+        {parsedExcludes.length > 0 && (
+          <div>
+            <h3 className="mb-4 font-[family-name:var(--font-dm-sans)] text-xs font-bold tracking-wider text-[#D94141] uppercase">
+              {t("notIncluded")}
+            </h3>
+            <ul className="flex flex-col gap-3 font-[family-name:var(--font-dm-sans)] text-sm text-[#5B6B73]">
+              {parsedExcludes.map((item, i) => (
+                <li key={i} className="flex items-start gap-2.5">
+                  <XCircle size={18} className="mt-0.5 shrink-0 text-[#D94141]" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="flex flex-col gap-3">
-            {parsedExcludes.map((item, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center">
-                  <X size={18} className="text-[#EF4444]" strokeWidth={2.5} />
-                </div>
-                <span className="text-sm text-[#374151]">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        )}
       </div>
     </div>
   );

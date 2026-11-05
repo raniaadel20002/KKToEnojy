@@ -22,7 +22,7 @@ function CheckoutContent() {
         <p className="mt-2 text-gray-600">{t("description")}</p>
         <Link
           href={`/${locale}/trips`}
-          className="mt-6 inline-flex rounded-full bg-[#003A5A] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#002a42]"
+          className="mt-6 inline-flex rounded-full bg-[#343B55] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#002a42]"
         >
           {t("cta")}
         </Link>

@@ -7,21 +7,22 @@ import type { AppLocale } from "@/src/i18n/locales";
 export function TripsBreadcrumb() {
   const locale = useLocale() as AppLocale;
   const t = useTranslations("TripsPage.breadcrumb");
-  
+
   return (
-    <nav className="bg-white py-4" aria-label="Breadcrumb">
-      <div className="mx-auto w-full px-5 md:px-8 lg:max-w-[1400px] lg:px-10">
-        <div className="flex items-center justify-center gap-2 text-sm">
-          <Link
-            href={`/${locale}`}
-            className="text-[#6B7280] transition-colors hover:text-[#003A5A]"
-          >
-            {t("home")}
-          </Link>
-          <span className="text-[#6B7280]">&gt;</span>
-          <span className="font-semibold text-[#003A5A]">{t("explore")}</span>
-        </div>
-      </div>
+    <nav
+      aria-label="Breadcrumb"
+      className="mb-8 text-center font-[family-name:var(--font-dm-sans)] text-sm sm:mb-10 sm:text-base lg:mb-12"
+    >
+      <Link
+        href={`/${locale}`}
+        className="text-[#5B6B73] transition-colors hover:text-[#343B55]"
+      >
+        {t("home")}
+      </Link>
+      <span className="mx-2 text-[#888888]">&gt;</span>
+      <span className="font-medium text-[#343B55]">
+        {t("trips")}
+      </span>
     </nav>
   );
 }

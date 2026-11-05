@@ -2,21 +2,17 @@
 
 import Image from "next/image";
 import type { Blog } from "@/src/features/admin/blogs/types";
-import { MobileTableOfContents } from "./mobile-table-of-contents";
 
 interface BlogDetailContentProps {
   blog: Blog;
 }
 
-/** Parses **text** markdown and returns React nodes with bold + larger styled text */
+/** Parses **text** markdown and returns React nodes with bold text */
 function renderContent(text: string) {
   const parts = text.split(/\*\*(.*?)\*\*/g);
   return parts.map((part, i) =>
     i % 2 === 1 ? (
-      <strong
-        key={i}
-        className="text-[1.05em] font-bold text-[var(--color-deep-ocean)]"
-      >
+      <strong key={i} className="font-bold text-[#343B55]">
         {part}
       </strong>
     ) : (
@@ -26,76 +22,51 @@ function renderContent(text: string) {
 }
 
 export function BlogDetailContent({ blog }: BlogDetailContentProps) {
+  const introParagraphs = blog.content
+    ? blog.content.split("\n\n").filter((p) => p.trim())
+    : [];
+
   return (
-    <article className="space-y-6 lg:space-y-0">
-      {/* Mobile TOC - Only visible on mobile */}
-      <div className="lg:hidden">
-        <MobileTableOfContents sections={blog.blogSections} />
-      </div>
-
-      {/* Main Content */}
-      <div className="rounded-[20px] bg-white p-6 shadow-sm lg:p-8">
-        {/* Featured Image */}
-        {blog.imageUrl && (
-          <div className="relative mb-6 aspect-video w-full overflow-hidden rounded-[20px]">
-            <Image
-              src={blog.imageUrl}
-              alt={blog.title}
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 800px, 100vw"
-            />
-          </div>
-        )}
-
-        {/* Title */}
-        <h1 className="mb-6 text-2xl font-bold leading-[1.3] text-[var(--color-deep-ocean)] sm:text-3xl lg:text-4xl">
-          {blog.title}
-          <div className="mt-2 h-1 w-20 rounded-full bg-[var(--color-ocean)]" />
-        </h1>
-
-        {/* Introduction Content */}
-        <div className="mb-8 leading-relaxed text-[#374151]">
-          {blog.content.split("\n\n").map((paragraph, index) => (
-            <p key={index} className="mb-4">
-              {renderContent(paragraph)}
-            </p>
+    <article className="space-y-8 sm:space-y-10 lg:space-y-12">
+      {/* Intro paragraphs if any */}
+      {introParagraphs.length > 0 && (
+        <div className="space-y-4 font-[family-name:var(--font-dm-sans)] text-base leading-[1.8] text-[#5B6B73] sm:text-[17px]">
+          {introParagraphs.map((paragraph, index) => (
+            <p key={index}>{renderContent(paragraph)}</p>
           ))}
         </div>
+      )}
 
-        {/* Blog Sections */}
-        {blog.blogSections?.map((section) => (
-          <section
-            key={section.id}
-            id={`section-${section.id}`}
-            className="mb-10 scroll-mt-24"
-          >
-            <h2 className="mb-4 text-xl font-bold text-[var(--color-deep-ocean)] sm:text-2xl">
-              {section.title}
-            </h2>
+      {/* Blog Sections */}
+      {blog.blogSections?.map((section) => (
+        <section
+          key={section.id}
+          id={`section-${section.id}`}
+          className="scroll-mt-28"
+        >
+          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold leading-[1.25] text-[#343B55] sm:text-3xl lg:text-[34px]">
+            {section.title}
+          </h2>
 
-            {section.imageUrl && (
-              <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-[20px]">
-                <Image
-                  src={section.imageUrl}
-                  alt={section.title}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 800px, 100vw"
-                />
-              </div>
-            )}
+          <div className="mt-4 space-y-4 font-[family-name:var(--font-dm-sans)] text-base leading-[1.8] text-[#5B6B73] sm:text-[17px]">
+            {section.content.split("\n\n").map((paragraph, index) => (
+              <p key={index}>{renderContent(paragraph)}</p>
+            ))}
+          </div>
 
-            <div className="leading-relaxed text-[#374151]">
-              {section.content.split("\n\n").map((paragraph, index) => (
-                <p key={index} className="mb-4">
-                  {renderContent(paragraph)}
-                </p>
-              ))}
+          {section.imageUrl && (
+            <div className="relative my-8 aspect-[16/8] w-full overflow-hidden rounded-[20px] bg-gray-100 shadow-[0px_8px_24px_0px_rgba(52,59,85,0.08)] sm:aspect-[16/9]">
+              <Image
+                src={section.imageUrl}
+                alt={section.title}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 860px, 100vw"
+              />
             </div>
-          </section>
-        ))}
-      </div>
+          )}
+        </section>
+      ))}
     </article>
   );
 }

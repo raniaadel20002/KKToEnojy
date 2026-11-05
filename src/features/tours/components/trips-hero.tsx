@@ -1,56 +1,65 @@
 "use client";
 
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-const containerVariants: Variants = {
+const heroContainerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
+      duration: 0.6,
+      ease: "easeOut",
       staggerChildren: 0.15,
+      delayChildren: 0.1,
     },
   },
 };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+const heroItemVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 export function TripsHero() {
   const t = useTranslations("TripsPage.hero");
-  
+
   return (
-    <section
-      className="relative flex w-full flex-col justify-center overflow-hidden bg-cover bg-center min-h-[200px] md:min-h-[280px] lg:min-h-[340px] py-12 md:py-16"
-      style={{
-        backgroundImage: `
-          linear-gradient(270deg, #C0C0C0 0%, #5A5A5A 100%),
-          url('/Trips/HeroTrips.webp')
-        `,
-        backgroundBlendMode: "multiply",
-      }}
-    >
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-        className="z-10 mx-auto flex w-full flex-col items-start px-5 md:px-8 lg:max-w-[1400px] lg:px-10"
-      >
-        <motion.p
-          variants={itemVariants}
-          className="font-[family-name:var(--font-montez)] text-[22px] leading-[160%] text-[#69DD84] md:text-[28px] lg:text-[36px]"
+    <section className="relative flex min-h-[380px] w-full items-center overflow-hidden sm:min-h-[440px] lg:min-h-[500px]">
+      {/* Hero Background Image */}
+      <Image
+        src="/Trips/hero.png"
+        alt={t("imageAlt")}
+        fill
+        priority
+        quality={90}
+        sizes="100vw"
+        className="object-cover object-[70%_center] md:object-center"
+      />
+
+      {/* Hero Text Content */}
+      <div className="relative z-10 mx-auto w-full max-w-[1320px] px-4 py-16 sm:px-8 sm:py-20 md:py-24 lg:px-12">
+        <motion.div
+          variants={heroContainerVariants}
+          initial="hidden"
+          animate="show"
+          className="max-w-[620px]"
         >
-          {t("subtitle")}
-        </motion.p>
-        <motion.h1
-          variants={itemVariants}
-          className="mt-2 font-sans text-[28px] font-semibold leading-[130%] text-white md:text-[40px] lg:text-[56px]"
-        >
-          {t("title")}
-        </motion.h1>
-      </motion.div>
+          <motion.h1
+            variants={heroItemVariants}
+            className="font-[family-name:var(--font-playfair)] text-3xl font-bold leading-[1.15] text-white sm:text-4xl md:text-5xl lg:text-[52px]"
+          >
+            {t("title")}
+          </motion.h1>
+          <motion.p
+            variants={heroItemVariants}
+            className="mt-3.5 max-w-[500px] font-[family-name:var(--font-dm-sans)] text-sm font-normal leading-[1.6] text-white/95 sm:mt-5 sm:text-base md:text-lg"
+          >
+            {t("subtitle")}
+          </motion.p>
+        </motion.div>
+      </div>
     </section>
   );
 }

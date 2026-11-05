@@ -1,3 +1,5 @@
+"use client";
+
 import { Minus, Plus } from "lucide-react";
 import { formatPrice } from "@/src/features/tours/utils/format-price";
 
@@ -24,47 +26,49 @@ export function QuantitySelector({
   onIncrement,
   onDecrement,
 }: QuantitySelectorProps) {
-  const subtotal = count * unitPrice;
-
   return (
-    <div className="flex items-center justify-between rounded-2xl bg-[#F5F9FC] px-5 py-4">
-      {/* Label */}
+    <div className="flex items-center justify-between rounded-2xl bg-[#FAF7F2] px-5 py-4 transition-colors">
+      {/* Label and Sublabel */}
       <div className="flex flex-col">
-        <span className="text-sm font-semibold text-[#111827]">{label}</span>
+        <span className="text-sm font-semibold text-[#343B55]">{label}</span>
         {sublabel && (
-          <span className="text-xs text-[#9CA3AF]">{sublabel}</span>
+          <span className="text-xs text-[#7A8B94]">{sublabel}</span>
         )}
       </div>
 
-      {/* Price + Controls */}
-      <div className="flex items-center gap-4">
-        <span className="min-w-[56px] text-right text-sm font-semibold text-[#111827]">
+      {/* Price + Stepper Controls */}
+      <div className="flex items-center gap-4 sm:gap-6">
+        <span className="min-w-[60px] text-right text-sm font-bold text-[#343B55]">
           {unitPrice === 0
-            ? "Contact us for price"
-            : formatPrice(subtotal, currency)}
+            ? "Free"
+            : formatPrice(unitPrice, currency)}
         </span>
 
-        <button
-          type="button"
-          onClick={onIncrement}
-          disabled={count >= max}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#003A5A] text-white shadow transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          <Plus size={16} strokeWidth={2.5} />
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={onDecrement}
+            disabled={count <= min}
+            aria-label={`Decrease ${label}`}
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#343B55] text-white shadow-sm transition-transform active:scale-95 hover:bg-[#262c40] disabled:cursor-not-allowed disabled:opacity-30 cursor-pointer"
+          >
+            <Minus size={15} strokeWidth={2.5} />
+          </button>
 
-        <span className="w-4 text-center text-base font-bold text-[#111827]">
-          {count}
-        </span>
+          <span className="w-5 text-center text-sm font-bold text-[#343B55]">
+            {count}
+          </span>
 
-        <button
-          type="button"
-          onClick={onDecrement}
-          disabled={count <= min}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#003A5A] text-white shadow transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          <Minus size={16} strokeWidth={2.5} />
-        </button>
+          <button
+            type="button"
+            onClick={onIncrement}
+            disabled={count >= max}
+            aria-label={`Increase ${label}`}
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#343B55] text-white shadow-sm transition-transform active:scale-95 hover:bg-[#262c40] disabled:cursor-not-allowed disabled:opacity-30 cursor-pointer"
+          >
+            <Plus size={15} strokeWidth={2.5} />
+          </button>
+        </div>
       </div>
     </div>
   );

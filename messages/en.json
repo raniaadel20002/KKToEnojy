@@ -104,6 +104,7 @@
     "bookNow": "Book Now",
     "addToCart": "Add to Cart",
     "addedToCart": "Trip Added to Cart!",
+    "tripSuccessfullyBooked": "Trip Successfully Booked",
     "addedSuccess": "has been added to your cart.",
     "viewCart": "View Cart",
     "continueBrowsing": "Continue Browsing"
@@ -113,7 +114,9 @@
     "title": "Popular Destinations",
     "viewMore": "View More",
     "loading": "Loading popular destinations...",
-    "exploreTrips": "Explore Trips"
+    "exploreTrips": "Explore Trips",
+    "trips": "{count} Trips",
+    "tripsSingular": "{count} Trip"
   },
   "HowItWorks": {
     "subtitle": "Your journey made simple, from the first step to the final destination",
@@ -175,9 +178,9 @@
   },
   "DestinationsPage": {
     "hero": {
-      "subtitle": "Explore Egypt",
-      "title": "Discover Destinations That Inspire Every Journey",
-      "imageAlt": "Hurghada destination word art"
+      "subtitle": "Discover the best places to visit in Egypt, from the stunning Red Sea coast and beautiful islands to charming coastal cities and breathtaking landscapes.",
+      "title": "Explore Egypt's Most Beautiful Destinations",
+      "imageAlt": "Explore Egypt destinations hero banner"
     },
     "breadcrumb": {
       "home": "Home",
@@ -191,18 +194,22 @@
   },
   "TripsPage": {
     "hero": {
-      "subtitle": "Explore Egypt",
-      "title": "Find Your Next Adventure"
+      "subtitle": "Discover unforgettable trips, breathtaking destinations, and memorable experiences across the Red Sea and beyond.",
+      "title": "Your Next Journey Begins Here",
+      "imageAlt": "Explore Egypt trips hero banner"
     },
     "breadcrumb": {
       "home": "Home",
-      "explore": "Explore"
+      "explore": "Trips",
+      "trips": "Trips"
     },
     "toolbar": {
       "tripsFound": "{count} Trips Found",
       "tripFound": "{count} Trip Found",
       "filter": "Filter",
-      "searchPlaceholder": "Search"
+      "searchPlaceholder": "Search",
+      "showingCount": "Showing {shown} of {total} trips",
+      "clearAll": "Clear all filters"
     },
     "sidebar": {
       "filterTitle": "Filter",
@@ -228,11 +235,27 @@
     "showMore": {
       "loading": "Loading...",
       "button": "Show More"
+    },
+    "filters": {
+      "tripType": "Trip Type",
+      "allTripTypes": "All Trip Types",
+      "destination": "Destination",
+      "anyDestination": "Any Destination",
+      "priceRange": "Price Range",
+      "setBudget": "Set your budget",
+      "minPrice": "Min price",
+      "maxPrice": "Max price",
+      "apply": "Apply",
+      "search": "Search",
+      "searchPlaceholder": "Search trips...",
+      "showingCount": "Showing {shown} of {total} trips",
+      "clearAll": "Clear all filters",
+      "filterButton": "Filter"
     }
   },
   "GalleryPage": {
     "hero": {
-      "subtitle": "Travel Moments",
+      "subtitle": "A visual collection of unforgettable destinations, breathtaking views, and beautiful moments from our journeys.",
       "title": "Explore Egypt Through Our Lens",
       "imageAlt": "Camera with travel photos"
     },
@@ -249,23 +272,19 @@
   },
   "BlogsPage": {
     "hero": {
-      "subtitle": "Explore Articles",
-      "title": "Discover Stories, Guides & Travel Tips",
-      "imageAlt": "Discover Stories, Guides & Travel Tips"
+      "title": "Stories That Inspire Your Journey",
+      "subtitle": "Travel inspiration, local insights, and fascinating stories to help you discover more and make every journey memorable.",
+      "imageAlt": "Stories That Inspire Your Journey"
     },
     "breadcrumb": {
       "home": "Home",
       "blogs": "Blogs"
     },
     "search": {
-      "placeholder": "Search"
+      "placeholder": "Search articles, destinations, tips..."
     },
-    "tags": {
-      "label": "Popular tags:",
-      "all": "All",
-      "sea": "Sea",
-      "safari": "Safari",
-      "history": "History"
+    "card": {
+      "minRead": "min read"
     },
     "grid": {
       "error": "Failed to load blogs. Please try again later.",
@@ -273,50 +292,123 @@
       "seeMore": "See More"
     }
   },
+  "BlogDetails": {
+    "breadcrumb": {
+      "home": "Home",
+      "blogs": "Blogs",
+      "details": "Blog Details"
+    },
+    "share": {
+      "title": "SHARE THIS STORY",
+      "copyLink": "Copy link",
+      "copied": "Copied!",
+      "email": "Email",
+      "share": "Share"
+    },
+    "inThisStory": "IN THIS STORY",
+    "recentPosts": {
+      "title": "Recent Posts"
+    },
+    "loading": "Loading blog details...",
+    "error": "Failed to load blog post.",
+    "backToBlogs": "Back to Blogs"
+  },
+  "TripDetails": {
+    "breadcrumb": {
+      "home": "Home",
+      "trips": "Trips",
+      "details": "Trip Details"
+    },
+    "about": {
+      "title": "About this tour"
+    },
+    "keyInfo": {
+      "duration": "Duration",
+      "groupSize": "Group size",
+      "groupSizeValue": "2–15 people",
+      "availability": "Availability",
+      "daily": "Daily",
+      "tourType": "Tour Type",
+      "historical": "Historical"
+    },
+    "booking": {
+      "adult": "Adult",
+      "children": "Children (5–11 years)",
+      "perPerson": "per person",
+      "checkAvailability": "Check Availability",
+      "contactUs": "Contact us for price"
+    },
+    "inclusions": {
+      "title": "What's included",
+      "included": "INCLUDED",
+      "notIncluded": "NOT INCLUDED"
+    },
+    "highlights": {
+      "title": "Tour highlights"
+    },
+    "reviews": {
+      "title": "Reviews",
+      "basedOn": "Based on {count} reviews",
+      "noReviews": "No reviews yet. Be the first to share your experience!",
+      "addReview": "Add Review",
+      "subtext": "Your email address will not be published. Required fields are marked *",
+      "yourRating": "Your rating *",
+      "firstName": "First name *",
+      "lastName": "Last name *",
+      "email": "Email *",
+      "phone": "Phone *",
+      "comment": "Comment *",
+      "placeholder": "Share your experience with this tour...",
+      "submit": "Submit Review",
+      "submitting": "Submitting...",
+      "success": "Thank you! Your review has been submitted successfully.",
+      "error": "Failed to submit review. Please try again."
+    }
+  },
   "AboutPage": {
     "hero": {
-      "subtitle": "Our Story",
-      "title": "Discover Egypt with People Who Know It Best",
-      "imageAlt": "Airplane window view above the clouds"
+      "subtitle": "We are passionate about creating exceptional travel experiences across Egypt, personalized service, and a genuine love for bringing people closer to the places they visit.",
+      "title": "The Story Behind Your Journey",
+      "imageAlt": "About us wooden blocks"
     },
     "breadcrumb": {
       "home": "Home",
       "about": "About Us"
     },
     "intro": {
-      "title": "Your Journey Begins With Us",
-      "description": "We create unforgettable travel experiences that bring you closer to the heart of Egypt. From crystal-clear Red Sea adventures and thrilling desert safaris to iconic historical landmarks and scenic Nile cruises, every journey is carefully designed to inspire, excite, and leave you with memories that last a lifetime."
+      "title": "Every Journey Starts Here",
+      "description": "We bring together the best of Egypt's travel experiences, from the stunning beaches and vibrant marine life of the Red Sea to exciting desert safaris and unforgettable cultural excursions. Whether you're looking for private tours, boat trips, airport transfers, or convenient travel services, we're here to make discovering Egypt easier, more enjoyable, and truly memorable."
     },
     "company": {
       "title": "About Our Company",
-      "imageAlt": "Egypt travel collage",
-      "description": {
-        "part1": "We believe that travel is more than just visiting places it's about stories, moments, and memories that last a lifetime.",
-        "part2": "Our team is made up of local experts and travel enthusiasts who know every hidden gem, every perfect timing, and every detail that turns a trip into an experience."
-      }
+      "imageAlt": "City buildings view",
+      "description": "We specialize in creating memorable travel experiences across Egypt, helping visitors discover the beauty of the Red Sea, explore historic destinations, and experience authentic Egyptian culture. From seaside adventures to desert excursions, we bring together carefully planned trips and reliable tourism services."
     },
     "mission": {
       "title": "Our Mission",
-      "description": "To provide authentic, safe, and inspiring travel experiences that allow every visitor to explore Egypt with confidence, comfort, and unforgettable memories."
+      "imageAlt": "Traveler looking at mountains",
+      "description": "Our mission is to make every journey in Egypt enjoyable and effortless by providing trusted travel services, personalized assistance, and unforgettable experiences. We aim to connect every traveler with the destinations, adventures, and culture that make Egypt unique."
     },
     "vision": {
       "title": "Our Vision",
-      "description": "To become Egypt's most trusted travel platform by connecting travelers with extraordinary destinations, exceptional service, and meaningful cultural experiences."
+      "imageAlt": "Airplane window above clouds",
+      "description": "Our vision is to become a trusted name in Egyptian tourism, offering visitors meaningful ways to discover the Red Sea, explore Egypt's rich heritage, and experience its remarkable landscapes through exceptional service and memorable journeys."
     },
     "offers": {
-      "title": "What We Offer?",
+      "title": "What We Offer",
+      "subtitle": "Experiences designed to show you the very best of Egypt.",
       "items": {
         "seaTrips": {
           "title": "Sea Trips",
-          "description": "Snorkeling, islands, crystal-clear waters, and relaxation."
+          "description": "Enjoy Red Sea boat trips, snorkeling, and beautiful islands."
         },
         "desertSafari": {
           "title": "Desert Safari",
-          "description": "Adventure, culture, and unforgettable desert views"
+          "description": "Discover desert adventures, quad biking, and Bedouin life."
         },
         "historicalTours": {
           "title": "Historical Tours",
-          "description": "Explore Egypt's ancient wonders with expert guides"
+          "description": "Explore ancient temples, iconic landmarks, and Egyptian history."
         }
       }
     }
@@ -325,8 +417,8 @@
     "hero": {
       "subtitle": "Get in Touch",
       "title": "Let's Start Your Next Adventure",
-      "description": "Whether you're planning your dream vacation, looking for the perfect tour, or simply have a question, our team is here to help. Reach out to us, and let's create unforgettable memories together.",
-      "imageAlt": "Get in touch"
+      "description": "Have questions or planning your next trip? Our team is here to guide you, help you find the perfect experience, and make every journey memorable.",
+      "imageAlt": "Contact us wooden blocks"
     },
     "breadcrumb": {
       "home": "Home",
@@ -334,11 +426,15 @@
     },
     "form": {
       "title": "Have questions? Feel free to write us",
-      "description": "Have a question or need more information about our products? Fill out the form below and we'll get back to you as soon as possible.",
+      "description": "Have a question or need more information about our trips? Fill out the form below and we'll get back to you as soon as possible.",
       "fields": {
         "name": {
           "label": "Your name",
           "placeholder": "Enter Name"
+        },
+        "email": {
+          "label": "Email address",
+          "placeholder": "Enter Email"
         },
         "whatsapp": {
           "label": "WhatsApp Number",
@@ -364,7 +460,7 @@
       }
     },
     "map": {
-      "title": "Hurghada, Egypt location map"
+      "title": "Find Us on the Map"
     },
     "social": {
       "title": "Follow Us",

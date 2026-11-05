@@ -12,16 +12,16 @@ interface TripsGridProps {
 }
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
 };
 
 export function TripsGrid({ trips, isLoading, error }: TripsGridProps) {
   const t = useTranslations("TripsPage.grid");
-  
+
   if (error) {
     return (
-      <div className="flex w-full items-center justify-center rounded-2xl bg-red-50 py-12 text-center text-red-500">
+      <div className="flex w-full items-center justify-center rounded-[20px] bg-red-50/80 p-8 text-center text-sm font-medium text-red-600">
         <p>{t("error")}</p>
       </div>
     );
@@ -29,11 +29,11 @@ export function TripsGrid({ trips, isLoading, error }: TripsGridProps) {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {[...Array(6)].map((_, i) => (
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:gap-8">
+        {Array.from({ length: 6 }).map((_, i) => (
           <div
             key={i}
-            className="h-[460px] w-full animate-pulse rounded-[24px] bg-gray-100 md:h-[480px]"
+            className="h-[490px] w-full animate-pulse rounded-[20px] bg-[#e6dfd5]/60 shadow-[0_4px_16px_rgba(0,0,0,0.04)]"
           />
         ))}
       </div>
@@ -42,9 +42,11 @@ export function TripsGrid({ trips, isLoading, error }: TripsGridProps) {
 
   if (trips.length === 0) {
     return (
-      <div className="flex w-full flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50 py-16 text-center">
-        <p className="text-lg font-medium text-gray-500">{t("noTripsTitle")}</p>
-        <p className="mt-1 text-sm text-gray-400">
+      <div className="flex w-full flex-col items-center justify-center rounded-[20px] border border-dashed border-[#EDE7DC] bg-white/60 py-16 text-center">
+        <p className="font-[family-name:var(--font-dm-sans)] text-lg font-medium text-[#343B55]">
+          {t("noTripsTitle")}
+        </p>
+        <p className="mt-1 font-[family-name:var(--font-dm-sans)] text-sm text-[#5B6B73]">
           {t("noTripsDescription")}
         </p>
       </div>
@@ -52,7 +54,7 @@ export function TripsGrid({ trips, isLoading, error }: TripsGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:gap-8">
       {trips.map((trip) => (
         <motion.div
           key={trip.id}

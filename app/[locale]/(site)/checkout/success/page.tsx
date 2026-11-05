@@ -33,30 +33,31 @@ export default function CheckoutSuccessPage() {
   };
 
   return (
-    <div className="flex min-h-[70vh] flex-col items-center justify-center gap-8 px-4 py-20 text-center max-w-3xl mx-auto">
-      <div className="relative h-48 w-48">
+    <div className="flex min-h-[70vh] flex-col items-center justify-center gap-6 px-4 py-16 text-center max-w-3xl mx-auto">
+      <div className="flex items-center justify-center mb-2">
         <Image
-          src="/succes.gif"
+          src="/Success.svg"
           alt={t("imageAlt")}
-          fill
-          unoptimized
-          className="object-contain"
+          width={110}
+          height={114}
+          priority
+          className="object-contain drop-shadow-sm"
         />
       </div>
 
-      <div className="flex flex-col gap-3">
-        <h1 className="text-3xl font-bold text-[#111827]">
+      <div className="flex flex-col gap-2">
+        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#0E4A68]">
           {t("title")}
         </h1>
-        <p className="text-[#6B7280]">
+        <p className="text-[#5B6B73] text-sm sm:text-base">
           {t("description")}
         </p>
       </div>
 
       {lastBooking && (
         <div className="w-full rounded-2xl border border-gray-200 bg-white p-6 shadow-sm text-left">
-          <h2 className="mb-4 text-xl font-bold text-[#003A5A]">Booking Details (ID: #{lastBooking.id})</h2>
-          
+          <h2 className="mb-4 text-xl font-bold text-[#343B55]">Booking Details (ID: #{lastBooking.id})</h2>
+
           <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             <div>
               <p className="text-gray-500">Name</p>
@@ -107,7 +108,7 @@ export default function CheckoutSuccessPage() {
                     <td className="px-3 py-3 text-center text-gray-600">
                       {trip.noAdult} Adults, {trip.noChild} Children
                     </td>
-                    <td className="px-3 py-3 text-right font-medium text-[#003A5A]">
+                    <td className="px-3 py-3 text-right font-medium text-[#343B55]">
                       €{trip.subTotal.toFixed(2)}
                     </td>
                   </tr>
@@ -115,7 +116,7 @@ export default function CheckoutSuccessPage() {
               </tbody>
             </table>
           </div>
-          
+
           <div className="mt-4 border-t border-gray-100 pt-4 flex justify-between items-center">
             <span className="font-bold text-gray-800">Total Price</span>
             <span className="text-xl font-bold text-green-600">€{lastBooking.totalPrice.toFixed(2)}</span>

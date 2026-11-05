@@ -105,15 +105,15 @@ export function AvailabilityDatePicker({
           type="button"
           onClick={prevMonth}
           disabled={isPrevDisabled}
-          className="flex h-8 w-8 items-center justify-center rounded-full text-[#003A5A] transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-30"
+          className="flex h-8 w-8 items-center justify-center rounded-full text-[#343B55] transition-colors hover:bg-[#FAF7F2] disabled:cursor-not-allowed disabled:opacity-30 cursor-pointer"
         >
           <ChevronLeft size={18} />
         </button>
-        <span className="text-sm font-semibold text-[#111827]">{monthLabel}</span>
+        <span className="font-serif text-sm font-bold text-[#343B55]">{monthLabel}</span>
         <button
           type="button"
           onClick={nextMonth}
-          className="flex h-8 w-8 items-center justify-center rounded-full text-[#003A5A] transition-colors hover:bg-gray-100"
+          className="flex h-8 w-8 items-center justify-center rounded-full text-[#343B55] transition-colors hover:bg-[#FAF7F2] cursor-pointer"
         >
           <ChevronRight size={18} />
         </button>
@@ -146,8 +146,8 @@ export function AvailabilityDatePicker({
               disabled={disabled}
               onClick={() => onDateSelect(new Date(year, month, day))}
               className={`mx-auto flex h-9 w-9 items-center justify-center rounded-full text-sm font-medium transition-colors
-                ${selected ? "bg-[#003A5A] text-white" : ""}
-                ${!selected && todayCell ? "border border-[#003A5A] text-[#003A5A]" : ""}
+                ${selected ? "bg-[#343B55] text-white" : ""}
+                ${!selected && todayCell ? "border border-[#343B55] text-[#343B55]" : ""}
                 ${!selected && !todayCell && !disabled ? "text-[#111827] hover:bg-[#EFF6FF]" : ""}
                 ${disabled ? "cursor-not-allowed text-gray-300" : ""}
               `}

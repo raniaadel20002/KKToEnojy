@@ -4,14 +4,13 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
 
-// Form animation
 const formVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 export function ContactForm() {
-  const [form, setForm] = useState({ name: "", whatsapp: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const t = useTranslations("ContactPage.form");
 
   const handleChange = (
@@ -20,12 +19,12 @@ export function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.whatsapp || !form.message) return;
-    
+    if (!form.name || !form.email || !form.message) return;
+
     const text = encodeURIComponent(
-      `New Contact Inquiry:\n\nName: ${form.name}\nWhatsApp: ${form.whatsapp}\nMessage: ${form.message}`
+      `New Contact Inquiry:\n\nName: ${form.name}\nEmail: ${form.email}\nMessage: ${form.message}`
     );
-    window.open(`https://wa.me/201093943595?text=${text}`, "_blank");
+    window.open(`https://wa.me/2001289494715?text=${text}`, "_blank");
   };
 
   return (
@@ -33,24 +32,24 @@ export function ContactForm() {
       variants={formVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-100px" }}
-      className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-sm md:p-8 lg:p-10"
+      viewport={{ once: true, margin: "-50px" }}
+      className="h-full rounded-[24px] bg-white p-6 shadow-[0px_8px_28px_0px_#343B551A] sm:p-8 lg:p-10"
     >
       {/* Heading */}
-      <h2 className="text-[22px] font-bold leading-[130%] text-[#003A5A] md:text-[26px] lg:text-[30px]">
+      <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold leading-[1.25] text-[#343B55] sm:text-3xl lg:text-[32px]">
         {t("title")}
       </h2>
-      <p className="mt-3 text-sm leading-[170%] text-[#6B7280] md:text-base">
+      <p className="mt-3 font-[family-name:var(--font-dm-sans)] text-sm font-normal leading-[1.65] text-[#5B6B73] sm:text-base">
         {t("description")}
       </p>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6" noValidate>
+      <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5 sm:gap-6" noValidate>
         {/* Name */}
-        <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col gap-2">
           <label
             htmlFor="contact-name"
-            className="text-sm font-medium text-[#374151]"
+            className="font-[family-name:var(--font-dm-sans)] text-sm font-semibold text-[#343B55]"
           >
             {t("fields.name.label")}
           </label>
@@ -61,44 +60,34 @@ export function ContactForm() {
             value={form.name}
             onChange={handleChange}
             placeholder={t("fields.name.placeholder")}
-            className="
-              w-full rounded-lg border border-[#D1D5DB] px-4 py-3
-              text-sm text-[#374151] placeholder:text-[#9CA3AF]
-              outline-none transition-colors
-              focus:border-[#003A5A] focus:ring-2 focus:ring-[#003A5A]/10
-            "
+            className="h-[52px] w-full rounded-[14px] bg-[#FAF7F2] px-4 font-[family-name:var(--font-dm-sans)] text-sm font-normal text-[#343B55] placeholder:text-[#888888] outline-none transition-all focus:bg-white focus:ring-2 focus:ring-[#343B55]/20"
           />
         </div>
 
-        {/* WhatsApp */}
-        <div className="flex flex-col gap-1.5">
+        {/* Email */}
+        <div className="flex flex-col gap-2">
           <label
-            htmlFor="contact-whatsapp"
-            className="text-sm font-medium text-[#374151]"
+            htmlFor="contact-email"
+            className="font-[family-name:var(--font-dm-sans)] text-sm font-semibold text-[#343B55]"
           >
-            {t("fields.whatsapp.label")}
+            {t("fields.email.label")}
           </label>
           <input
-            id="contact-whatsapp"
-            name="whatsapp"
-            type="tel"
-            value={form.whatsapp}
+            id="contact-email"
+            name="email"
+            type="email"
+            value={form.email}
             onChange={handleChange}
-            placeholder={t("fields.whatsapp.placeholder")}
-            className="
-              w-full rounded-lg border border-[#D1D5DB] px-4 py-3
-              text-sm text-[#374151] placeholder:text-[#9CA3AF]
-              outline-none transition-colors
-              focus:border-[#003A5A] focus:ring-2 focus:ring-[#003A5A]/10
-            "
+            placeholder={t("fields.email.placeholder")}
+            className="h-[52px] w-full rounded-[14px] bg-[#FAF7F2] px-4 font-[family-name:var(--font-dm-sans)] text-sm font-normal text-[#343B55] placeholder:text-[#888888] outline-none transition-all focus:bg-white focus:ring-2 focus:ring-[#343B55]/20"
           />
         </div>
 
         {/* Message */}
-        <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col gap-2">
           <label
             htmlFor="contact-message"
-            className="text-sm font-medium text-[#374151]"
+            className="font-[family-name:var(--font-dm-sans)] text-sm font-semibold text-[#343B55]"
           >
             {t("fields.message.label")}
           </label>
@@ -109,25 +98,15 @@ export function ContactForm() {
             onChange={handleChange}
             placeholder={t("fields.message.placeholder")}
             rows={5}
-            className="
-              w-full resize-none rounded-lg border border-[#D1D5DB] px-4 py-3
-              text-sm text-[#374151] placeholder:text-[#9CA3AF]
-              outline-none transition-colors
-              focus:border-[#003A5A] focus:ring-2 focus:ring-[#003A5A]/10
-            "
+            className="w-full resize-none rounded-[14px] bg-[#FAF7F2] p-4 font-[family-name:var(--font-dm-sans)] text-sm font-normal text-[#343B55] placeholder:text-[#888888] outline-none transition-all focus:bg-white focus:ring-2 focus:ring-[#343B55]/20"
           />
         </div>
 
-        {/* Submit */}
+        {/* Submit Button */}
         <button
           id="contact-submit-btn"
           type="submit"
-          className="
-            w-full rounded-full bg-[#003A5A] py-3.5
-            text-base font-semibold text-white
-            transition-colors hover:bg-[#004d78]
-            focus:outline-none focus:ring-2 focus:ring-[#003A5A]/40
-          "
+          className="mt-2 h-[52px] w-full cursor-pointer rounded-[30px] bg-[#343B55] font-[family-name:var(--font-dm-sans)] text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#262c40]"
         >
           {t("submit")}
         </button>

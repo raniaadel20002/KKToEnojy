@@ -6,11 +6,11 @@ export function WhatsAppButton() {
   const phoneNumber = "+201093943595";
   // Remove any spaces or pluses for the WhatsApp URL
   const cleanPhone = phoneNumber.replace(/[^0-9]/g, "");
-  
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-4 sm:bottom-8 sm:right-8">
       {/* Tooltip */}
-      <div className="relative flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-bold text-[#003A5A] shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
+      <div className="relative flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-bold text-[#343B55] shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
         Book now
         {/* Right Arrow */}
         <div className="absolute -right-[6px] top-1/2 -translate-y-1/2 border-y-[6px] border-l-[8px] border-y-transparent border-l-white" />

@@ -13,15 +13,13 @@ interface GalleryGridProps {
 }
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
 };
 
 export function GalleryGrid({ images }: GalleryGridProps) {
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(
-    null
-  );
-  const [visibleCount, setVisibleCount] = useState(8);
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [visibleCount, setVisibleCount] = useState(9);
   const t = useTranslations("GalleryPage");
 
   const visibleImages = images.slice(0, visibleCount);
@@ -57,10 +55,10 @@ export function GalleryGrid({ images }: GalleryGridProps) {
 
   return (
     <>
-      <section className="bg-white py-12 md:py-16 lg:py-20">
-        <div className="mx-auto w-full px-5 md:px-8 lg:max-w-[1400px] lg:px-10">
+      <section className="bg-[#FAF7F2] pb-20 pt-4 sm:pb-24 md:pb-28">
+        <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-8 lg:px-10">
           {/* Gallery grid */}
-          <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 lg:gap-6">
             {visibleImages.map((image) => (
               <motion.div
                 key={image.id}
@@ -69,20 +67,18 @@ export function GalleryGrid({ images }: GalleryGridProps) {
                 whileInView="show"
                 viewport={{ once: true, margin: "-50px" }}
               >
-                <GalleryCard
-                  image={image}
-                  onExpand={handleExpand}
-                />
+                <GalleryCard image={image} onExpand={handleExpand} />
               </motion.div>
             ))}
           </div>
 
           {/* See More button */}
           {hasMore && (
-            <div className="mt-12 flex justify-center">
+            <div className="mt-12 flex justify-center sm:mt-14">
               <button
+                type="button"
                 onClick={handleLoadMore}
-                className="rounded-full border-2 border-[#003A5A] px-12 py-3 font-semibold text-[#003A5A] transition-colors hover:bg-[#003A5A] hover:text-white"
+                className="rounded-[30px] border-2 border-[#343B55] px-12 py-3 font-[family-name:var(--font-dm-sans)] text-sm font-semibold text-[#343B55] transition-all duration-200 hover:bg-[#343B55] hover:text-white"
               >
                 {t("seeMore")}
               </button>

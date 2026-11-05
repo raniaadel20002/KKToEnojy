@@ -3,12 +3,18 @@ import { persist } from 'zustand/middleware';
 import type { Trip } from '@/src/features/tours/types/trip';
 import type { BookingResponseData } from '@/src/features/checkout/api/create-booking';
 
+export interface ExtraServices {
+  healthInsurance?: boolean;
+  medicalInsurance?: boolean;
+}
+
 export interface CartItem {
   id: string; // unique string e.g. `${trip.id}-${date}`
   trip: Trip;
   date: string;
   adultCount: number;
   childCount: number;
+  extraServices?: ExtraServices;
 }
 
 interface CartStore {
@@ -44,6 +50,7 @@ export const useCartStore = create<CartStore>()(
               ...updatedItems[existingItemIndex],
               adultCount: updatedItems[existingItemIndex].adultCount + newItem.adultCount,
               childCount: updatedItems[existingItemIndex].childCount + newItem.childCount,
+              extraServices: newItem.extraServices || updatedItems[existingItemIndex].extraServices,
             };
             return { items: updatedItems };
           }
@@ -66,7 +73,9 @@ export const useCartStore = create<CartStore>()(
         return get().items.reduce((total, item) => {
           const adultTotal = item.adultCount * item.trip.adultPrice;
           const childTotal = item.childCount * item.trip.childPrice;
-          return total + adultTotal + childTotal;
+          const healthExtra = item.extraServices?.healthInsurance ? 30 : 0;
+          const medicalExtra = item.extraServices?.medicalInsurance ? 50 : 0;
+          return total + adultTotal + childTotal + healthExtra + medicalExtra;
         }, 0);
       }
     }),

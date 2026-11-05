@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Clock, User, Users } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { Trip } from "@/src/features/tours/types/trip";
 import { formatPrice } from "@/src/features/tours/utils/format-price";
 import { AvailabilityModal } from "./availability-modal";
@@ -12,74 +12,48 @@ interface TripBookingCardProps {
 
 export function TripBookingCard({ trip }: TripBookingCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const t = useTranslations("TripDetails.booking");
 
   return (
     <>
-      <div className="rounded-2xl bg-[#F8FBFC] p-6 shadow-sm">
-        <div className="flex flex-col gap-6">
-          {/* Duration Row */}
-          <div className="flex items-start gap-4">
-            <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
-              <Clock size={20} className="text-[#003A5A]" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm text-[#6B7280]">Duration</span>
-              <span className="font-semibold text-[#111827]">
-                {trip.durationValue} {trip.durationTypeName}
-              </span>
-            </div>
-          </div>
-
-          <div className="h-px w-full bg-gray-200" />
-
+      <div className="rounded-[20px] bg-white p-6 shadow-[0px_8px_24px_0px_rgba(52,59,85,0.06)] border border-[#343B5510] sm:p-7">
+        <div className="flex flex-col gap-4 font-[family-name:var(--font-dm-sans)]">
           {/* Adult Price Row */}
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
-                <User size={20} className="text-[#003A5A]" />
-              </div>
-              <span className="text-sm font-medium text-[#4B5563]">Adult</span>
-            </div>
-            <div className="flex flex-col items-end">
-              <span className="text-xs text-[#6B7280]">From</span>
-              <span className="font-semibold text-[#10B981]">
-                {trip.adultPrice === 0 ? "Contact us for price" : `${formatPrice(trip.adultPrice, trip.currencyName)} / Person`}
-              </span>
-            </div>
+          <div className="flex items-baseline justify-between">
+            <span className="text-sm font-normal text-[#5B6B73]">
+              {t("adult")}
+            </span>
+            <span className="text-base font-bold text-[#343B55] sm:text-lg">
+              {trip.adultPrice === 0
+                ? t("contactUs")
+                : `${formatPrice(trip.adultPrice, trip.currencyName)} / ${t("perPerson")}`}
+            </span>
           </div>
 
           {/* Child Price Row */}
           {trip.childPrice > 0 && (
-            <div className="flex items-start justify-between">
-              <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
-                  <Users size={20} className="text-[#003A5A]" />
-                </div>
-                <span className="text-sm font-medium text-[#4B5563]">
-                  Children 3-11 Years
-                </span>
-              </div>
-              <div className="flex flex-col items-end">
-                <span className="text-xs text-[#6B7280]">From</span>
-                <span className="font-semibold text-[#10B981]">
-                  {trip.childPrice === 0 ? "Contact us for price" : `${formatPrice(trip.childPrice, trip.currencyName)} / Person`}
-                </span>
-              </div>
+            <div className="flex items-baseline justify-between border-t border-gray-100 pt-3">
+              <span className="text-sm font-normal text-[#5B6B73]">
+                {t("children")}
+              </span>
+              <span className="text-base font-bold text-[#343B55] sm:text-lg">
+                {formatPrice(trip.childPrice, trip.currencyName)} / ${t("perPerson")}
+              </span>
             </div>
           )}
 
-          <div className="h-px w-full bg-gray-200" />
-
+          {/* Check Availability CTA Button */}
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="w-full rounded-full bg-[#003A5A] py-3.5 font-semibold text-white transition-colors hover:bg-[#002a42]"
+            className="mt-3 w-full rounded-full bg-[#343B55] py-3.5 sm:py-4 text-center font-[family-name:var(--font-dm-sans)] text-sm sm:text-base font-bold text-white transition-all hover:bg-[#0E4A68] hover:shadow-md"
           >
-            Check Availability
+            {t("checkAvailability")}
           </button>
         </div>
       </div>
 
+      {/* Booking Date & Availability Modal */}
       <AvailabilityModal
         trip={trip}
         isOpen={isModalOpen}
@@ -88,4 +62,3 @@ export function TripBookingCard({ trip }: TripBookingCardProps) {
     </>
   );
 }
-

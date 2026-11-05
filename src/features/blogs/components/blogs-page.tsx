@@ -11,72 +11,53 @@ import { BlogsHero } from "./blogs-hero";
 
 export function BlogsPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeTag, setActiveTag] = useState("all");
   const locale = useLocale() as AppLocale;
   const t = useTranslations("BlogsPage");
 
-  const popularTags = [
-    { key: "all", label: t("tags.all") },
-    { key: "sea", label: t("tags.sea") },
-    { key: "safari", label: t("tags.safari") },
-    { key: "history", label: t("tags.history") },
-  ];
-
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-[#FAF7F2]">
+      {/* 1. Hero Section */}
       <BlogsHero />
 
-      <main className="mx-auto w-full max-w-[1280px] px-5 py-8 sm:px-8 lg:px-0 lg:py-12">
+      {/* 2. Main Content */}
+      <main className="mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-12">
         {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"
-          className="mb-8 flex items-center justify-center text-[14px] leading-[160%] text-[#6d7280] lg:text-base"
+          className="py-6 font-[family-name:var(--font-dm-sans)] text-sm sm:py-8 sm:text-base"
         >
-          <Link href={`/${locale}`} className="transition-colors hover:text-[var(--color-ocean)]">
-            {t("breadcrumb.home")}
-          </Link>
-          <span className="mx-2"> &gt; </span>
-          <span className="font-medium text-[var(--color-ocean)]">{t("breadcrumb.blogs")}</span>
+          <div className="flex items-center justify-center gap-2">
+            <Link
+              href={`/${locale}`}
+              className="text-[#5B6B73] transition-colors hover:text-[#343B55]"
+            >
+              {t("breadcrumb.home")}
+            </Link>
+            <span className="text-[#888888]">&gt;</span>
+            <span className="font-medium text-[#343B55]">
+              {t("breadcrumb.blogs")}
+            </span>
+          </div>
         </nav>
 
         {/* Search Bar */}
-        <div className="mb-8">
-          <div className="relative mx-auto max-w-full">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+        <div className="mx-auto mb-10 w-full max-w-[1240px] sm:mb-12">
+          <div className="relative w-full">
+            <Search
+              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#888888] sm:left-6"
+              size={20}
+            />
             <input
               type="text"
               placeholder={t("search.placeholder")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-full border border-gray-300 py-3 pl-12 pr-4 outline-none transition-colors focus:border-[var(--color-ocean)]"
+              className="w-full rounded-full border border-[#E5E7EB] bg-white py-3.5 pl-14 pr-6 font-[family-name:var(--font-dm-sans)] text-sm text-[#343B55] placeholder-[#888888] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.04)] outline-none transition-all focus:border-[#0E4A68] focus:ring-1 focus:ring-[#0E4A68] sm:py-4 sm:pl-16 sm:text-base"
             />
           </div>
         </div>
 
-        {/* Tags */}
-        <div className="mb-10 flex flex-wrap items-center gap-3">
-          <span className="text-base font-medium text-[var(--color-deep-ocean)]">
-            {t("tags.label")}
-          </span>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {popularTags.map((tag) => (
-              <button
-                key={tag.key}
-                type="button"
-                onClick={() => setActiveTag(tag.key)}
-                className={`rounded-full px-5 py-1.5 text-sm transition-colors sm:px-6 sm:py-2 sm:text-base ${
-                  activeTag === tag.key
-                    ? "bg-[var(--color-deep-ocean)] text-white"
-                    : "bg-[#e5e7eb] text-[#4b5563] hover:bg-gray-300"
-                }`}
-              >
-                {tag.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Grid */}
+        {/* 3. Blogs Grid (Popular tags section omitted per user request) */}
         <BlogsGrid searchQuery={searchQuery} />
       </main>
     </div>

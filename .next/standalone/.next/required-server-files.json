@@ -109,7 +109,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy",
+    "outputFileTracingRoot": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy\\KKToEnojy",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -312,11 +312,11 @@
       "resolveAlias": {
         "next-intl/config": "./src/i18n/request.ts"
       },
-      "root": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy"
+      "root": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy\\KKToEnojy"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy",
+  "appDir": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy\\KKToEnojy",
   "relativeAppDir": "",
   "files": [
     ".next\\package.json",

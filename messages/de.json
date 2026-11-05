@@ -104,6 +104,7 @@
     "bookNow": "Jetzt buchen",
     "addToCart": "In den Warenkorb",
     "addedToCart": "Reise in den Warenkorb gelegt!",
+    "tripSuccessfullyBooked": "Reise erfolgreich gebucht",
     "addedSuccess": "wurde Ihrem Warenkorb hinzugefügt.",
     "viewCart": "Warenkorb ansehen",
     "continueBrowsing": "Weiter stöbern"
@@ -113,7 +114,9 @@
     "title": "Beliebte Reiseziele",
     "viewMore": "Mehr anzeigen",
     "loading": "Beliebte Reiseziele werden geladen...",
-    "exploreTrips": "Reisen erkunden"
+    "exploreTrips": "Reisen erkunden",
+    "trips": "{count} Reisen",
+    "tripsSingular": "{count} Reise"
   },
   "HowItWorks": {
     "subtitle": "Ihre Reise ganz einfach, vom ersten Schritt bis zum Zielort",
@@ -175,9 +178,9 @@
   },
   "DestinationsPage": {
     "hero": {
-      "subtitle": "Entdecke Ägypten",
-      "title": "Entdecke Reiseziele, die jede Reise inspirieren",
-      "imageAlt": "Hurghada Reiseziel Wortkunst"
+      "subtitle": "Entdecken Sie die besten Orte in Ägypten, von der atemberaubenden Küste des Roten Meeres und wunderschönen Inseln bis hin zu bezaubernden Küstenstädten und atemberaubenden Landschaften.",
+      "title": "Entdecken Sie Ägyptens schönste Reiseziele",
+      "imageAlt": "Reiseziele in Ägypten Banner"
     },
     "breadcrumb": {
       "home": "Startseite",
@@ -191,18 +194,22 @@
   },
   "TripsPage": {
     "hero": {
-      "subtitle": "Entdecke Ägypten",
-      "title": "Finde dein nächstes Abenteuer"
+      "subtitle": "Entdecken Sie unvergessliche Reisen, atemberaubende Reiseziele und unvergessliche Erlebnisse am Roten Meer und darüber hinaus.",
+      "title": "Ihre nächste Reise beginnt hier",
+      "imageAlt": "Ägypten Reisen Hero Banner"
     },
     "breadcrumb": {
       "home": "Startseite",
-      "explore": "Erkunden"
+      "explore": "Reisen",
+      "trips": "Reisen"
     },
     "toolbar": {
       "tripsFound": "{count} Reisen gefunden",
       "tripFound": "{count} Reise gefunden",
       "filter": "Filter",
-      "searchPlaceholder": "Suchen"
+      "searchPlaceholder": "Suchen",
+      "showingCount": "Zeige {shown} von {total} Reisen",
+      "clearAll": "Alle Filter löschen"
     },
     "sidebar": {
       "filterTitle": "Filter",
@@ -228,11 +235,27 @@
     "showMore": {
       "loading": "Lädt...",
       "button": "Mehr anzeigen"
+    },
+    "filters": {
+      "tripType": "Reiseart",
+      "allTripTypes": "Alle Reisearten",
+      "destination": "Reiseziel",
+      "anyDestination": "Beliebiges Reiseziel",
+      "priceRange": "Preisspanne",
+      "setBudget": "Budget festlegen",
+      "minPrice": "Min preis",
+      "maxPrice": "Max preis",
+      "apply": "Anwenden",
+      "search": "Suchen",
+      "searchPlaceholder": "Reisen suchen...",
+      "showingCount": "Zeige {shown} von {total} Reisen",
+      "clearAll": "Alle Filter löschen",
+      "filterButton": "Filter"
     }
   },
   "GalleryPage": {
     "hero": {
-      "subtitle": "Reisemomente",
+      "subtitle": "Eine visuelle Sammlung unvergesslicher Reiseziele, atemberaubender Ausblicke und wunderschöner Momente aus unseren Reisen.",
       "title": "Entdecke Ägypten durch unsere Linse",
       "imageAlt": "Kamera mit Reisefotos"
     },
@@ -249,23 +272,19 @@
   },
   "BlogsPage": {
     "hero": {
-      "subtitle": "Entdecke Artikel",
-      "title": "Entdecke Geschichten, Reiseführer & Reisetipps",
-      "imageAlt": "Entdecke Geschichten, Reiseführer & Reisetipps"
+      "title": "Geschichten, die Ihre Reise inspirieren",
+      "subtitle": "Reiseinspirationen, lokale Einblicke und faszinierende Geschichten, die Ihnen helfen, mehr zu entdecken und jede Reise unvergesslich zu machen.",
+      "imageAlt": "Geschichten, die Ihre Reise inspirieren"
     },
     "breadcrumb": {
       "home": "Startseite",
       "blogs": "Blog"
     },
     "search": {
-      "placeholder": "Suchen"
+      "placeholder": "Artikel, Reiseziele, Tipps suchen..."
     },
-    "tags": {
-      "label": "Beliebte Tags:",
-      "all": "Alle",
-      "sea": "Meer",
-      "safari": "Safari",
-      "history": "Geschichte"
+    "card": {
+      "minRead": "Min. Lesezeit"
     },
     "grid": {
       "error": "Blogs konnten nicht geladen werden. Bitte versuche es später erneut.",
@@ -273,50 +292,123 @@
       "seeMore": "Mehr anzeigen"
     }
   },
+  "BlogDetails": {
+    "breadcrumb": {
+      "home": "Startseite",
+      "blogs": "Blog",
+      "details": "Blogdetails"
+    },
+    "share": {
+      "title": "DIESE GESCHICHTE TEILEN",
+      "copyLink": "Link kopieren",
+      "copied": "Kopiert!",
+      "email": "E-Mail",
+      "share": "Teilen"
+    },
+    "inThisStory": "IN DIESER GESCHICHTE",
+    "recentPosts": {
+      "title": "Neueste Beiträge"
+    },
+    "loading": "Blogdetails werden geladen...",
+    "error": "Blogbeitrag konnte nicht geladen werden.",
+    "backToBlogs": "Zurück zu Blogs"
+  },
+  "TripDetails": {
+    "breadcrumb": {
+      "home": "Startseite",
+      "trips": "Ausflüge",
+      "details": "Ausflugsdetails"
+    },
+    "about": {
+      "title": "Über diesen Ausflug"
+    },
+    "keyInfo": {
+      "duration": "Dauer",
+      "groupSize": "Gruppengröße",
+      "groupSizeValue": "2–15 Personen",
+      "availability": "Verfügbarkeit",
+      "daily": "Täglich",
+      "tourType": "Tour-Typ",
+      "historical": "Historisch"
+    },
+    "booking": {
+      "adult": "Erwachsener",
+      "children": "Kinder (5–11 Jahre)",
+      "perPerson": "pro Person",
+      "checkAvailability": "Verfügbarkeit prüfen",
+      "contactUs": "Preis auf Anfrage"
+    },
+    "inclusions": {
+      "title": "Was ist inbegriffen",
+      "included": "INBEGRIFFEN",
+      "notIncluded": "NICHT INBEGRIFFEN"
+    },
+    "highlights": {
+      "title": "Tour-Highlights"
+    },
+    "reviews": {
+      "title": "Bewertungen",
+      "basedOn": "Basierend auf {count} Bewertungen",
+      "noReviews": "Noch keine Bewertungen vorhanden.",
+      "addReview": "Bewertung hinzufügen",
+      "subtext": "Ihre E-Mail-Adresse wird nicht veröffentlicht. Pflichtfelder sind markiert *",
+      "yourRating": "Ihre Bewertung *",
+      "firstName": "Vorname *",
+      "lastName": "Nachname *",
+      "email": "E-Mail *",
+      "phone": "Telefon *",
+      "comment": "Kommentar *",
+      "placeholder": "Teilen Sie Ihre Erfahrungen mit dieser Tour...",
+      "submit": "Bewertung abschicken",
+      "submitting": "Wird gesendet...",
+      "success": "Vielen Dank! Ihre Bewertung wurde erfolgreich übermittelt.",
+      "error": "Bewertung konnte nicht übermittelt werden."
+    }
+  },
   "AboutPage": {
     "hero": {
-      "subtitle": "Unsere Geschichte",
-      "title": "Entdecke Ägypten mit Menschen, die es am besten kennen",
-      "imageAlt": "Blick aus einem Flugzeugfenster über den Wolken"
+      "subtitle": "Wir schaffen mit Leidenschaft außergewöhnliche Reiseerlebnisse in ganz Ägypten, persönlichen Service und echte Begeisterung dafür, Menschen die besuchten Orte näher zu bringen.",
+      "title": "Die Geschichte hinter Ihrer Reise",
+      "imageAlt": "Über uns Holzwürfel"
     },
     "breadcrumb": {
       "home": "Startseite",
       "about": "Über uns"
     },
     "intro": {
-      "title": "Deine Reise beginnt mit uns",
-      "description": "Wir schaffen unvergessliche Reiseerlebnisse, die dich dem Herzen Ägyptens näherbringen. Von kristallklaren Abenteuern am Roten Meer und spannenden Wüstensafaris bis hin zu berühmten historischen Wahrzeichen und malerischen Nilkreuzfahrten wird jede Reise sorgfältig gestaltet, um dich zu inspirieren, zu begeistern und Erinnerungen fürs Leben zu schaffen."
+      "title": "Jede Reise beginnt hier",
+      "description": "Wir vereinen das Beste aus Ägyptens Reiseerlebnissen, von den atemberaubenden Stränden und der lebendigen Unterwasserwelt des Roten Meeres bis hin zu aufregenden Wüstensafaris und unvergesslichen Kulturausflügen. Ob private Touren, Bootstouren, Flughafentransfers oder bequeme Reisedienstleistungen: Wir sind hier, um das Entdecken Ägyptens einfacher, angenehmer und unvergesslich zu machen."
     },
     "company": {
       "title": "Über unser Unternehmen",
-      "imageAlt": "Ägypten-Reisecollage",
-      "description": {
-        "part1": "Wir glauben, dass Reisen mehr ist als nur Orte zu besuchen: Es geht um Geschichten, Momente und Erinnerungen, die ein Leben lang bleiben.",
-        "part2": "Unser Team besteht aus lokalen Experten und Reisebegeisterten, die jedes versteckte Highlight, den perfekten Zeitpunkt und jedes Detail kennen, das aus einer Reise ein echtes Erlebnis macht."
-      }
+      "imageAlt": "Stadtansicht",
+      "description": "Wir haben uns darauf spezialisiert, unvergessliche Reiseerlebnisse in ganz Ägypten zu schaffen. Wir helfen Besuchern, die Schönheit des Roten Meeres zu entdecken, historische Ziele zu erkunden und authentische ägyptische Kultur zu erleben. Von Küstenabenteuern bis hin zu Wüstenausflügen bieten wir sorgfältig geplante Reisen und zuverlässige Tourismusdienstleistungen."
     },
     "mission": {
       "title": "Unsere Mission",
-      "description": "Wir bieten authentische, sichere und inspirierende Reiseerlebnisse, damit jeder Besucher Ägypten mit Vertrauen, Komfort und unvergesslichen Erinnerungen entdecken kann."
+      "imageAlt": "Reisende blickt in die Berge",
+      "description": "Unsere Mission ist es, jede Reise in Ägypten angenehm und mühelos zu gestalten, indem wir vertrauenswürdige Reisedienstleistungen, persönliche Unterstützung und unvergessliche Erlebnisse bieten. Unser Ziel ist es, jeden Reisenden mit den Reisezielen, Abenteuern und der Kultur zu verbinden, die Ägypten einzigartig machen."
     },
     "vision": {
       "title": "Unsere Vision",
-      "description": "Wir möchten Ägyptens vertrauenswürdigste Reiseplattform werden, indem wir Reisende mit außergewöhnlichen Reisezielen, hervorragendem Service und bedeutungsvollen kulturellen Erlebnissen verbinden."
+      "imageAlt": "Flugzeugfenster über den Wolken",
+      "description": "Unsere Vision ist es, ein vertrauenswürdiger Name im ägyptischen Tourismus zu werden und Besuchern sinnvolle Möglichkeiten zu bieten, das Rote Meer zu entdecken, Ägyptens reiches Erbe zu erkunden und seine bemerkenswerten Landschaften durch außergewöhnlichen Service und unvergessliche Reisen zu erleben."
     },
     "offers": {
-      "title": "Was bieten wir an?",
+      "title": "Was wir bieten",
+      "subtitle": "Erlebnisse, die Ihnen das Beste von Ägypten zeigen.",
       "items": {
         "seaTrips": {
-          "title": "Meeresausflüge",
-          "description": "Schnorcheln, Inseln, kristallklares Wasser und Erholung."
+          "title": "Seereisen",
+          "description": "Bootstouren auf dem Roten Meer, Schnorcheln und wunderschöne Inseln."
         },
         "desertSafari": {
           "title": "Wüstensafari",
-          "description": "Abenteuer, Kultur und unvergessliche Wüstenblicke"
+          "description": "Wüstenabenteuer, Quadfahren und Beduinenleben entdecken."
         },
         "historicalTours": {
           "title": "Historische Touren",
-          "description": "Entdecke Ägyptens antike Wunder mit erfahrenen Guides"
+          "description": "Erkunden Sie antike Tempel, ikonische Wahrzeichen und ägyptische Geschichte."
         }
       }
     }
@@ -325,8 +417,8 @@
     "hero": {
       "subtitle": "Kontakt aufnehmen",
       "title": "Lass uns dein nächstes Abenteuer planen",
-      "description": "Ob du deinen Traumurlaub planst, nach der perfekten Tour suchst oder einfach eine Frage hast: Unser Team ist für dich da. Schreib uns, und lass uns gemeinsam unvergessliche Erinnerungen schaffen.",
-      "imageAlt": "Kontakt aufnehmen"
+      "description": "Haben Sie Fragen oder planen Sie Ihre nächste Reise? Unser Team hilft Ihnen gerne weiter, das perfekte Erlebnis zu finden und jede Reise unvergesslich zu machen.",
+      "imageAlt": "Kontakt Holzwürfel"
     },
     "breadcrumb": {
       "home": "Startseite",
@@ -339,6 +431,10 @@
         "name": {
           "label": "Dein Name",
           "placeholder": "Namen eingeben"
+        },
+        "email": {
+          "label": "E-Mail-Adresse",
+          "placeholder": "E-Mail eingeben"
         },
         "whatsapp": {
           "label": "WhatsApp-Nummer",
@@ -364,7 +460,7 @@
       }
     },
     "map": {
-      "title": "Karte des Standorts Hurghada, Ägypten"
+      "title": "Finden Sie uns auf der Karte"
     },
     "social": {
       "title": "Folge uns",

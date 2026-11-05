@@ -3,14 +3,13 @@
 import { useState, useEffect } from "react";
 import type { Blog } from "@/src/features/admin/blogs/types";
 import { TableOfContents } from "./table-of-contents";
-import { RecentPosts } from "./recent-posts";
 
 interface BlogDetailSidebarProps {
   blog: Blog;
-  recentBlogs: Blog[];
+  className?: string;
 }
 
-export function BlogDetailSidebar({ blog, recentBlogs }: BlogDetailSidebarProps) {
+export function BlogDetailSidebar({ blog, className = "" }: BlogDetailSidebarProps) {
   const [activeSection, setActiveSection] = useState<number | null>(null);
 
   useEffect(() => {
@@ -38,15 +37,11 @@ export function BlogDetailSidebar({ blog, recentBlogs }: BlogDetailSidebarProps)
   }, [blog.blogSections]);
 
   return (
-    <aside className="space-y-6 lg:block">
-      {/* Hidden on mobile, visible on desktop */}
-      <div className="hidden lg:block">
-        <TableOfContents
-          sections={blog.blogSections}
-          activeSection={activeSection}
-        />
-      </div>
-      <RecentPosts blogs={recentBlogs} currentBlogId={blog.id} />
+    <aside className={className}>
+      <TableOfContents
+        sections={blog.blogSections}
+        activeSection={activeSection}
+      />
     </aside>
   );
 }

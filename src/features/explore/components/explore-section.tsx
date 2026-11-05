@@ -35,7 +35,7 @@ export function ExploreSection() {
   return (
     <section
       className="relative py-10 md:py-14 lg:py-16"
-      style={{ backgroundColor: "#003A5A" }}
+      style={{ backgroundColor: "#343B55" }}
     >
       {/* Content Container */}
       <div className="mx-auto w-full px-4 md:px-8 lg:max-w-[1320px] lg:px-10">
@@ -90,7 +90,7 @@ export function ExploreSection() {
             />
 
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent from-30% via-[#003A5A]/40 to-[#003A5A]/75" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent from-30% via-[#343B55]/40 to-[#343B55]/75" />
 
             {/* Text Content — right side */}
             <div className="absolute inset-0 flex items-center justify-end px-8 pb-8 sm:px-12 sm:pb-10 md:px-16 md:pb-14 lg:px-24 lg:pb-16">

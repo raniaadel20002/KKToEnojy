@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import type { TripImage } from "@/src/features/tours/types/trip";
 
@@ -10,69 +12,92 @@ export function TripGallery({ images }: TripGalleryProps) {
   const otherImages = images.filter((img) => img.id !== primaryImage?.id);
 
   if (!primaryImage) {
-    return <div className="h-[400px] w-full rounded-2xl bg-gray-200" />;
-  }
-
-  const displayedThumbnails = otherImages.slice(0, 4);
-
-  if (displayedThumbnails.length === 0) {
     return (
-      <div className="mb-8 relative h-[300px] w-full overflow-hidden rounded-[20px] sm:h-[450px] lg:mb-12 lg:h-[500px]">
-        <Image
-          src={primaryImage.imageUrl}
-          alt="Main trip image"
-          fill
-          priority
-          className="object-cover transition-transform duration-700 hover:scale-105"
-          sizes="100vw"
-        />
-      </div>
+      <div className="h-[300px] w-full rounded-[20px] bg-gray-200 sm:h-[420px]" />
     );
   }
 
-  const containerGridClass =
-    displayedThumbnails.length === 1
-      ? "grid-cols-1"
-      : displayedThumbnails.length === 2
-        ? "grid-cols-2 lg:grid-cols-1 lg:grid-rows-2"
-        : displayedThumbnails.length === 3
-          ? "grid-cols-3 lg:grid-cols-2 lg:grid-rows-2"
-          : "grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 lg:grid-rows-2";
+  // Pool of extra thumbnails, repeating if fewer than 4 to keep the 2x2 visual grid
+  const allThumbnails = otherImages.length > 0 ? otherImages : [primaryImage];
+  const desktopThumbnails = [
+    allThumbnails[0] || primaryImage,
+    allThumbnails[1] || allThumbnails[0] || primaryImage,
+    allThumbnails[2] || allThumbnails[0] || primaryImage,
+    allThumbnails[3] || allThumbnails[1] || allThumbnails[0] || primaryImage,
+  ];
+
+  const mobileThumbnails = [
+    allThumbnails[0] || primaryImage,
+    allThumbnails[1] || allThumbnails[0] || primaryImage,
+    allThumbnails[2] || allThumbnails[1] || allThumbnails[0] || primaryImage,
+  ];
 
   return (
-    <div className="mb-8 flex flex-col gap-4 lg:mb-12 lg:h-[480px] lg:flex-row lg:gap-5">
-      {/* Main Image (Large) */}
-      <div className="relative h-[250px] w-full overflow-hidden rounded-[20px] sm:h-[350px] lg:h-full lg:flex-[2]">
-        <Image
-          src={primaryImage.imageUrl}
-          alt="Main trip image"
-          fill
-          priority
-          className="object-cover transition-transform duration-700 hover:scale-105"
-          sizes="(max-width: 1024px) 100vw, 66vw"
-        />
+    <div className="mb-10 sm:mb-12">
+      {/* Desktop / Tablet Layout (>= md) */}
+      <div className="hidden h-[460px] gap-4 md:flex lg:h-[520px] lg:gap-5">
+        {/* Main Big Featured Image (Left) */}
+        <div className="relative h-full w-[56%] shrink-0 overflow-hidden rounded-[20px] shadow-[0px_8px_24px_0px_rgba(52,59,85,0.06)]">
+          <Image
+            src={primaryImage.imageUrl}
+            alt="Main trip image"
+            fill
+            priority
+            className="object-cover transition-transform duration-700 hover:scale-105"
+            sizes="(min-width: 1024px) 720px, 60vw"
+          />
+        </div>
+
+        {/* 2x2 Thumbnail Grid (Right) */}
+        <div className="grid h-full flex-1 grid-cols-2 grid-rows-2 gap-4 lg:gap-5">
+          {desktopThumbnails.map((img, index) => (
+            <div
+              key={`${img.id}-${index}`}
+              className="relative h-full w-full overflow-hidden rounded-[20px] shadow-[0px_8px_24px_0px_rgba(52,59,85,0.06)]"
+            >
+              <Image
+                src={img.imageUrl}
+                alt="Trip gallery image"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(min-width: 1024px) 280px, 20vw"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Thumbnails */}
-      <div className={`grid gap-4 lg:flex-1 lg:gap-5 ${containerGridClass}`}>
-        {displayedThumbnails.map((img, index) => (
-          <div
-            key={img.id}
-            className={`relative w-full min-h-[100px] overflow-hidden rounded-[16px] sm:min-h-[140px] lg:min-h-0 lg:h-full lg:rounded-[20px] ${
-              displayedThumbnails.length === 3 && index === 0
-                ? "lg:col-span-2 lg:row-span-1"
-                : ""
-            }`}
-          >
-            <Image
-              src={img.imageUrl}
-              alt="Trip gallery image"
-              fill
-              className="object-cover transition-transform duration-500 hover:scale-110"
-              sizes="(max-width: 1024px) 50vw, 33vw"
-            />
-          </div>
-        ))}
+      {/* Mobile Layout (< md) */}
+      <div className="flex flex-col gap-3 md:hidden">
+        {/* Main Featured Image */}
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] shadow-[0px_8px_24px_0px_rgba(52,59,85,0.06)]">
+          <Image
+            src={primaryImage.imageUrl}
+            alt="Main trip image"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+
+        {/* 3 Thumbnails row below */}
+        <div className="grid grid-cols-3 gap-3">
+          {mobileThumbnails.map((img, index) => (
+            <div
+              key={`mob-${img.id}-${index}`}
+              className="relative aspect-[4/3] w-full overflow-hidden rounded-[16px] shadow-[0px_4px_16px_0px_rgba(52,59,85,0.06)]"
+            >
+              <Image
+                src={img.imageUrl}
+                alt="Trip gallery thumbnail"
+                fill
+                className="object-cover"
+                sizes="33vw"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

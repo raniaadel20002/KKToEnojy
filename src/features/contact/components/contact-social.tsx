@@ -41,7 +41,7 @@ export function ContactSocial() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="text-lg font-bold leading-[160%] text-[#003A5A]"
+        className="text-lg font-bold leading-[160%] text-[#343B55]"
       >
         {t("title")}
       </motion.h2>
@@ -50,7 +50,7 @@ export function ContactSocial() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="mt-4 flex items-center gap-6 text-[#003A5A]"
+        className="mt-4 flex items-center gap-6 text-[#343B55]"
       >
         <motion.div variants={socialIconVariants}>
           <Link

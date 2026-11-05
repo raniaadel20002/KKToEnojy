@@ -1,6 +1,7 @@
 import { Footer } from "@/src/features/layout/footer/footer";
 import { Header } from "@/src/features/layout/header/header";
 import { WhatsAppButton } from "@/src/components/whatsapp-button";
+import { CenteredSuccessToast } from "@/src/features/tours/components/centered-success-toast";
 
 export default function SiteLayout({
   children,
@@ -14,6 +15,7 @@ export default function SiteLayout({
         {children}
       </main>
       <WhatsAppButton />
+      <CenteredSuccessToast />
       <Footer />
     </>
   );
