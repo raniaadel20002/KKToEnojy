@@ -54,7 +54,7 @@ export function ContactSocial() {
       >
         <motion.div variants={socialIconVariants}>
           <Link
-            href="https://www.facebook.com/people/SunnySide-Tours/61590996990350"
+            href="https://www.facebook.com/people/-Tours/61590996990350"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("links.facebook")}

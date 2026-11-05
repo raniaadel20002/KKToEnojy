@@ -139,7 +139,7 @@ export function Footer() {
             </h3>
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <a
-                href="https://www.facebook.com/people/SunnySide-Tours/61590996990350"
+                href="https://www.facebook.com/people/-Tours/61590996990350"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
