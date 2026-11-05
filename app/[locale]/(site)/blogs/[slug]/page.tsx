@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: `${response.data.title}`,
       description: response.data.content.substring(0, 160) + "...",
       openGraph: {
-        title: `${response.data.title} | SunnySide Tours Blog`,
+        title: `${response.data.title} | KKToEnojy Blog`,
         description: response.data.content.substring(0, 160) + "...",
       },
     };

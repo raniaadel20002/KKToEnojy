@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }): Promise<Metadata> {
   const { slug, locale } = await params;
   const id = extractIdFromSlug(slug);
-  
+
   if (!id) {
     return { title: "Trip Not Found" };
   }
@@ -16,11 +16,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       headers: { "Accept-Language": locale },
       next: { revalidate: 3600 }
     });
-    
+
     if (!response.ok) throw new Error("Failed to fetch trip");
-    
+
     const trip = await response.json();
-    const title = `${trip.data.name} | SunnySide Tours`;
+    const title = `${trip.data.name} | KKToEnojy`;
     const description = trip.data.description.replace(/<[^>]+>/g, "").substring(0, 160) + "...";
 
     return {
@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   } catch (error) {
     return {
-      title: `Egypt Tour | SunnySide Tours`,
-      description: `Explore this amazing Egypt tour with SunnySide Tours. Book your adventure and create memories together.`,
+      title: `Egypt Tour | KKToEnojy`,
+      description: `Explore this amazing Egypt tour with KKToEnojy. Book your adventure and create memories together.`,
     };
   }
 }

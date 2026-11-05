@@ -10,11 +10,11 @@ import { ReviewsProjectSection } from "@/src/features/reviews-project/components
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "SunnySide Tours - Create Memories Together in Egypt",
+  title: "KKToEnojy - Create Memories Together in Egypt",
   description:
-    "Discover Egypt with SunnySide Tours. Explore destinations, book tours, and create unforgettable memories. Your trusted partner for Egyptian adventures.",
+    "Discover Egypt with KKToEnojy. Explore destinations, book tours, and create unforgettable memories. Your trusted partner for Egyptian adventures.",
   openGraph: {
-    title: "SunnySide Tours - Create Memories Together",
+    title: "KKToEnojy - Create Memories Together",
     description: "Discover Egypt's best tours and destinations. Start your adventure today.",
   },
 };

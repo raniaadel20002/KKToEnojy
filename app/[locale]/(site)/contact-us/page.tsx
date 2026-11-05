@@ -2,11 +2,11 @@ import { ContactSection } from "@/src/features/contact/components/contact-sectio
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Get in Touch with SunnySide Tours",
+  title: "Contact Us - Get in Touch with KKToEnojy",
   description:
-    "Contact SunnySide Tours for inquiries and bookings. Call us at +20 109 394 3595 or visit our office in Egypt. We're here to help you create memories together.",
+    "Contact KKToEnojy for inquiries and bookings. Call us at +20 109 394 3595 or visit our office in Egypt. We're here to help you create memories together.",
   openGraph: {
-    title: "Contact SunnySide Tours",
+    title: "Contact KKToEnojy",
     description: "Get in touch for bookings and inquiries. We're here to help plan your Egyptian adventure.",
   },
 };
