@@ -112,10 +112,11 @@ export function TripsPage() {
     maxPrice: filters.maxPrice,
     typeId: filters.typeId,
     searchItem: filters.searchItem,
-    pageSize: 50,
+    pageSize: 100,
   });
 
-  const trips = data || [];
+  // Sort all fetched trips by id ascending (lowest/oldest first) before paginating
+  const trips = (data || []).slice().sort((a, b) => a.id - b.id);
   const totalPages = Math.ceil(trips.length / 9);
   const paginatedTrips = trips.slice((currentPage - 1) * 9, currentPage * 9);
 
