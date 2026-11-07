@@ -14,7 +14,7 @@ const REPEATED_IMAGES = [
 
 export function HeroGallery() {
   return (
-    <div className="relative w-full lg:max-w-[1330px] lg:mx-auto overflow-hidden my-5 sm:my-8 lg:my-10">
+    <div className="relative w-full lg:max-w-[1440px] xl:max-w-[1540px] lg:mx-auto overflow-hidden my-5 sm:my-8 lg:my-10">
       {/* SVG ClipPath Definition for the concave curved edges */}
       <svg
         className="pointer-events-none absolute h-0 w-0"
@@ -29,11 +29,11 @@ export function HeroGallery() {
       </svg>
 
       {/* Curved Container:
-          - Full width (edge-to-edge) on mobile matching herores.png
-          - max-w-[1330px] with 55px left/right margins on desktop matching hero.png
+          - Full width (edge-to-edge) on mobile
+          - Expanded max width and height on desktop for larger image display
       */}
       <div
-        className="relative w-full h-[195px] sm:h-[235px] lg:h-[285px] overflow-hidden select-none [isolation:isolate]"
+        className="relative w-full h-[240px] sm:h-[300px] lg:h-[370px] xl:h-[400px] overflow-hidden select-none [isolation:isolate]"
         style={{
           clipPath: "url(#heroGalleryCurve)",
           WebkitClipPath: "url(#heroGalleryCurve)",
@@ -55,14 +55,14 @@ export function HeroGallery() {
           {REPEATED_IMAGES.map((img, index) => (
             <div
               key={`${img.id}-${index}`}
-              className="relative h-full w-[164px] sm:w-[195px] lg:w-[230px] shrink-0 overflow-hidden"
+              className="relative h-full w-[200px] sm:w-[250px] lg:w-[305px] xl:w-[330px] shrink-0 overflow-hidden"
             >
               <Image
                 src={img.src}
                 alt={img.alt}
                 fill
                 priority={index < 5}
-                sizes="(max-width: 640px) 164px, (max-width: 1024px) 195px, 230px"
+                sizes="(max-width: 640px) 200px, (max-width: 1024px) 250px, (max-width: 1280px) 305px, 330px"
                 className="object-cover object-center pointer-events-none"
               />
             </div>

@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "next-intl";
 
 import { useTripTypesQuery } from "@/src/features/categories/api/get-trip-types";
 import { CategoryCard } from "@/src/features/categories/components/category-card";
+import type { TripType } from "@/src/features/categories/types/trip-type";
 
 export function CategoriesSection() {
   const { data: rawTripTypes, isLoading, error } = useTripTypesQuery();
@@ -25,8 +26,42 @@ export function CategoriesSection() {
   }, []);
 
   const tripTypes = useMemo(() => {
-    if (!rawTripTypes) return null;
-    return rawTripTypes.slice(0, 4);
+    if (!rawTripTypes || rawTripTypes.length === 0) return null;
+
+    // Retain the first 4 existing categories
+    const existing = rawTripTypes.slice(0, 4);
+    const existingIds = new Set(existing.map((t) => t.id));
+
+    // Specifically find Snorkeling and Safari from the API data
+    const snorkeling = rawTripTypes.find(
+      (t) =>
+        !existingIds.has(t.id) &&
+        (/snorkel/i.test(t.name) || t.id === 4)
+    );
+    if (snorkeling) existingIds.add(snorkeling.id);
+
+    const safari = rawTripTypes.find(
+      (t) =>
+        !existingIds.has(t.id) &&
+        (/safari/i.test(t.name) || t.id === 5)
+    );
+    if (safari) existingIds.add(safari.id);
+
+    const result = [...existing];
+    if (snorkeling) result.push(snorkeling);
+    if (safari) result.push(safari);
+
+    // Fallback: if either category was not matched specifically, fill up to 6 from rawTripTypes
+    if (result.length < 6) {
+      for (const item of rawTripTypes) {
+        if (result.length >= 6) break;
+        if (!result.some((r) => r.id === item.id)) {
+          result.push(item);
+        }
+      }
+    }
+
+    return result;
   }, [rawTripTypes]);
 
   if (isLoading) {
@@ -75,12 +110,12 @@ export function CategoriesSection() {
         </div>
 
         {/* Categories Cards Grid:
-            - Desktop: 4 columns in one row with specified rotations
-            - Responsive / Mobile: 2x2 grid with responsive rotations
+            - Desktop: 3 columns in 2 rows with responsive rotations
+            - Responsive / Mobile: 2 columns in 3 rows with responsive rotations
         */}
         <div className="relative">
-          {/* Desktop 4-in-a-row Layout */}
-          <div className="hidden lg:grid grid-cols-4 gap-7 xl:gap-15 max-w-[1240px] mx-auto pt-6 pb-4">
+          {/* Desktop 3-column Layout (2 rows for 6 cards) */}
+          <div className="hidden lg:grid grid-cols-3 gap-x-8 lg:gap-x-12 xl:gap-x-14 gap-y-12 lg:gap-y-16 max-w-[1040px] xl:max-w-[1140px] mx-auto pt-6 pb-6">
             {tripTypes.map((tripType, index) => (
               <CategoryCard
                 key={tripType.id}
@@ -91,7 +126,7 @@ export function CategoriesSection() {
             ))}
           </div>
 
-          {/* Mobile / Tablet 2x2 Grid Layout */}
+          {/* Mobile / Tablet 2-column Layout (3 rows for 6 cards) */}
           <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-10 sm:gap-y-12 max-w-[440px] sm:max-w-[560px] mx-auto pt-5 pb-3 lg:hidden">
             {tripTypes.map((tripType, index) => (
               <CategoryCard

@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, type Variants } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { usePopularDestinationsQuery } from "@/src/features/destinations/api/get-popular-destinations";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 // Animation Variants
 const sectionVariants: Variants = {
@@ -51,7 +52,87 @@ export function PopularDestinationsSection() {
   const locale = useLocale();
   const t = useTranslations("PopularDestinations");
 
-  const displayedDestinations = destinations?.slice(0, 3) ?? [];
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  // Mouse drag-to-scroll state
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeftStart = useRef(0);
+  const hasMoved = useRef(false);
+  const [isCursorGrabbing, setIsCursorGrabbing] = useState(false);
+
+  const allDestinations = destinations ?? [];
+
+  const checkScroll = useCallback(() => {
+    if (!scrollContainerRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  }, []);
+
+  useEffect(() => {
+    checkScroll();
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", checkScroll, { passive: true });
+      window.addEventListener("resize", checkScroll);
+      return () => {
+        container.removeEventListener("scroll", checkScroll);
+        window.removeEventListener("resize", checkScroll);
+      };
+    }
+  }, [checkScroll, allDestinations.length]);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollContainerRef.current) return;
+    const scrollAmount = scrollContainerRef.current.clientWidth * 0.75;
+    scrollContainerRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  // Mouse drag handlers
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.button !== 0 || !scrollContainerRef.current) return;
+    isDragging.current = true;
+    hasMoved.current = false;
+    startX.current = e.pageX - scrollContainerRef.current.offsetLeft;
+    scrollLeftStart.current = scrollContainerRef.current.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !scrollContainerRef.current) return;
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = x - startX.current;
+
+    if (Math.abs(walk) > 5) {
+      if (!hasMoved.current) {
+        hasMoved.current = true;
+        setIsCursorGrabbing(true);
+      }
+      e.preventDefault();
+      scrollContainerRef.current.scrollLeft = scrollLeftStart.current - walk;
+    }
+  };
+
+  const handleMouseUpOrLeave = () => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    setIsCursorGrabbing(false);
+    setTimeout(() => {
+      hasMoved.current = false;
+    }, 50);
+  };
+
+  const handleClickCapture = (e: React.MouseEvent) => {
+    if (hasMoved.current) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
 
   if (isLoading) {
     return (
@@ -61,7 +142,7 @@ export function PopularDestinationsSection() {
     );
   }
 
-  if (error || displayedDestinations.length === 0) {
+  if (error || allDestinations.length === 0) {
     return null;
   }
 
@@ -99,56 +180,91 @@ export function PopularDestinationsSection() {
           </div>
         </div>
 
-        {/* Grid / Horizontal Scroll */}
-        <motion.div
-          variants={cardContainerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
-          className="flex snap-x snap-mandatory overflow-x-auto pb-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-3 md:gap-6 md:pb-0"
-        >
-          {displayedDestinations.map((dest, idx) => (
-            <motion.div
-              key={dest.id}
-              variants={cardVariants}
-              className={`group relative min-w-[280px] flex-none snap-center overflow-hidden rounded-[24px] [box-shadow:0px_14px_34px_0px_#0E4A6829] md:w-auto ${
-                idx !== displayedDestinations.length - 1 ? "mr-4 md:mr-0" : ""
-              }`}
+        {/* Horizontally Scrollable Carousel */}
+        <div className="relative">
+          {/* Navigation Arrows for Carousel */}
+          {canScrollLeft && (
+            <button
+              type="button"
+              onClick={() => scroll("left")}
+              aria-label="Previous destinations"
+              className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-[#343B55] shadow-[0px_8px_20px_rgba(14,74,104,0.18)] border border-[#EDE7DC] backdrop-blur-sm transition-all hover:bg-[#343B55] hover:text-white hover:scale-105 active:scale-95 cursor-pointer"
             >
-              <Link
-                href={`/${locale}/trips?destinationId=${dest.id}`}
-                className="block cursor-pointer"
+              <ChevronLeft size={22} />
+            </button>
+          )}
+
+          {canScrollRight && (
+            <button
+              type="button"
+              onClick={() => scroll("right")}
+              aria-label="Next destinations"
+              className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-[#343B55] shadow-[0px_8px_20px_rgba(14,74,104,0.18)] border border-[#EDE7DC] backdrop-blur-sm transition-all hover:bg-[#343B55] hover:text-white hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <ChevronRight size={22} />
+            </button>
+          )}
+
+          <motion.div
+            ref={scrollContainerRef}
+            variants={cardContainerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            onMouseLeave={handleMouseUpOrLeave}
+            onClickCapture={handleClickCapture}
+            className={`flex gap-5 sm:gap-6 overflow-x-auto touch-pan-x overscroll-x-contain ${
+              isCursorGrabbing
+                ? "cursor-grabbing select-none snap-none scroll-auto"
+                : "cursor-grab snap-x snap-mandatory scroll-smooth"
+            } pt-2 pb-6 px-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
+          >
+            {allDestinations.map((dest) => (
+              <motion.div
+                key={dest.id}
+                variants={cardVariants}
+                className="group relative w-[280px] sm:w-[340px] md:w-[380px] lg:w-[400px] shrink-0 flex-none snap-start overflow-hidden rounded-[24px] [box-shadow:0px_14px_34px_0px_#0E4A6829]"
               >
-                <div className="relative aspect-[4/3] w-full">
-                  <Image
-                    src={dest.imageUrl}
-                    alt={dest.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 80vw, 33vw"
-                  />
-                  {/* Gradient overlay for bottom text readability per Figma */}
-                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0E4A68]/90 via-[#0E4A68]/30 to-transparent transition-opacity duration-300 group-hover:from-[#0E4A68] group-hover:via-[#0E4A68]/40" />
+                <Link
+                  href={`/${locale}/trips?destinationId=${dest.id}`}
+                  className="block cursor-pointer"
+                  draggable={false}
+                >
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={dest.imageUrl}
+                      alt={dest.name}
+                      fill
+                      draggable={false}
+                      className="object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+                      sizes="(max-width: 640px) 280px, (max-width: 1024px) 380px, 400px"
+                    />
+                    {/* Gradient overlay for bottom text readability per Figma */}
+                    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0E4A68]/90 via-[#0E4A68]/30 to-transparent transition-opacity duration-300 group-hover:from-[#0E4A68] group-hover:via-[#0E4A68]/40" />
 
-                  {/* Hover CTA */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="rounded-full bg-white/20 px-5 py-2 text-sm font-semibold text-white backdrop-blur-sm ring-1 ring-white/40">
-                      {t("exploreTrips")}
-                    </span>
-                  </div>
+                    {/* Hover CTA */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <span className="rounded-full bg-white/20 px-5 py-2 text-sm font-semibold text-white backdrop-blur-sm ring-1 ring-white/40">
+                        {t("exploreTrips")}
+                      </span>
+                    </div>
 
-                  {/* Destination Name */}
-                  <div className="absolute inset-x-0 bottom-6 text-center md:bottom-8">
-                    <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white transition-all duration-300 group-hover:-translate-y-2 md:text-3xl">
-                      {dest.name.trim()}
-                    </h3>
-                    <span className="mx-auto mt-2 block h-1.5 w-10 rounded-[20px] bg-[#765438] transition-all duration-300 group-hover:-translate-y-2 sm:w-12" />
+                    {/* Destination Name */}
+                    <div className="absolute inset-x-0 bottom-6 text-center md:bottom-8">
+                      <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white transition-all duration-300 group-hover:-translate-y-2 md:text-3xl">
+                        {dest.name.trim()}
+                      </h3>
+                      <span className="mx-auto mt-2 block h-1.5 w-10 rounded-[20px] bg-[#765438] transition-all duration-300 group-hover:-translate-y-2 sm:w-12" />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
 
         {/* View More Button Centered at Bottom */}
         <motion.div

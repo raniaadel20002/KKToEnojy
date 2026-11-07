@@ -15,11 +15,11 @@ interface CategoryCardProps {
   isDesktop?: boolean;
 }
 
-const DESKTOP_ROTATIONS = [-13, 8, -3, -14];
-const DESKTOP_PIN_ROTATIONS = [-47, 0, -45.99, -47];
+const DESKTOP_ROTATIONS = [-13, 8, -3, 7, -10, 6];
+const DESKTOP_PIN_ROTATIONS = [-47, 0, -45.99, 0, -47, 0];
 
-const MOBILE_ROTATIONS = [7, -4.31, -4, 6];
-const MOBILE_PIN_ROTATIONS = [7, -4.31, -4, 6];
+const MOBILE_ROTATIONS = [7, -4.31, -4, 6, 5, -4.31];
+const MOBILE_PIN_ROTATIONS = [7, -4.31, -4, 6, 7, -4.31];
 
 export function CategoryCard({
   tripType,
@@ -28,14 +28,15 @@ export function CategoryCard({
 }: CategoryCardProps) {
   const locale = useLocale();
   const [isHovered, setIsHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const defaultRotation = isDesktop
-    ? DESKTOP_ROTATIONS[index % 4]
-    : MOBILE_ROTATIONS[index % 4];
+    ? DESKTOP_ROTATIONS[index % DESKTOP_ROTATIONS.length]
+    : MOBILE_ROTATIONS[index % MOBILE_ROTATIONS.length];
 
   const pinRotation = isDesktop
-    ? DESKTOP_PIN_ROTATIONS[index % 4]
-    : MOBILE_PIN_ROTATIONS[index % 4];
+    ? DESKTOP_PIN_ROTATIONS[index % DESKTOP_PIN_ROTATIONS.length]
+    : MOBILE_PIN_ROTATIONS[index % MOBILE_PIN_ROTATIONS.length];
 
   // Compensate for the card's rotation so the pin keeps
   // its specified absolute angle.
@@ -50,7 +51,7 @@ export function CategoryCard({
       draggable={false}
     >
       <motion.div
-        className="group relative gap-4cursor-pointer"
+        className="group relative cursor-pointer"
         initial={{ rotate: defaultRotation, scale: 1 }}
         animate={{
           rotate: isHovered ? 0 : defaultRotation,
@@ -66,7 +67,7 @@ export function CategoryCard({
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Pushpin */}
-        <div className="pointer-events-none absolute -top-3.5 sm:-top-4.5 left-1/2 z-20 -translate-x-1/2 ">
+        <div className="pointer-events-none absolute -top-3.5 sm:-top-4.5 left-1/2 z-20 -translate-x-1/2">
           <motion.div
             className="relative h-[28px] w-[24px] sm:h-[36px] sm:w-[32px]"
             animate={{ rotate: adjustedPinRotation }}
@@ -88,14 +89,15 @@ export function CategoryCard({
         {/* Polaroid Card */}
         <div className="relative w-full overflow-hidden rounded-[10px] border border-[#888888] bg-white p-2.5 pb-3 shadow-xl transition-shadow duration-300 group-hover:shadow-2xl sm:p-3.5 sm:pb-4">
           <div className="relative aspect-square w-full overflow-hidden rounded-[4px] bg-slate-100">
-            {tripType.imageUrl ? (
+            {tripType.imageUrl && !imageError ? (
               <Image
                 src={tripType.imageUrl}
                 alt={tripType.name}
                 fill
                 draggable={false}
-                sizes="(max-width: 640px) 140px, (max-width: 1024px) 200px, 280px"
+                sizes="(max-width: 640px) 200px, (max-width: 1024px) 280px, 360px"
                 className="pointer-events-none object-cover transition-transform duration-500 group-hover:scale-105"
+                onError={() => setImageError(true)}
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-slate-200 text-slate-400">
@@ -106,7 +108,7 @@ export function CategoryCard({
 
           <div className="pt-2 text-center sm:pt-3">
             <h3 className="truncate px-1 font-[family-name:var(--font-dm-sans)] text-[14px] font-bold text-[#343B55] sm:text-[18px] lg:text-[20px]">
-              {tripType.name}
+              {tripType.name.trim()}
             </h3>
           </div>
         </div>
