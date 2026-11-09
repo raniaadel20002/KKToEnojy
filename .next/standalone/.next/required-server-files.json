@@ -64,8 +64,13 @@
       "remotePatterns": [
         {
           "protocol": "https",
+          "hostname": "kk2gback.premiumasp.net",
+          "pathname": "/**"
+        },
+        {
+          "protocol": "https",
           "hostname": "sunnytour.premiumasp.net",
-          "pathname": "/images/**"
+          "pathname": "/**"
         }
       ],
       "qualities": [
@@ -109,7 +114,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy\\KKToEnojy",
+    "outputFileTracingRoot": "C:\\Users\\VIP\\Desktop\\work\\KKToEnojy",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -171,7 +176,7 @@
       "proxyPrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
-      "cpus": 7,
+      "cpus": 3,
       "memoryBasedWorkersCount": false,
       "imgOptConcurrency": null,
       "imgOptTimeoutInSeconds": 7,
@@ -312,11 +317,11 @@
       "resolveAlias": {
         "next-intl/config": "./src/i18n/request.ts"
       },
-      "root": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy\\KKToEnojy"
+      "root": "C:\\Users\\VIP\\Desktop\\work\\KKToEnojy"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "C:\\Users\\DELL\\Desktop\\Work\\KKToEnojy\\KKToEnojy",
+  "appDir": "C:\\Users\\VIP\\Desktop\\work\\KKToEnojy",
   "relativeAppDir": "",
   "files": [
     ".next\\package.json",
