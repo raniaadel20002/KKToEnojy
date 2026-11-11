@@ -1,6 +1,0 @@
-1:"$Sreact.fragment"
-2:I[97367,["/_next/static/chunks/378qfkkoo4sgn.js","/_next/static/chunks/2im7c515bo69p.js"],"ViewportBoundary"]
-3:I[97367,["/_next/static/chunks/378qfkkoo4sgn.js","/_next/static/chunks/2im7c515bo69p.js"],"MetadataBoundary"]
-4:"$Sreact.suspense"
-5:I[27201,["/_next/static/chunks/378qfkkoo4sgn.js","/_next/static/chunks/2im7c515bo69p.js"],"IconMark"]
-0:{"rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Admin | KKToEnojy"}],["$","meta","1",{"name":"description","content":"Curated tours and travel experiences for memorable journeys in Hurghada, Egypt."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow, nocache"}],["$","link","3",{"rel":"icon","href":"/favicon.ico?favicon.3u_v4vx_ow0te.ico","sizes":"48x48","type":"image/x-icon"}],["$","link","4",{"rel":"icon","href":"/icon.png?icon.1_4eav8uc4kaj.png","sizes":"192x192","type":"image/png"}],["$","$L5","5",{}]]}]}]}],null]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"H-BM3qPDbkT358Snme3em"}
