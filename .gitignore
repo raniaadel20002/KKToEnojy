@@ -17,11 +17,7 @@ bun.lockb
 /coverage
 
 # next.js
-/.next/*
-!/.next/standalone/
-!/.next/standalone/**
-!/.next/static/
-!/.next/static/**
+/.next/
 /out/
 
 # production
