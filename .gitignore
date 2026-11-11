@@ -48,3 +48,4 @@ verification-*.png
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.next

@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocale } from "next-intl";
 
 import { getApiUrl, getLanguageHeaders } from "@/src/shared/config/api";
+import { SITE_CONTACT } from "@/src/shared/config/contact";
 import type { AppLocale } from "@/src/i18n/locales";
 import type {
   ReviewProjectApiResponse,
@@ -9,7 +10,7 @@ import type {
   ReviewProjectItem,
 } from "../types/review-project";
 
-export const SAFE_MOCK_PHONE = "+201093943595";
+export const SAFE_MOCK_PHONE = SITE_CONTACT.rawPhone;
 
 export function sanitizeOrFallbackPhone(phone?: string | null): string {
   if (!phone || typeof phone !== "string") {

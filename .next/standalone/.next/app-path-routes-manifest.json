@@ -34,5 +34,7 @@
   "/admin/users/page": "/admin/users",
   "/favicon.ico/route": "/favicon.ico",
   "/icon.png/route": "/icon.png",
-  "/page": "/"
+  "/page": "/",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml"
 }

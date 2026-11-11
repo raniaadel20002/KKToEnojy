@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
+import { SITE_CONTACT } from "@/src/shared/config/contact";
 
 const formVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -24,7 +25,7 @@ export function ContactForm() {
     const text = encodeURIComponent(
       `New Contact Inquiry:\n\nName: ${form.name}\nEmail: ${form.email}\nMessage: ${form.message}`
     );
-    window.open(`https://wa.me/2001289494715?text=${text}`, "_blank");
+    window.open(`https://wa.me/${SITE_CONTACT.whatsappPhone}?text=${text}`, "_blank");
   };
 
   return (

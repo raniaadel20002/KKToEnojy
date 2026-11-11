@@ -12,6 +12,7 @@ import {
   XIcon,
 } from "@/src/shared/components/icons";
 import type { AppLocale } from "@/src/i18n/locales";
+import { SITE_CONTACT } from "@/src/shared/config/contact";
 
 const footerLinks = [
   { labelKey: "home", href: "/" },
@@ -115,16 +116,16 @@ export function Footer() {
             </div>
             <address className="mt-5 flex flex-col space-y-3.5 not-italic">
               <a
-                href="tel:+2001289494715"
+                href={`tel:${SITE_CONTACT.rawPhone}`}
                 className="w-fit font-[family-name:var(--font-dm-sans)] text-sm font-normal text-[#343B55] transition-colors hover:text-[#198399] sm:text-[15px]"
               >
-                +20 01289494715
+                {SITE_CONTACT.phone}
               </a>
               <a
-                href="mailto:info@etouristmarket.com"
+                href={`mailto:${SITE_CONTACT.email}`}
                 className="w-fit font-[family-name:var(--font-dm-sans)] text-sm font-normal text-[#343B55] transition-colors hover:text-[#198399] sm:text-[15px]"
               >
-                info@etouristmarket.com
+                {SITE_CONTACT.email}
               </a>
               <span className="font-[family-name:var(--font-dm-sans)] text-sm font-normal text-[#343B55] sm:text-[15px]">
                 {footerT("address")}
@@ -139,7 +140,7 @@ export function Footer() {
             </h3>
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <a
-                href="https://www.facebook.com/people/-Tours/61590996990350"
+                href={SITE_CONTACT.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -148,7 +149,7 @@ export function Footer() {
                 <FacebookIcon className="size-4" />
               </a>
               <a
-                href="https://www.instagram.com/sunny_side_tours"
+                href={SITE_CONTACT.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -157,7 +158,7 @@ export function Footer() {
                 <InstagramIcon className="size-4" />
               </a>
               <a
-                href="https://x.com"
+                href={SITE_CONTACT.socials.x}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (formerly Twitter)"
@@ -166,7 +167,7 @@ export function Footer() {
                 <XIcon className="size-4" />
               </a>
               <a
-                href="https://www.tiktok.com"
+                href={SITE_CONTACT.socials.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"

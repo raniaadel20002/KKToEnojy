@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { MessageCircle } from "lucide-react";
 import { useCartStore } from "@/src/store/use-cart-store";
 import type { AppLocale } from "@/src/i18n/locales";
+import { SITE_CONTACT } from "@/src/shared/config/contact";
 
 export default function CheckoutSuccessPage() {
   const locale = useLocale() as AppLocale;
@@ -29,7 +30,7 @@ export default function CheckoutSuccessPage() {
     });
     message += `and my total price is €${lastBooking.totalPrice.toFixed(2)}. right?`;
 
-    window.open(`https://wa.me/201093943595?text=${message}`, "_blank");
+    window.open(`https://wa.me/${SITE_CONTACT.whatsappPhone}?text=${message}`, "_blank");
   };
 
   return (

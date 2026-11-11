@@ -1,9 +1,10 @@
 "use client";
 
 import { WhatsAppIcon } from "@/src/shared/components/icons";
+import { SITE_CONTACT } from "@/src/shared/config/contact";
 
 export function WhatsAppButton() {
-  const phoneNumber = "+201093943595";
+  const phoneNumber = SITE_CONTACT.whatsappPhone;
   // Remove any spaces or pluses for the WhatsApp URL
   const cleanPhone = phoneNumber.replace(/[^0-9]/g, "");
 

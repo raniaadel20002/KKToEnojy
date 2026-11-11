@@ -9,6 +9,7 @@ import {
   FacebookIcon,
   InstagramIcon,
 } from "@/src/shared/components/icons";
+import { SITE_CONTACT } from "@/src/shared/config/contact";
 
 // Social animations
 const socialContainerVariants: Variants = {
@@ -54,7 +55,7 @@ export function ContactSocial() {
       >
         <motion.div variants={socialIconVariants}>
           <Link
-            href="https://www.facebook.com/people/-Tours/61590996990350"
+            href={SITE_CONTACT.socials.facebook}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("links.facebook")}
@@ -65,7 +66,7 @@ export function ContactSocial() {
         </motion.div>
         <motion.div variants={socialIconVariants}>
           <Link
-            href="https://www.instagram.com/sunny_side_tours"
+            href={SITE_CONTACT.socials.instagram}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("links.instagram")}
@@ -76,7 +77,7 @@ export function ContactSocial() {
         </motion.div>
         <motion.div variants={socialIconVariants}>
           <Link
-            href="https://wa.me/201093943595"
+            href={`https://wa.me/${SITE_CONTACT.whatsappPhone}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"

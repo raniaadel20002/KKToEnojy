@@ -10,6 +10,7 @@ import {
   TikTokIcon,
   XIcon,
 } from "@/src/shared/components/icons";
+import { SITE_CONTACT } from "@/src/shared/config/contact";
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -58,10 +59,10 @@ export function ContactInfo() {
             {t("info.phone.label")}
           </h3>
           <a
-            href="tel:+2001289494715"
+            href={`tel:${SITE_CONTACT.rawPhone}`}
             className="mt-0.5 block font-[family-name:var(--font-dm-sans)] text-xs font-normal text-[#5B6B73] transition-colors hover:text-[#198399] sm:text-sm"
           >
-            +20 01289494715
+            {SITE_CONTACT.phone}
           </a>
         </div>
       </motion.div>
@@ -82,10 +83,10 @@ export function ContactInfo() {
             {t("info.email.label")}
           </h3>
           <a
-            href="mailto:info@etouristmarket.com"
+            href={`mailto:${SITE_CONTACT.email}`}
             className="mt-0.5 block font-[family-name:var(--font-dm-sans)] text-xs font-normal text-[#5B6B73] transition-colors hover:text-[#198399] sm:text-sm"
           >
-            info@etouristmarket.com
+            {SITE_CONTACT.email}
           </a>
         </div>
       </motion.div>
@@ -103,7 +104,7 @@ export function ContactInfo() {
         </h3>
         <div className="flex items-center gap-3">
           <a
-            href="https://www.facebook.com/people/-Tours/61590996990350"
+            href={SITE_CONTACT.socials.facebook}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
@@ -112,7 +113,7 @@ export function ContactInfo() {
             <FacebookIcon className="size-4" />
           </a>
           <a
-            href="https://www.instagram.com/sunny_side_tours"
+            href={SITE_CONTACT.socials.instagram}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -121,7 +122,7 @@ export function ContactInfo() {
             <InstagramIcon className="size-4" />
           </a>
           <a
-            href="https://x.com"
+            href={SITE_CONTACT.socials.x}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="X"
@@ -130,7 +131,7 @@ export function ContactInfo() {
             <XIcon className="size-4" />
           </a>
           <a
-            href="https://www.tiktok.com"
+            href={SITE_CONTACT.socials.tiktok}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="TikTok"
