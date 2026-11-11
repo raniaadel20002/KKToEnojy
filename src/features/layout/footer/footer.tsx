@@ -8,8 +8,6 @@ import { motion, type Variants } from "framer-motion";
 import {
   FacebookIcon,
   InstagramIcon,
-  TikTokIcon,
-  XIcon,
 } from "@/src/shared/components/icons";
 import type { AppLocale } from "@/src/i18n/locales";
 import { SITE_CONTACT } from "@/src/shared/config/contact";
@@ -119,7 +117,7 @@ export function Footer() {
                 href={`tel:${SITE_CONTACT.rawPhone}`}
                 className="w-fit font-[family-name:var(--font-dm-sans)] text-sm font-normal text-[#343B55] transition-colors hover:text-[#198399] sm:text-[15px]"
               >
-                {SITE_CONTACT.phone}
+                {SITE_CONTACT.displayPhone}
               </a>
               <a
                 href={`mailto:${SITE_CONTACT.email}`}
@@ -156,24 +154,6 @@ export function Footer() {
                 className="flex size-10 items-center justify-center rounded-full border border-[#343B55] text-[#343B55] transition-all hover:scale-105 hover:bg-[#343B55] hover:text-white"
               >
                 <InstagramIcon className="size-4" />
-              </a>
-              <a
-                href={SITE_CONTACT.socials.x}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X (formerly Twitter)"
-                className="flex size-10 items-center justify-center rounded-full border border-[#343B55] text-[#343B55] transition-all hover:scale-105 hover:bg-[#343B55] hover:text-white"
-              >
-                <XIcon className="size-4" />
-              </a>
-              <a
-                href={SITE_CONTACT.socials.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="TikTok"
-                className="flex size-10 items-center justify-center rounded-full border border-[#343B55] text-[#343B55] transition-all hover:scale-105 hover:bg-[#343B55] hover:text-white"
-              >
-                <TikTokIcon className="size-4" />
               </a>
             </div>
           </motion.div>

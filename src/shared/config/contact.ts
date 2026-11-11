@@ -1,16 +1,15 @@
 export const SITE_CONTACT = {
-  // Dummy contact info until client provides final numbers
-  phone: "+20 100 000 0000",
-  rawPhone: "+201000000000",
-  whatsappPhone: "201000000000",
+  // Official contact information
+  phone: "+20 150 300 6484",
+  displayPhone: "01503006484",
+  rawPhone: "+201503006484",
+  whatsappPhone: "201503006484",
   email: "info@KKToEnojy.com",
 
-  // Dummy social links
+  // Official social links
   socials: {
-    facebook: "https://www.facebook.com/kktoenojy",
-    instagram: "https://www.instagram.com/kktoenojy",
-    tiktok: "https://www.tiktok.com/@kktoenojy",
-    x: "https://x.com/kktoenojy",
+    facebook: "https://www.facebook.com/profile.php?id=61575101615934&mibextid=ZbWKwL",
+    instagram: "https://www.instagram.com/hurghada_kktoenjoy?srtk=eHBweGZkZGdsa3Jz",
   },
 
   // Site domain & brand identity
@@ -20,4 +19,3 @@ export const SITE_CONTACT = {
   addressCountry: "EG",
   addressLocality: "Hurghada / Red Sea, Egypt",
 } as const;
-

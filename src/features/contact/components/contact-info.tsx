@@ -7,8 +7,6 @@ import { motion, type Variants } from "framer-motion";
 import {
   FacebookIcon,
   InstagramIcon,
-  TikTokIcon,
-  XIcon,
 } from "@/src/shared/components/icons";
 import { SITE_CONTACT } from "@/src/shared/config/contact";
 
@@ -62,7 +60,7 @@ export function ContactInfo() {
             href={`tel:${SITE_CONTACT.rawPhone}`}
             className="mt-0.5 block font-[family-name:var(--font-dm-sans)] text-xs font-normal text-[#5B6B73] transition-colors hover:text-[#198399] sm:text-sm"
           >
-            {SITE_CONTACT.phone}
+            {SITE_CONTACT.displayPhone}
           </a>
         </div>
       </motion.div>
@@ -120,24 +118,6 @@ export function ContactInfo() {
             className="flex size-10 items-center justify-center rounded-full border border-[#EDE7DC] text-[#343B55] transition-all hover:scale-105 hover:bg-[#343B55] hover:text-white"
           >
             <InstagramIcon className="size-4" />
-          </a>
-          <a
-            href={SITE_CONTACT.socials.x}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="X"
-            className="flex size-10 items-center justify-center rounded-full border border-[#EDE7DC] text-[#343B55] transition-all hover:scale-105 hover:bg-[#343B55] hover:text-white"
-          >
-            <XIcon className="size-4" />
-          </a>
-          <a
-            href={SITE_CONTACT.socials.tiktok}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok"
-            className="flex size-10 items-center justify-center rounded-full border border-[#EDE7DC] text-[#343B55] transition-all hover:scale-105 hover:bg-[#343B55] hover:text-white"
-          >
-            <TikTokIcon className="size-4" />
           </a>
         </div>
       </motion.div>

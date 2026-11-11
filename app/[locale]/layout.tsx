@@ -178,8 +178,6 @@ export default async function LocaleLayout({
     sameAs: [
       SITE_CONTACT.socials.facebook,
       SITE_CONTACT.socials.instagram,
-      SITE_CONTACT.socials.tiktok,
-      SITE_CONTACT.socials.x,
       `https://wa.me/${SITE_CONTACT.whatsappPhone}`,
     ],
   };
