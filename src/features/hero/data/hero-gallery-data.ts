@@ -7,13 +7,13 @@ export interface HeroGalleryImage {
 export const heroGalleryImages: HeroGalleryImage[] = [
   {
     id: "gallery-1",
-    src: "/Hero/gallery-1.webp",
-    alt: "Sailboat on the Nile in Cairo with Cairo Tower",
+    src: "/Hero/image1.webp",
+    alt: "Egypt adventure and tourism experience",
   },
   {
     id: "gallery-2",
-    src: "/Hero/gallery-2.webp",
-    alt: "Philae and Abu Simbel Ancient Temple by the Nile",
+    src: "/Hero/image2.webp",
+    alt: "Explore Egypt's top travel destinations",
   },
   {
     id: "gallery-3",
